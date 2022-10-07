@@ -1,0 +1,497 @@
+2022-10-04 15:32:46.816 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 15:32:48.847 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 15:32:49.733 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 15:32:50.130 +05:00 [INF] Hosting environment: Development
+2022-10-04 15:32:50.658 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 15:33:20.075 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger - -
+2022-10-04 15:33:21.414 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger - - - 301 0 - 1349.8523ms
+2022-10-04 15:33:21.535 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 15:33:23.879 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 2343.4220ms
+2022-10-04 15:33:24.642 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/swagger-ui.css - -
+2022-10-04 15:33:25.119 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/swagger-ui-standalone-preset.js - -
+2022-10-04 15:33:25.119 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 15:33:25.118 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/swagger-ui-bundle.js - -
+2022-10-04 15:33:25.119 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 15:33:25.142 +05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2022-10-04 15:33:25.508 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 389.2187ms
+2022-10-04 15:33:25.650 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/swagger-ui.css - - - 200 143632 text/css 1007.3556ms
+2022-10-04 15:33:25.743 +05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2022-10-04 15:33:25.763 +05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2022-10-04 15:33:26.164 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/swagger-ui-bundle.js - - - 200 1092889 application/javascript 1046.4414ms
+2022-10-04 15:33:26.196 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/swagger-ui-standalone-preset.js - - - 200 337162 application/javascript 1077.2814ms
+2022-10-04 15:33:26.212 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 1093.6424ms
+2022-10-04 15:33:42.803 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 15:33:43.069 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/favicon-32x32.png - -
+2022-10-04 15:33:43.699 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 896.3071ms
+2022-10-04 15:33:43.715 +05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2022-10-04 15:33:44.166 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/favicon-32x32.png - - - 200 628 image/png 1096.7237ms
+2022-10-04 15:35:57.512 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 15:36:20.300 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 15:36:23.575 +05:00 [INF] Executed DbCommand (150ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2022-10-04 15:36:24.813 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (SELECT 1 FROM pg_catalog.pg_class c JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE c.relname='__EFMigrationsHistory');
+2022-10-04 15:36:25.816 +05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2022-10-04 15:36:26.858 +05:00 [INF] Applying migration '20221004103559_A01'.
+2022-10-04 15:36:28.756 +05:00 [INF] Executed DbCommand (405ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Users" ADD "IsEmailConfirmed" boolean NOT NULL DEFAULT FALSE;
+2022-10-04 15:36:29.176 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Users" ADD "UserRole" integer NOT NULL DEFAULT 0;
+2022-10-04 15:36:29.681 +05:00 [INF] Executed DbCommand (101ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20221004103559_A01', '6.0.7');
+2022-10-04 15:37:05.960 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 15:37:07.112 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 15:37:07.931 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 15:37:08.912 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 987.0903ms
+2022-10-04 15:37:08.913 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 15:37:08.922 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 15:37:09.030 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 15:37:09.196 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 283.0124ms
+2022-10-04 15:37:09.337 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 414.5607ms
+2022-10-04 15:37:09.500 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 15:37:09.503 +05:00 [INF] Hosting environment: Development
+2022-10-04 15:37:09.957 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 15:37:10.394 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 893.9443ms
+2022-10-04 15:38:34.432 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryPIndNvdsBNi7j055 12253
+2022-10-04 15:38:35.993 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:38:37.581 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 15:38:38.348 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 296.0214ms
+2022-10-04 15:38:38.906 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:38:39.376 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryPIndNvdsBNi7j055 12253 - 500 - application/json 4944.0684ms
+2022-10-04 15:40:47.545 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 15:40:49.758 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 15:40:49.848 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 15:40:50.434 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 15:40:51.086 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 15:40:51.086 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 15:40:51.115 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1273.0036ms
+2022-10-04 15:40:51.124 +05:00 [INF] Hosting environment: Development
+2022-10-04 15:40:51.597 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 511.3973ms
+2022-10-04 15:40:51.658 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 15:40:51.702 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 616.1095ms
+2022-10-04 15:40:51.826 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 15:40:52.523 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 696.2101ms
+2022-10-04 15:41:41.902 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundary1En8KRvKNNkipy9l 31324
+2022-10-04 15:41:42.912 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:41:44.311 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 15:41:46.165 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 851.1811ms
+2022-10-04 15:41:46.622 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:41:47.168 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundary1En8KRvKNNkipy9l 31324 - 500 - application/json 5271.8661ms
+2022-10-04 15:43:05.652 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 15:43:07.053 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 15:43:07.860 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 15:43:07.920 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 15:43:09.072 +05:00 [INF] Hosting environment: Development
+2022-10-04 15:43:09.193 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 15:43:09.193 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 15:43:09.219 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1304.5520ms
+2022-10-04 15:43:09.534 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 15:43:09.704 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 510.5634ms
+2022-10-04 15:43:10.037 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 844.7457ms
+2022-10-04 15:43:10.179 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 15:43:10.900 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 720.5496ms
+2022-10-04 15:44:08.095 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryCHGpa6qxBagI6QX0 31324
+2022-10-04 15:44:08.843 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:44:10.030 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 15:44:43.929 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 33052.6662ms
+2022-10-04 15:44:44.724 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:44:55.584 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryCHGpa6qxBagI6QX0 31324 - 500 - application/json 47491.6866ms
+2022-10-04 15:45:22.485 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryR5lcnJGXu4XL3wk8 31324
+2022-10-04 15:45:23.222 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:45:24.371 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 15:50:35.407 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 15:50:37.087 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 15:50:38.144 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 15:50:38.589 +05:00 [INF] Hosting environment: Development
+2022-10-04 15:50:39.052 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 15:50:39.270 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 15:50:40.169 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 907.0444ms
+2022-10-04 15:50:40.177 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 15:50:40.182 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 15:50:40.780 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 602.8265ms
+2022-10-04 15:50:40.926 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 743.8549ms
+2022-10-04 15:50:41.092 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 15:50:41.898 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 806.1647ms
+2022-10-04 15:51:23.087 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundarydmIIqlozBqjWASRu 31324
+2022-10-04 15:51:24.243 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:51:25.610 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 15:51:29.783 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 15:51:33.370 +05:00 [INF] Executed DbCommand (311ms) [Parameters=[@__viewModel_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__viewModel_Email_0
+LIMIT 1
+2022-10-04 15:51:35.226 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 7669.6272ms
+2022-10-04 15:51:36.632 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:51:39.279 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundarydmIIqlozBqjWASRu 31324 - 500 - application/json 16192.7189ms
+2022-10-04 15:53:18.057 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 15:53:18.380 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 15:53:19.401 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 15:53:20.307 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 15:53:20.307 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 15:53:20.309 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1936.2156ms
+2022-10-04 15:53:20.557 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 15:53:20.799 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 491.5299ms
+2022-10-04 15:53:20.818 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 510.7703ms
+2022-10-04 15:53:20.998 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 15:53:21.124 +05:00 [INF] Hosting environment: Development
+2022-10-04 15:53:21.630 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 15:53:21.724 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 725.4243ms
+2022-10-04 15:54:00.339 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundarymGtkQtaUPeIBVxcf 31323
+2022-10-04 15:54:01.547 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:54:02.906 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 15:54:06.338 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 15:54:08.248 +05:00 [INF] Executed DbCommand (173ms) [Parameters=[@__viewModel_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__viewModel_Email_0
+LIMIT 1
+2022-10-04 15:54:10.122 +05:00 [INF] Executed DbCommand (112ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("Email", "FirstName", "ImagePath", "IsEmailConfirmed", "LastName", "PasswordHash", "Salt", "UserRole")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id";
+2022-10-04 15:54:11.622 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 7398.9696ms
+2022-10-04 15:54:12.848 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:54:14.091 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundarymGtkQtaUPeIBVxcf 31323 - 500 - application/json 13752.6304ms
+2022-10-04 15:55:20.005 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 15:55:22.020 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 15:55:22.541 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 15:55:24.039 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 15:55:24.270 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 15:55:24.270 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 15:55:24.321 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 2305.2336ms
+2022-10-04 15:55:24.654 +05:00 [INF] Hosting environment: Development
+2022-10-04 15:55:25.119 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 848.9640ms
+2022-10-04 15:55:25.154 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 883.9889ms
+2022-10-04 15:55:25.290 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 15:55:25.397 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 15:55:26.366 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 969.3057ms
+2022-10-04 15:56:15.738 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundarypEv1uVi4uknVrhZK 31324
+2022-10-04 15:56:17.456 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 15:56:18.123 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 15:56:27.667 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 15:56:31.325 +05:00 [INF] Executed DbCommand (251ms) [Parameters=[@__viewModel_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__viewModel_Email_0
+LIMIT 1
+2022-10-04 16:00:18.409 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 16:00:21.197 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 16:00:21.312 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 16:00:23.359 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 16:00:24.193 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 16:00:24.199 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 16:00:24.222 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 3041.3343ms
+2022-10-04 16:00:24.315 +05:00 [INF] Hosting environment: Development
+2022-10-04 16:00:25.089 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 896.7958ms
+2022-10-04 16:00:25.120 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 921.1595ms
+2022-10-04 16:00:25.302 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 16:00:25.543 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 16:00:26.548 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 1247.3620ms
+2022-10-04 16:01:12.954 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundary78rPJ7jOkqiNko9Z 12251
+2022-10-04 16:01:14.213 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:01:15.814 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:01:26.473 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:01:30.621 +05:00 [INF] Executed DbCommand (232ms) [Parameters=[@__viewModel_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__viewModel_Email_0
+LIMIT 1
+2022-10-04 16:02:07.221 +05:00 [INF] Executed DbCommand (40ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("Email", "FirstName", "ImagePath", "IsEmailConfirmed", "LastName", "PasswordHash", "Salt", "UserRole")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id";
+2022-10-04 16:02:31.884 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 75223.014ms
+2022-10-04 16:02:32.510 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:02:33.329 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundary78rPJ7jOkqiNko9Z 12251 - 500 - application/json 80376.6407ms
+2022-10-04 16:05:55.660 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 16:05:59.573 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 16:05:59.698 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 16:06:00.168 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 16:06:00.781 +05:00 [INF] Hosting environment: Development
+2022-10-04 16:06:00.911 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 16:06:00.911 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 16:06:00.931 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1238.0115ms
+2022-10-04 16:06:01.226 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 16:06:01.462 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 550.6138ms
+2022-10-04 16:06:01.498 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 586.3928ms
+2022-10-04 16:06:01.626 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 16:06:02.712 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 1086.1999ms
+2022-10-04 16:06:48.345 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundary7z7ISHDNomAydAC4 31327
+2022-10-04 16:06:48.956 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:06:50.407 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:07:41.584 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:07:44.944 +05:00 [INF] Executed DbCommand (199ms) [Parameters=[@__viewModel_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__viewModel_Email_0
+LIMIT 1
+2022-10-04 16:07:46.736 +05:00 [INF] Executed DbCommand (39ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("Email", "FirstName", "ImagePath", "IsEmailConfirmed", "LastName", "PasswordHash", "Salt", "UserRole")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id";
+2022-10-04 16:07:52.040 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2022-10-04 16:07:53.380 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 62087.6694ms
+2022-10-04 16:07:54.303 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:07:54.784 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundary7z7ISHDNomAydAC4 31327 - 200 - application/json;+charset=utf-8 66438.6582ms
+2022-10-04 16:08:22.642 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryAF8HxH3e0BeBaLJT 252
+2022-10-04 16:08:23.755 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:08:25.400 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:08:26.322 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:08:27.030 +05:00 [INF] Executed DbCommand (2ms) [Parameters=[@__emailVerify_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__emailVerify_Email_0
+LIMIT 1
+2022-10-04 16:08:28.046 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 1755.7367ms
+2022-10-04 16:08:29.953 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:08:31.941 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryAF8HxH3e0BeBaLJT 252 - 500 - application/json 9300.2313ms
+2022-10-04 16:09:16.871 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 16:09:18.249 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 16:09:18.725 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 16:09:19.177 +05:00 [INF] Hosting environment: Development
+2022-10-04 16:09:19.745 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 16:09:20.149 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 16:09:21.021 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 16:09:21.029 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 16:09:21.080 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 942.8160ms
+2022-10-04 16:09:21.576 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 554.6446ms
+2022-10-04 16:09:21.624 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 595.2015ms
+2022-10-04 16:09:21.775 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 16:09:22.469 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 693.8643ms
+2022-10-04 16:10:03.912 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryEOYIWp3XKitKlouB 252
+2022-10-04 16:10:04.496 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:10:05.079 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:10:12.651 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:10:15.403 +05:00 [INF] Executed DbCommand (249ms) [Parameters=[@__emailVerify_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__emailVerify_Email_0
+LIMIT 1
+2022-10-04 16:11:00.382 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 54855.0394ms
+2022-10-04 16:11:00.866 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:11:01.649 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryEOYIWp3XKitKlouB 252 - 500 - application/json 57736.6976ms
+2022-10-04 16:11:09.523 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryfhX97rTTMogTv9wZ 252
+2022-10-04 16:11:10.033 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:11:10.806 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:11:14.966 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:11:16.118 +05:00 [INF] Executed DbCommand (60ms) [Parameters=[@__emailVerify_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__emailVerify_Email_0
+LIMIT 1
+2022-10-04 16:36:42.426 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 16:36:44.349 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 16:36:46.392 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 16:36:46.999 +05:00 [INF] Hosting environment: Development
+2022-10-04 16:36:47.587 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 16:36:48.206 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 16:36:50.010 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 16:36:50.021 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 16:36:50.050 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1850.0106ms
+2022-10-04 16:36:50.495 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 484.9011ms
+2022-10-04 16:36:50.637 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 615.8368ms
+2022-10-04 16:36:50.931 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 16:36:51.772 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 840.4547ms
+2022-10-04 16:38:12.555 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryNFoWBfoIZ9RyHaod 12258
+2022-10-04 16:38:13.209 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:38:14.038 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:38:36.965 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:38:52.041 +05:00 [INF] Executed DbCommand (247ms) [Parameters=[@__viewModel_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__viewModel_Email_0
+LIMIT 1
+2022-10-04 16:39:09.910 +05:00 [INF] Executed DbCommand (34ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("Email", "FirstName", "ImagePath", "IsEmailConfirmed", "LastName", "PasswordHash", "Salt", "UserRole")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id";
+2022-10-04 16:39:13.855 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2022-10-04 16:39:14.415 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 59855.6165ms
+2022-10-04 16:39:15.043 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:39:15.613 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryNFoWBfoIZ9RyHaod 12258 - 200 - application/json;+charset=utf-8 63057.7099ms
+2022-10-04 16:39:59.476 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundarypHNA6ldOrT01eA6h 252
+2022-10-04 16:40:00.100 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:40:00.510 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:40:00.964 +05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-04 16:40:01.604 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 650.1629ms
+2022-10-04 16:40:02.141 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:40:02.685 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundarypHNA6ldOrT01eA6h 252 - 400 - application/problem+json;+charset=utf-8 3209.2838ms
+2022-10-04 16:41:04.557 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundarywOwgmj5BBWdp7yES 252
+2022-10-04 16:41:05.076 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:41:05.647 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:41:06.094 +05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-04 16:41:06.637 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 553.8039ms
+2022-10-04 16:41:07.274 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:41:08.008 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundarywOwgmj5BBWdp7yES 252 - 400 - application/problem+json;+charset=utf-8 3451.2428ms
+2022-10-04 16:41:41.289 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryYpChQItWFDtWWnki 252
+2022-10-04 16:41:42.012 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:41:42.731 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:41:43.330 +05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-04 16:41:43.991 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 661.3365ms
+2022-10-04 16:41:44.445 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:41:45.071 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryYpChQItWFDtWWnki 252 - 400 - application/problem+json;+charset=utf-8 3784.4938ms
+2022-10-04 16:41:57.047 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 16:41:58.210 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 16:41:58.909 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 16:41:59.932 +05:00 [INF] Hosting environment: Development
+2022-10-04 16:42:00.048 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 16:42:00.627 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 16:42:01.134 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 16:42:01.134 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 16:42:01.164 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1125.7413ms
+2022-10-04 16:42:01.741 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 607.3318ms
+2022-10-04 16:42:01.762 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 628.9434ms
+2022-10-04 16:42:01.881 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 16:42:02.882 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 1000.5908ms
+2022-10-04 16:42:22.292 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryNZp0YyT789blmrwm 252
+2022-10-04 16:42:24.280 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:42:25.693 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:42:26.971 +05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-04 16:42:27.615 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 1250.3201ms
+2022-10-04 16:42:28.593 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:42:29.526 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail multipart/form-data;+boundary=----WebKitFormBoundaryNZp0YyT789blmrwm 252 - 400 - application/problem+json;+charset=utf-8 7233.0139ms
+2022-10-04 16:46:00.940 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 16:46:01.943 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 16:46:02.408 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 16:46:02.926 +05:00 [INF] Hosting environment: Development
+2022-10-04 16:46:03.229 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 16:46:03.540 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 16:46:04.372 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 16:46:04.373 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 16:46:04.412 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1190.9759ms
+2022-10-04 16:46:05.027 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 653.9191ms
+2022-10-04 16:46:05.168 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 795.2340ms
+2022-10-04 16:46:05.350 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 16:46:06.275 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 924.2278ms
+2022-10-04 16:46:34.389 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail application/json 54
+2022-10-04 16:46:35.178 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:46:35.808 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:46:50.902 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:46:59.937 +05:00 [INF] Executed DbCommand (186ms) [Parameters=[@__emailVerify_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__emailVerify_Email_0
+LIMIT 1
+2022-10-04 16:47:16.849 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 40336.8855ms
+2022-10-04 16:47:17.464 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:47:18.513 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail application/json 54 - 400 - application/json 44124.3238ms
+2022-10-04 16:48:18.963 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 16:48:20.229 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 16:48:20.861 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 16:48:21.407 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 16:48:21.521 +05:00 [INF] Hosting environment: Development
+2022-10-04 16:48:22.139 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 16:48:22.580 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 16:48:22.581 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 16:48:22.624 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1226.5509ms
+2022-10-04 16:48:23.105 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 524.1393ms
+2022-10-04 16:48:23.141 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 560.3793ms
+2022-10-04 16:48:23.290 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 16:48:24.395 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 1104.9562ms
+2022-10-04 16:49:07.662 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryZNp8M93vSa01L8g7 31328
+2022-10-04 16:49:08.294 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:49:08.943 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:49:18.780 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:49:23.119 +05:00 [INF] Executed DbCommand (203ms) [Parameters=[@__viewModel_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__viewModel_Email_0
+LIMIT 1
+2022-10-04 16:49:24.896 +05:00 [INF] Executed DbCommand (38ms) [Parameters=[@p0='?', @p1='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("Email", "FirstName", "ImagePath", "IsEmailConfirmed", "LastName", "PasswordHash", "Salt", "UserRole")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id";
+2022-10-04 16:49:28.861 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2022-10-04 16:49:29.688 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 20174.9015ms
+2022-10-04 16:49:30.683 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-04 16:49:31.851 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr multipart/form-data;+boundary=----WebKitFormBoundaryZNp8M93vSa01L8g7 31328 - 200 - application/json;+charset=utf-8 24188.2790ms
+2022-10-04 16:49:59.690 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail application/json 54
+2022-10-04 16:50:00.365 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:50:01.091 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 16:50:07.348 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 16:50:08.341 +05:00 [INF] Executed DbCommand (20ms) [Parameters=[@__emailVerify_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__emailVerify_Email_0
+LIMIT 1
+2022-10-04 16:50:27.678 +05:00 [INF] Executed DbCommand (21ms) [Parameters=[@p8='?' (DbType = Int64), @p0='?', @p1='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "Email" = @p0, "FirstName" = @p1, "ImagePath" = @p2, "IsEmailConfirmed" = @p3, "LastName" = @p4, "PasswordHash" = @p5, "Salt" = @p6, "UserRole" = @p7
+WHERE "Id" = @p8;
+2022-10-04 16:50:32.313 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2022-10-04 16:50:34.071 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 32459.325ms
+2022-10-04 16:50:34.837 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 16:50:35.518 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail application/json 54 - 200 - application/json;+charset=utf-8 35828.7554ms
+2022-10-04 17:03:00.769 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 17:03:01.714 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 17:03:02.498 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 17:03:03.041 +05:00 [INF] Hosting environment: Development
+2022-10-04 17:03:03.282 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 17:03:03.701 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 17:03:04.253 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 17:03:04.253 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 17:03:04.256 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 981.7710ms
+2022-10-04 17:03:04.776 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 522.6735ms
+2022-10-04 17:03:04.782 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 529.7332ms
+2022-10-04 17:03:04.932 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 17:03:05.697 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 764.2039ms
+2022-10-04 17:04:53.989 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 17:04:54.431 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 17:04:55.523 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 17:04:55.880 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 17:04:55.880 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 17:04:55.881 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1458.2930ms
+2022-10-04 17:04:57.224 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 1343.9901ms
+2022-10-04 17:04:57.288 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 17:04:57.301 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 1420.4040ms
+2022-10-04 17:04:57.475 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 17:04:57.806 +05:00 [INF] Hosting environment: Development
+2022-10-04 17:04:58.248 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 772.6079ms
+2022-10-04 17:04:58.292 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 17:06:37.424 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/sendcode multipart/form-data;+boundary=----WebKitFormBoundarykDeEqAMxQ5y7NFHN 157
+2022-10-04 17:06:38.194 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi)'
+2022-10-04 17:06:38.948 +05:00 [INF] Route matched with {action = "SendToEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SendToEmail(BlogApp.WebApi.ViewModels.Users.SendToEmail) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 17:06:39.900 +05:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2022-10-04 17:06:40.386 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi) in 899.2965ms
+2022-10-04 17:06:40.999 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi)'
+2022-10-04 17:06:41.916 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/sendcode multipart/form-data;+boundary=----WebKitFormBoundarykDeEqAMxQ5y7NFHN 157 - 400 - application/problem+json;+charset=utf-8 4491.5322ms
+2022-10-04 17:07:24.311 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-04 17:07:24.807 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-04 17:07:25.293 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-04 17:07:25.942 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1144.7584ms
+2022-10-04 17:07:25.943 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-04 17:07:25.943 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-04 17:07:26.544 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-04 17:07:27.039 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 1095.7384ms
+2022-10-04 17:07:27.721 +05:00 [INF] Hosting environment: Development
+2022-10-04 17:07:27.726 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 1782.7287ms
+2022-10-04 17:07:27.839 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-04 17:07:28.276 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-04 17:07:28.738 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 900.5585ms
+2022-10-04 17:07:50.727 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/sendcode application/json 38
+2022-10-04 17:07:52.276 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi)'
+2022-10-04 17:07:53.565 +05:00 [INF] Route matched with {action = "SendToEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SendToEmail(BlogApp.WebApi.ViewModels.Users.SendToEmail) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 17:07:58.272 +05:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2022-10-04 17:07:58.864 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi) in 4310.2168ms
+2022-10-04 17:08:00.466 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi)'
+2022-10-04 17:08:01.008 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/sendcode application/json 38 - 200 0 - 10280.5334ms
+2022-10-04 17:08:43.496 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/verifyemail application/json 54
+2022-10-04 17:08:44.165 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 17:08:44.734 +05:00 [INF] Route matched with {action = "VerifyEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] VerifyEmail(BlogApp.WebApi.ViewModels.Users.EmailVerify) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-04 17:08:47.288 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-04 17:08:50.146 +05:00 [INF] Executed DbCommand (135ms) [Parameters=[@__emailVerify_Email_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."Email", u."FirstName", u."ImagePath", u."IsEmailConfirmed", u."LastName", u."PasswordHash", u."Salt", u."UserRole"
+FROM "Users" AS u
+WHERE u."Email" = @__emailVerify_Email_0
+LIMIT 1
+2022-10-04 17:08:51.376 +05:00 [INF] Executed DbCommand (24ms) [Parameters=[@p8='?' (DbType = Int64), @p0='?', @p1='?', @p2='?', @p3='?' (DbType = Boolean), @p4='?', @p5='?', @p6='?', @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "Email" = @p0, "FirstName" = @p1, "ImagePath" = @p2, "IsEmailConfirmed" = @p3, "LastName" = @p4, "PasswordHash" = @p5, "Salt" = @p6, "UserRole" = @p7
+WHERE "Id" = @p8;
+2022-10-04 17:08:52.034 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2022-10-04 17:08:52.652 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 7116.4191ms
+2022-10-04 17:08:53.075 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
+2022-10-04 17:08:53.686 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verifyemail application/json 54 - 200 - application/json;+charset=utf-8 10190.3034ms

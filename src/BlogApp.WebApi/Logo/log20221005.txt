@@ -1,0 +1,43 @@
+2022-10-05 09:33:26.663 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-05 09:33:29.033 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-05 09:33:30.340 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-05 09:33:30.884 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-05 09:33:31.059 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 2031.1614ms
+2022-10-05 09:33:31.157 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-05 09:33:31.182 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-05 09:33:31.577 +05:00 [INF] Hosting environment: Development
+2022-10-05 09:33:31.785 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 602.8142ms
+2022-10-05 09:33:31.949 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-05 09:33:32.543 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-05 09:33:32.545 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 1388.5916ms
+2022-10-05 09:33:32.712 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-05 09:33:32.921 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-05 09:33:32.972 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 1023.8087ms
+2022-10-05 09:33:33.964 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 1252.1687ms
+2022-10-05 09:33:34.892 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 1971.1256ms
+2022-10-05 10:14:22.841 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/send-code application/json 38
+2022-10-05 10:14:24.316 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi)'
+2022-10-05 10:14:25.681 +05:00 [INF] Route matched with {action = "SendToEmail", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SendToEmail(BlogApp.WebApi.ViewModels.Users.SendToEmail) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-05 10:14:27.597 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi) in 290.9956ms
+2022-10-05 10:14:29.271 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.SendToEmail (BlogApp.WebApi)'
+2022-10-05 10:14:30.606 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/send-code application/json 38 - 500 - application/json 7765.0377ms
+2022-10-05 22:21:07.512 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-05 22:21:08.405 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-05 22:21:08.941 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-05 22:21:08.964 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-05 22:21:09.455 +05:00 [INF] Hosting environment: Development
+2022-10-05 22:21:09.952 +05:00 [INF] Content root path: C:\Users\MisterX\source\repos\BlogApp\BlogApp.WebApi\
+2022-10-05 22:21:10.601 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1646.8454ms
+2022-10-05 22:21:10.607 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-05 22:21:10.713 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-05 22:21:10.979 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 372.1282ms
+2022-10-05 22:21:11.242 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 528.7559ms
+2022-10-05 22:21:11.395 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-05 22:21:11.459 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/favicon-32x32.png - -
+2022-10-05 22:21:12.026 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 630.7905ms
+2022-10-05 22:21:12.198 +05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2022-10-05 22:21:12.253 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-05 22:21:12.256 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-05 22:21:12.523 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 267.7750ms
+2022-10-05 22:21:12.601 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 347.9263ms
+2022-10-05 22:21:12.616 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/favicon-32x32.png - - - 200 628 image/png 1156.9565ms
