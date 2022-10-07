@@ -1232,3 +1232,64 @@ LIMIT 1
 2022-10-07 19:16:44.165 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi) in 6324.9682ms
 2022-10-07 19:16:44.670 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.VerifyEmail (BlogApp.WebApi)'
 2022-10-07 19:16:45.655 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/verify-email application/json 54 - 400 - application/json 10734.7624ms
+2022-10-07 22:40:58.094 +05:00 [INF] User profile is available. Using 'C:\Users\MisterX\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-07 22:40:58.900 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-07 22:40:58.906 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-07 22:40:58.916 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-07 22:40:58.920 +05:00 [INF] Hosting environment: Development
+2022-10-07 22:40:58.923 +05:00 [INF] Content root path: C:\Users\MisterX\Desktop\Blog\src\BlogApp.WebApi\
+2022-10-07 22:40:59.581 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-07 22:41:00.037 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 458.7094ms
+2022-10-07 22:41:00.046 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-07 22:41:00.062 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 15.9659ms
+2022-10-07 22:41:00.183 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-07 22:41:00.238 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 54.9018ms
+2022-10-07 22:41:00.585 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-07 22:41:00.870 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 284.3281ms
+2022-10-07 22:42:01.019 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/api/users - -
+2022-10-07 22:42:01.098 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.UsersController.GetAllAsync (BlogApp.WebApi)'
+2022-10-07 22:42:01.165 +05:00 [INF] Route matched with {action = "GetAll", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync(BlogApp.WebApi.Utills.PaginationParams) on controller BlogApp.WebApi.Controllers.UsersController (BlogApp.WebApi).
+2022-10-07 22:42:02.982 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-07 22:42:03.630 +05:00 [ERR] An error occurred using the connection to database 'd8kfmbri3m77df' on server ''.
+2022-10-07 22:42:03.656 +05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'BlogApp.WebApi.DbContexts.AppDbContext'.
+System.Net.Sockets.SocketException (11001): Этот хост неизвестен.
+   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.GetHostAddresses(String hostNameOrAddress, AddressFamily family)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__19_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+System.Net.Sockets.SocketException (11001): Этот хост неизвестен.
+   at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, ValueStopwatch stopwatch)
+   at System.Net.Dns.GetHostAddresses(String hostNameOrAddress, AddressFamily family)
+   at Npgsql.Internal.NpgsqlConnector.Connect(NpgsqlTimeout timeout)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.Open()
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenDbConnection(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternal(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.Open(Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.<>c.<MoveNext>b__19_0(DbContext _, Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+2022-10-07 22:42:03.683 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.UsersController.GetAllAsync (BlogApp.WebApi) in 2499.2271ms
+2022-10-07 22:42:03.691 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.UsersController.GetAllAsync (BlogApp.WebApi)'
+2022-10-07 22:42:03.714 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/api/users - - - 500 - application/json 2694.9794ms

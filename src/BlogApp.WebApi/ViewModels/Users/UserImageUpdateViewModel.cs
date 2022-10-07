@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BlogApp.Service.ViewModels.Users
@@ -15,6 +16,7 @@ namespace BlogApp.Service.ViewModels.Users
         [DataType(DataType.Upload)]
         [MaxFileSize(3)]
         [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
+        [JsonPropertyName("image")]
         public IFormFile Image { get; set; } = null!;
     }
 }
