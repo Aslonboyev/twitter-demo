@@ -35,7 +35,6 @@ namespace BlogApp.WebApi.Models
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Id = user.Id,
-                IsEmailConfirmed = user.IsEmailConfirmed,
                 ImagePath = user.ImagePath,
             };
         }
