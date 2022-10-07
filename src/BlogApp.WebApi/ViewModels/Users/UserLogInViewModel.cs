@@ -8,8 +8,8 @@ namespace BlogApp.WebApi.ViewModels.Users
         [Required, Email]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Password is required")]
-        [StrongPassword]    
+        [Required(ErrorMessage = "Password is required"), MaxLength(50), MinLength(8)]
+        //[StrongPassword]    
         public string Password { get; set; } = string.Empty;
     }
 }

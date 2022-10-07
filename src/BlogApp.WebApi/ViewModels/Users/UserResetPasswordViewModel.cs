@@ -16,8 +16,8 @@ namespace BlogApp.Service.ViewModels.Users
         [Required]
         public uint Code { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
-        [StrongPassword]
+        [Required(ErrorMessage = "Password is required"), MinLength(8), MaxLength(50)]
+        //[StrongPassword]
         public string Password { get; set; } = string.Empty;
     }
 }
