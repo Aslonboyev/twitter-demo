@@ -34,7 +34,7 @@ namespace BlogApp.WebApi.Middlewares
             httpContext.Response.StatusCode = 500;
             httpContext.Response.ContentType = "application/json";
             await httpContext.Response.WriteAsync(JsonSerializer.Serialize(new
-            { Message = error.Message }));
+            { message = error.Message }));
         }
 
         public async Task HandleAsync(StatusCodeException statusCodeException, HttpContext httpContext)
@@ -42,7 +42,7 @@ namespace BlogApp.WebApi.Middlewares
             httpContext.Response.StatusCode = (int)statusCodeException.HttpStatusCode;
             httpContext.Response.ContentType = "application/json";
             await httpContext.Response.WriteAsync(JsonSerializer.Serialize(new
-            { Message = statusCodeException.Message }));
+            { message = statusCodeException.Message }));
         }
     }
 }
