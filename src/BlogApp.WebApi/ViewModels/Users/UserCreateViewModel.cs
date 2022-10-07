@@ -22,8 +22,8 @@ namespace BlogApp.WebApi.ViewModels.Users
         [Required, Email]
         public string Email { get; set; } = String.Empty;
 
-        [Required(ErrorMessage = "Password is required")]
-        [StrongPassword]
+        [Required(ErrorMessage = "Password is required"), MaxLength(50), MinLength(8)]
+        //StrongPassword]
         public string Password { get; set; } = String.Empty;
 
         public static implicit operator User(UserCreateViewModel model)

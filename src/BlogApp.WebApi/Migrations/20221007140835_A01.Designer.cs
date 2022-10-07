@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlogApp.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221007114712_A01")]
+    [Migration("20221007140835_A01")]
     partial class A01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,15 @@ namespace BlogApp.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("SubTitle")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -49,8 +57,8 @@ namespace BlogApp.WebApi.Migrations
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("ViewCount")
-                        .HasColumnType("integer");
+                    b.Property<long>("ViewCount")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -66,6 +74,9 @@ namespace BlogApp.WebApi.Migrations
                         .HasColumnType("bigint");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -94,12 +105,19 @@ namespace BlogApp.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("UserRole")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("UserName")
                         .IsUnique();
 
                     b.ToTable("Users");

@@ -5,7 +5,7 @@ namespace BlogApp.WebApi.Models
 {
     public class User
     {
-        public ulong Id { get; set; }
+        public long Id { get; set; }
 
         public string LastName { get; set; } = String.Empty;
 

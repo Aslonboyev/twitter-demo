@@ -4,21 +4,24 @@ namespace BlogApp.WebApi.Models
 {
     public class BlogPost
     {
-        public ulong Id { get; set; }
+        public long Id { get; set; }
 
         public string Title { get; set; } = String.Empty;
 
         public string Description { get; set; } = String.Empty;
 
-        public int ViewCount { get; set; }
+        public uint ViewCount { get; set; }
+
+        public string SubTitle { get; set; } = String.Empty;
+
+        public string Type { get; set; } = String.Empty;
 
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
 
-        public ulong UserId { get; set; }
-
-        public User User { get; set; } = null!;
+        public long UserId { get; set; }
+        public virtual User User { get; set; } = null!;
 
         public static implicit operator BlogPostViewModel(BlogPost blogPost)
         {

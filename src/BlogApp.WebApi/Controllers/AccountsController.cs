@@ -1,6 +1,8 @@
-﻿using BlogApp.WebApi.Interfaces.Services;
+﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,29 +21,29 @@ namespace BlogApp.WebApi.Controllers
             _emailService = emailService;
         }
 
-        [HttpPost("registr")]
+        [HttpPost("registr"), AllowAnonymous]
         public async Task<IActionResult> Registr([FromForm]UserCreateViewModel userCreateViewModel)
             => Ok(await _acountService.RegistrAsync(userCreateViewModel));
 
-        [HttpPost("login")]
+        [HttpPost("login"), AllowAnonymous]
         public async Task<IActionResult> LogIn([FromForm]UserLogInViewModel logInViewModel)
             => Ok(new {Token = await _acountService.LogInAsync(logInViewModel)});
 
-        [HttpPost("verify-email")]
-        public async Task<IActionResult> VerifyEmail([FromForm] EmailVerifyViewModel email)
+        [HttpPost("verify-email"), AllowAnonymous]
+        public async Task<IActionResult> VerifyEmail([FromBody] EmailVerifyViewModel email)
             => Ok(await _emailService.VerifyEmail(email));
 
-        [HttpPost("send-code-to-email")]
-        public async Task<IActionResult> SendToEmail([FromForm] SendCodeToEmailViewModel email)
+        [HttpPost("send-code-to-email"), AllowAnonymous]
+        public async Task<IActionResult> SendToEmail([FromBody] SendCodeToEmailViewModel email)
         {
             await _emailService.SendCodeAsync(email);
             return Ok();
         }
 
-        [HttpPost("reset-password")]
-        public async Task<IActionResult> ForgotPassword([FromForm]ForgotPassword forgotPassword)
+        [HttpPost("reset-password"), AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword([FromBody]UserResetPasswordViewModel forgotPassword)
         {
-            return Ok();
+            return Ok(await _acountService.VerifyPasswordAsync(forgotPassword));
         }
     }
 }

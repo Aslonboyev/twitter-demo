@@ -10,15 +10,16 @@ namespace BlogApp.WebApi.Repositories
     {
         private readonly AppDbContext _dbo;
 
+
         public UserRepository(AppDbContext appDbContext)
         {
             _dbo = appDbContext;
         }
         public async Task<User> CreateAsync(User user)
         {
-            var result = (await _dbo.Users.AddAsync(user)).Entity;
+            await _dbo.Users.AddAsync(user);
             await _dbo.SaveChangesAsync();
-            return result;
+            return user;
         }
 
         public async Task<bool> DeleteAsync(long id)
@@ -27,8 +28,7 @@ namespace BlogApp.WebApi.Repositories
             if (user is not null)
             {
                 _dbo.Users.Remove(user);
-                await _dbo.SaveChangesAsync();
-            }
+            }   
             return false;
         }
 

@@ -1,4 +1,5 @@
-﻿using BlogApp.WebApi.Utills;
+﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.Users;
 
 namespace BlogApp.WebApi.Interfaces.Services
@@ -9,6 +10,6 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<string?> LogInAsync(UserLogInViewModel model);
 
-        Task<bool> VerifyPasswordAsync(ForgotPassword password);
+        Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel password);
     }
 }

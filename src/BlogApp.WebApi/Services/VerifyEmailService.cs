@@ -1,4 +1,5 @@
-﻿using BlogApp.WebApi.Exceptions;
+﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.ViewModels.Users;
@@ -59,6 +60,11 @@ namespace BlogApp.WebApi.Services
             }
             else
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Code is expired");
+        }
+
+        public Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

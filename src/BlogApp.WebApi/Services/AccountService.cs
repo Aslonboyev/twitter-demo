@@ -1,4 +1,5 @@
-﻿using BlogApp.WebApi.Exceptions;
+﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
@@ -44,10 +45,7 @@ namespace BlogApp.WebApi.Services
             if (userk is null)
             {
                 var user = (User)viewModel;
-
-                if (user.ImagePath is not null)
-                    user.ImagePath = await _fileservice.SaveImageAsync(viewModel.Image);
-
+                
                 var hashResult = PasswordHasher.Hash(viewModel.Password);
 
                 user.Salt = hashResult.Salt;
@@ -56,18 +54,15 @@ namespace BlogApp.WebApi.Services
 
                 var result = await _repositroy.CreateAsync(user);
 
-                await _repositroy.SaveAsync();
+                //await _repositroy.SaveAsync();
 
-                var email = new SendCodeToEmailViewModel()
-                {
-                    Email = viewModel.Email,
-                };
+                return true;
             }
 
             throw new StatusCodeException(HttpStatusCode.BadRequest, message: "user already exist!");
         }
 
-        public async Task<bool> VerifyPasswordAsync(ForgotPassword password)
+        public async Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel password)
         {
             var user = await _repositroy.GetAsync(p => p.Email == password.Email);
 

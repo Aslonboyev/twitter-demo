@@ -4,6 +4,7 @@ using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
+using BlogApp.WebApi.Security;
 using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.Users;
 using System.Linq.Expressions;
@@ -22,15 +23,17 @@ namespace BlogApp.WebApi.Services
             _fileService = fileService;
         }
 
+
         public async Task<bool> DeleteAsync(Expression<Func<User, bool>> expression)
         {
             var result = await _userRepositroy.GetAsync(expression);
-            
+
             if (result is not null)
             {
-                var user = await _userRepositroy.DeleteAsync(result);
+                var user = await _userRepositroy.UpdateAsync(result);
+
                 await _userRepositroy.SaveAsync();
-                return user;
+                return true;
             }
 
             throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
@@ -41,14 +44,24 @@ namespace BlogApp.WebApi.Services
             var users = _userRepositroy.GetAllAsync(expression).ToPaged(pagination);
 
             var userviewModel = new List<UserViewModel>();
-            
+
             foreach (var user in users)
                 userviewModel.Add((UserViewModel)user);
 
             return userviewModel;
         }
 
-        public async Task<bool> ImageUpdate(ulong id, UserImageUpdateViewModel model)
+        public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression)
+        {
+            var user = await _userRepositroy.GetAsync(expression);
+
+            if (user == null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+
+            return (UserViewModel)user;
+        }
+
+        public async Task<bool> ImageUpdate(long id, UserImageUpdateViewModel model)
         {
             var user = await _userRepositroy.GetAsync(o => o.Id == id);
 
@@ -61,17 +74,7 @@ namespace BlogApp.WebApi.Services
             return true;
         }
 
-        public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression)
-        {
-            var user = await _userRepositroy.GetAsync(expression);
-            
-            if (user == null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-            
-            return (UserViewModel)user;
-        }
-
-        public async Task<bool> UpdateAsync(ulong id, UserCreateViewModel viewModel)
+        public async Task<bool> UpdateAsync(long id, UserCreateViewModel viewModel)
         {
             var user = await _userRepositroy.GetAsync(o => o.Id == id);
 
@@ -81,13 +84,13 @@ namespace BlogApp.WebApi.Services
             user.FirstName = viewModel.FirstName;
             user.LastName = viewModel.LastName;
             user.Email = viewModel.Email;
-            user.PasswordHash = viewModel.Password;
+            user.PasswordHash = PasswordHasher.ChangePassword(viewModel.Password, user.Salt);
 
             var updateUser = await _userRepositroy.UpdateAsync(user);
 
             await _userRepositroy.SaveAsync();
 
-            return (UserViewModel)user;
+            return true;
         }
     }
 }

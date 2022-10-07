@@ -25,7 +25,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
         public IFormFile Image { get; set; } = null!;
         [Required]
-        public ulong UserId { get; set; }
+        public long UserId { get; set; }
 
         public static implicit operator BlogPost(BlogPostCreateViewModel model)
         {
