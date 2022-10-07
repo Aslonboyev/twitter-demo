@@ -16,8 +16,8 @@ namespace BlogApp.WebApi.ViewModels.Users
         [Name]
         public string LastName { get; set; } = String.Empty;
 
-        //[Required]
-        //public string Username { get; set; } = String.Empty;
+        [Required, MinLength(3)]
+        public string UserName { get; set; } = String.Empty;
 
         [Required, Email]
         public string Email { get; set; } = String.Empty;
@@ -26,12 +26,6 @@ namespace BlogApp.WebApi.ViewModels.Users
         [StrongPassword]
         public string Password { get; set; } = String.Empty;
 
-        [Required(ErrorMessage = "Image is required")]
-        [DataType(DataType.Upload)]
-        [MaxFileSize(3)]
-        [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
-        public IFormFile Image { get; set; } = null!;
-
         public static implicit operator User(UserCreateViewModel model)
         {
             return new User
@@ -39,7 +33,7 @@ namespace BlogApp.WebApi.ViewModels.Users
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
-                //Username = model.Username,
+                UserName = model.UserName,
                 PasswordHash = model.Password,
             };
         }

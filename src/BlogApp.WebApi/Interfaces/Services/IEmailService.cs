@@ -5,6 +5,6 @@ namespace BlogApp.WebApi.Interfaces.Services
 {
     public interface IEmailService
     {
-        public Task SendAsync(EmailMessage emailMessage);
+        public Task SendAsync(EmailMessageViewModel emailMessage);
     }
 }

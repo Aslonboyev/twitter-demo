@@ -16,7 +16,7 @@ namespace BlogApp.WebApi.Services
             _config = configuration.GetSection("Email");
         }
 
-        public async Task SendAsync(EmailMessage emailMessage)
+        public async Task SendAsync(EmailMessageViewModel emailMessage)
         {
             var email = new MimeMessage();
 

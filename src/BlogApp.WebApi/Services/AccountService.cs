@@ -58,7 +58,7 @@ namespace BlogApp.WebApi.Services
 
                 await _repositroy.SaveAsync();
 
-                var email = new SendToEmail()
+                var email = new SendCodeToEmailViewModel()
                 {
                     Email = viewModel.Email,
                 };

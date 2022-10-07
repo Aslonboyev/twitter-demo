@@ -5,13 +5,13 @@ namespace BlogApp.WebApi.Models
 {
     public class User
     {
-        public long Id { get; set; }
+        public ulong Id { get; set; }
 
         public string LastName { get; set; } = String.Empty;
 
         public string FirstName { get; set; } = String.Empty;
 
-        //public string Username { get; set; } = String.Empty;
+        public string UserName { get; set; } = String.Empty;
 
         public string Email { get; set; } = String.Empty;
 
@@ -22,6 +22,8 @@ namespace BlogApp.WebApi.Models
         public string Salt { get; set; } = String.Empty;
 
         public string ImagePath { get; set; } = String.Empty;
+
+        public DateTime CreatedAt { get; set; }
         
         public UserRole UserRole { get; set; } = UserRole.User;
 

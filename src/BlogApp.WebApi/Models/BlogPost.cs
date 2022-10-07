@@ -4,7 +4,7 @@ namespace BlogApp.WebApi.Models
 {
     public class BlogPost
     {
-        public long Id { get; set; }
+        public ulong Id { get; set; }
 
         public string Title { get; set; } = String.Empty;
 
@@ -16,7 +16,7 @@ namespace BlogApp.WebApi.Models
 
         public DateTime UpdatedAt { get; set; }
 
-        public long UserId { get; set; }
+        public ulong UserId { get; set; }
 
         public User User { get; set; } = null!;
 

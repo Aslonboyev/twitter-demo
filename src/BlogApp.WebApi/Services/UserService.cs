@@ -1,4 +1,5 @@
-﻿using BlogApp.WebApi.Exceptions;
+﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
@@ -47,7 +48,18 @@ namespace BlogApp.WebApi.Services
             return userviewModel;
         }
 
-        
+        public async Task<bool> ImageUpdate(ulong id, UserImageUpdateViewModel model)
+        {
+            var user = await _userRepositroy.GetAsync(o => o.Id == id);
+
+            if (user is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+
+            if (model.Image is not null)
+                user.ImagePath = await _fileService.SaveImageAsync(model.Image);
+
+            return true;
+        }
 
         public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression)
         {
@@ -59,17 +71,12 @@ namespace BlogApp.WebApi.Services
             return (UserViewModel)user;
         }
 
-        public async Task<UserViewModel> UpdateAsync(long id, UserCreateViewModel viewModel)
+        public async Task<bool> UpdateAsync(ulong id, UserCreateViewModel viewModel)
         {
             var user = await _userRepositroy.GetAsync(o => o.Id == id);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
-            if (viewModel.Image is not null)
-                user.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
-
-
 
             user.FirstName = viewModel.FirstName;
             user.LastName = viewModel.LastName;

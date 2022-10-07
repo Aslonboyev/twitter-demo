@@ -2,7 +2,7 @@
 {
     public class BlogPostViewModel
     {
-        public long Id { get; set; }
+        public ulong Id { get; set; }
 
         public string Title { get; set; } = String.Empty;
 
@@ -18,6 +18,6 @@
 
         public DateTime CreatedAt { get; set; }
 
-        public long UserId { get; set; }
+        public ulong UserId { get; set; }
     }
 }

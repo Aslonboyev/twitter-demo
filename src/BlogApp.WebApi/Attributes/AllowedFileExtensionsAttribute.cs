@@ -20,7 +20,7 @@ namespace BlogApp.WebApi.Attributes
                     return ValidationResult.Success;
                 else return new ValidationResult("This file extension is not supperted!");
             }
-            else return new ValidationResult("File can not be null!");
+            else return null;
         }
     }
 }

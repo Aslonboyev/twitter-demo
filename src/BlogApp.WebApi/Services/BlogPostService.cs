@@ -21,7 +21,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> CreateAsync(BlogPostCreateViewModel viewModel)
         {
-            var blogPost = (BlogPost)viewModel;
+            var blogPost = (BlogApp)viewModel;
 
             blogPost.CreatedAt = DateTime.UtcNow;
 

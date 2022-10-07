@@ -1,11 +1,14 @@
-﻿using BlogApp.WebApi.ViewModels.Users;
+﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.ViewModels.Users;
 
 namespace BlogApp.WebApi.Interfaces.Services
 {
     public interface IVerifyEmailService
     {
-        Task SendCodeAsync(SendToEmail email);
+        Task SendCodeAsync(SendCodeToEmailViewModel email);
 
-        Task<bool> VerifyEmail(EmailVerify emailVerify);
+        Task<bool> VerifyEmail(EmailVerifyViewModel emailVerify);
+
+        Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel model);
     }
 }

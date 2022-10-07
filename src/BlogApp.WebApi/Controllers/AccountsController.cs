@@ -28,11 +28,11 @@ namespace BlogApp.WebApi.Controllers
             => Ok(new {Token = await _acountService.LogInAsync(logInViewModel)});
 
         [HttpPost("verify-email")]
-        public async Task<IActionResult> VerifyEmail([FromForm] EmailVerify email)
+        public async Task<IActionResult> VerifyEmail([FromForm] EmailVerifyViewModel email)
             => Ok(await _emailService.VerifyEmail(email));
 
         [HttpPost("send-code-to-email")]
-        public async Task<IActionResult> SendToEmail([FromForm] SendToEmail email)
+        public async Task<IActionResult> SendToEmail([FromForm] SendCodeToEmailViewModel email)
         {
             await _emailService.SendCodeAsync(email);
             return Ok();

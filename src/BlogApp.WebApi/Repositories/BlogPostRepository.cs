@@ -14,7 +14,7 @@ namespace BlogApp.WebApi.Repositories
         public BlogPostRepository(AppDbContext appDb)
         {
             appDbContext = appDb;
-            _dbSet = appDbContext.Set<BlogPost>();
+            _dbSet = appDbContext.Set<BlogApp>();
         }
 
         public async Task<BlogPost> CreateAsync(BlogPost blogPost)

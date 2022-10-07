@@ -21,13 +21,13 @@ namespace BlogApp.WebApi.Services
             _repository = repository;
         }
 
-        public async Task SendCodeAsync(SendToEmail email)
+        public async Task SendCodeAsync(SendCodeToEmailViewModel email)
         {
             int code = new Random().Next(1000, 9999);
 
             _cache.Set(email.Email, code, TimeSpan.FromMinutes(10));
 
-            var message = new EmailMessage()
+            var message = new EmailMessageViewModel()
             {
                 To = email.Email,
                 Subject = "Verification code",
@@ -37,7 +37,7 @@ namespace BlogApp.WebApi.Services
             await _emailService.SendAsync(message);
         }
 
-        public async Task<bool> VerifyEmail(EmailVerify emailVerify)
+        public async Task<bool> VerifyEmail(EmailVerifyViewModel emailVerify)
         {
             var entity = await _repository.GetAsync(user => user.Email == emailVerify.Email);
 
