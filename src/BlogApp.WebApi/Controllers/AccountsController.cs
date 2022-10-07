@@ -22,11 +22,11 @@ namespace BlogApp.WebApi.Controllers
         }
 
         [HttpPost("registr"), AllowAnonymous]
-        public async Task<IActionResult> Registr([FromForm]UserCreateViewModel userCreateViewModel)
+        public async Task<IActionResult> Registr([FromBody]UserCreateViewModel userCreateViewModel)
             => Ok(await _acountService.RegistrAsync(userCreateViewModel));
 
         [HttpPost("login"), AllowAnonymous]
-        public async Task<IActionResult> LogIn([FromForm]UserLogInViewModel logInViewModel)
+        public async Task<IActionResult> LogIn([FromBody]UserLogInViewModel logInViewModel)
             => Ok(new {Token = await _acountService.LogInAsync(logInViewModel)});
 
         [HttpPost("verify-email"), AllowAnonymous]

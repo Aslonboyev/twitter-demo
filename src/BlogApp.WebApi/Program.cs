@@ -29,7 +29,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 
-
 //-> Services
 builder.Services.AddServices();
 builder.Services.AddSwaggerAuthorization();
