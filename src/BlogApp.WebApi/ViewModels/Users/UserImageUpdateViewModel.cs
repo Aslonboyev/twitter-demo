@@ -14,7 +14,7 @@ namespace BlogApp.Service.ViewModels.Users
     {
         [Required(ErrorMessage = "Image is required")]
         [DataType(DataType.Upload)]
-        [MaxFileSize(3)]
+        [MaxFileSize(1)]
         [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
         [JsonPropertyName("image")]
         public IFormFile Image { get; set; } = null!;

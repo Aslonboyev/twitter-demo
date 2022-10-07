@@ -13,14 +13,11 @@ namespace BlogApp.WebApi.Services
     public class AccountService : IAccountService
     {
         private readonly IUserRepository _repositroy;
-        private readonly IFileService _fileservice;
         private readonly IAuthManager _authManager;
 
-        public AccountService(IUserRepository userRepository, IFileService fileService,
-                              IAuthManager authManager)
+        public AccountService(IUserRepository userRepository, IAuthManager authManager)
         {
             _repositroy = userRepository;
-            _fileservice = fileService;
             _authManager = authManager;
         }
 
@@ -28,14 +25,16 @@ namespace BlogApp.WebApi.Services
         {
             var user = await _repositroy.GetAsync(o => o.Email == viewModel.Email);
 
-            if (user is not null)
-            {
-                if (PasswordHasher.Verify(viewModel.Password, user.Salt, user.PasswordHash))
-                    return _authManager.GenerateToken(user);
+            if (user is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "email is wrong");
 
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "password is wrong");
-            }
-            throw new StatusCodeException(HttpStatusCode.NotFound, message: "email is wrong");
+            if (user.IsEmailConfirmed is false)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
+
+            if (PasswordHasher.Verify(viewModel.Password, user.Salt, user.PasswordHash))
+                return _authManager.GenerateToken(user);
+
+            throw new StatusCodeException(HttpStatusCode.BadRequest, message: "password is wrong");
         }
 
         public async Task<bool> RegistrAsync(UserCreateViewModel viewModel)
@@ -56,10 +55,10 @@ namespace BlogApp.WebApi.Services
 
                 //await _repositroy.SaveAsync();
 
-                return true;
+                throw new StatusCodeException(HttpStatusCode.OK, message: "true");
             }
 
-            throw new StatusCodeException(HttpStatusCode.BadRequest, message: "user already exist!");
+            throw new StatusCodeException(HttpStatusCode.BadRequest, message: "false");
         }
 
         public async Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel password)
@@ -69,6 +68,9 @@ namespace BlogApp.WebApi.Services
             if(user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found!");
 
+            if (user.IsEmailConfirmed is true)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
+
             var changedPassword = PasswordHasher.ChangePassword(password.Password, user.Salt);
 
             user.PasswordHash = changedPassword;
@@ -76,7 +78,7 @@ namespace BlogApp.WebApi.Services
             await _repositroy.UpdateAsync(user);
             await _repositroy.SaveAsync();
 
-            return true;
+            throw new StatusCodeException(HttpStatusCode.OK, message: "true");
         }
     }
 }
