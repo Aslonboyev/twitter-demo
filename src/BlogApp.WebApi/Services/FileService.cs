@@ -21,6 +21,7 @@ namespace BlogApp.WebApi.Services
 
             var stream = File.Create(path);
             await file.CopyToAsync(stream);
+            stream.Close();
             return partPath;
         }
     }

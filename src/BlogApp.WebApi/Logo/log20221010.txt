@@ -505,3 +505,196 @@ FROM "BlogPosts" AS b
 2022-10-10 16:57:50.505 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.BlogPostsController.GetAllAsync (BlogApp.WebApi) in 2350.25ms
 2022-10-10 16:57:51.107 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.BlogPostsController.GetAllAsync (BlogApp.WebApi)'
 2022-10-10 16:57:51.763 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/api/blogposts - - - 200 - application/json;+charset=utf-8 5979.5475ms
+2022-10-10 19:19:07.658 +05:00 [INF] User profile is available. Using 'C:\Users\MisterX\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-10 19:19:08.724 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-10 19:19:09.311 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-10 19:19:09.845 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-10 19:19:10.456 +05:00 [INF] Hosting environment: Development
+2022-10-10 19:19:10.768 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-10 19:19:11.101 +05:00 [INF] Content root path: C:\Users\MisterX\Desktop\Blog\src\BlogApp.WebApi\
+2022-10-10 19:19:11.926 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1160.2807ms
+2022-10-10 19:19:11.947 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-10 19:19:12.024 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-10 19:19:12.555 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 607.4646ms
+2022-10-10 19:19:12.623 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 598.6896ms
+2022-10-10 19:19:12.759 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-10 19:19:13.381 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 622.1089ms
+2022-10-10 19:20:09.556 +05:00 [INF] User profile is available. Using 'C:\Users\MisterX\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-10 19:20:11.142 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-10 19:20:11.637 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-10 19:20:12.184 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-10 19:20:12.594 +05:00 [INF] Hosting environment: Development
+2022-10-10 19:20:13.170 +05:00 [INF] Content root path: C:\Users\MisterX\Desktop\Blog\src\BlogApp.WebApi\
+2022-10-10 19:20:13.245 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-10 19:20:14.305 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1066.5865ms
+2022-10-10 19:20:14.654 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-10 19:20:14.666 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-10 19:20:15.079 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 424.2609ms
+2022-10-10 19:20:15.145 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 479.3554ms
+2022-10-10 19:20:15.421 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-10 19:20:16.040 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 619.4390ms
+2022-10-10 19:26:50.177 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/login application/json 68
+2022-10-10 19:26:50.940 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.LogIn (BlogApp.WebApi)'
+2022-10-10 19:26:51.513 +05:00 [INF] Route matched with {action = "LogIn", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] LogIn(BlogApp.WebApi.ViewModels.Users.UserLogInViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-10 19:26:53.735 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-10 19:26:56.048 +05:00 [ERR] An error occurred using the connection to database 'd8kfmbri3m77df' on server ''.
+2022-10-10 19:26:56.733 +05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'BlogApp.WebApi.DbContexts.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "vwssmcfrgxfihh"
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateMD5(String username, Byte[] salt, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "vwssmcfrgxfihh"
+    File: auth.c
+    Line: 335
+    Routine: auth_failed
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "vwssmcfrgxfihh"
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateMD5(String username, Byte[] salt, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "vwssmcfrgxfihh"
+    File: auth.c
+    Line: 335
+    Routine: auth_failed
+2022-10-10 19:26:58.053 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.LogIn (BlogApp.WebApi) in 6038.4503ms
+2022-10-10 19:26:58.445 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.LogIn (BlogApp.WebApi)'
+2022-10-10 19:26:59.385 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/login application/json 68 - 500 - application/json 9207.8835ms
+2022-10-10 20:09:55.410 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr application/json 147
+2022-10-10 20:09:55.970 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-10 20:09:56.455 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-10 20:09:56.902 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-10 20:09:58.387 +05:00 [ERR] An error occurred using the connection to database 'd8kfmbri3m77df' on server ''.
+2022-10-10 20:09:58.829 +05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'BlogApp.WebApi.DbContexts.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "vwssmcfrgxfihh"
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateMD5(String username, Byte[] salt, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "vwssmcfrgxfihh"
+    File: auth.c
+    Line: 335
+    Routine: auth_failed
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "vwssmcfrgxfihh"
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateMD5(String username, Byte[] salt, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "vwssmcfrgxfihh"
+    File: auth.c
+    Line: 335
+    Routine: auth_failed
+2022-10-10 20:09:59.707 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 2823.8949ms
+2022-10-10 20:10:00.226 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-10 20:10:01.113 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr application/json 147 - 500 - application/json 5703.0056ms
+2022-10-10 20:16:01.307 +05:00 [INF] Request starting HTTP/2 POST https://localhost:7112/api/accounts/registr application/json 147
+2022-10-10 20:16:01.903 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-10 20:16:02.328 +05:00 [INF] Route matched with {action = "Registr", controller = "Accounts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Registr(BlogApp.WebApi.ViewModels.Users.UserCreateViewModel) on controller BlogApp.WebApi.Controllers.AccountsController (BlogApp.WebApi).
+2022-10-10 20:16:02.911 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-10 20:16:04.316 +05:00 [ERR] An error occurred using the connection to database 'd8kfmbri3m77df' on server ''.
+2022-10-10 20:16:04.842 +05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'BlogApp.WebApi.DbContexts.AppDbContext'.
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "vwssmcfrgxfihh"
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateMD5(String username, Byte[] salt, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "vwssmcfrgxfihh"
+    File: auth.c
+    Line: 335
+    Routine: auth_failed
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "vwssmcfrgxfihh"
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|215_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateMD5(String username, Byte[] salt, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|195_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "vwssmcfrgxfihh"
+    File: auth.c
+    Line: 335
+    Routine: auth_failed
+2022-10-10 20:16:07.207 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi) in 4353.5559ms
+2022-10-10 20:16:07.884 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.AccountsController.Registr (BlogApp.WebApi)'
+2022-10-10 20:16:08.608 +05:00 [INF] Request finished HTTP/2 POST https://localhost:7112/api/accounts/registr application/json 147 - 500 - application/json 7302.3905ms
