@@ -21,7 +21,7 @@ namespace BlogApp.WebApi.Services
             _authManager = authManager;
         }
 
-        public async Task<string?> LogInAsync(UserLogInViewModel viewModel)
+        public async Task<(string?, UserViewModel)> LogInAsync(UserLogInViewModel viewModel)
         {
             var user = await _repositroy.GetAsync(o => o.Email == viewModel.Email);
 
@@ -32,7 +32,7 @@ namespace BlogApp.WebApi.Services
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
 
             if (PasswordHasher.Verify(viewModel.Password, user.Salt, user.PasswordHash))
-                return (_authManager.GenerateToken(user));
+                return (_authManager.GenerateToken(user), user);
 
             throw new StatusCodeException(HttpStatusCode.BadRequest, message: "password is wrong");
         }
