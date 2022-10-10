@@ -31,6 +31,13 @@ namespace BlogApp.WebApi.Repositories
             return true;
         }
 
+        public async Task<bool> DeleteAllAsync(IEnumerable<BlogPost> blogs)
+        {
+            _dbSet.RemoveRange(blogs);
+
+            return true;
+        }
+
         public IQueryable<BlogPost> GetAll(Expression<Func<BlogPost, bool>>? expression = null)
         {
             return expression is null ? _dbSet : _dbSet.Where(expression);

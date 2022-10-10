@@ -30,6 +30,10 @@ namespace BlogApp.WebApi.Controllers
         public async Task<IActionResult> GetAsync(long id)
             => Ok(await _postService.GetAsync(p => p.Id == id));
 
+        [HttpDelete("{userid}/blogposts"), Authorize(Roles = "User")]
+        public async Task<IActionResult> DeleteRange(long userid)
+            => Ok(await _postService.DeleteRangeAsync(userid));
+
         [HttpDelete("{id}"), Authorize(Roles ="User")]
         public async Task<IActionResult> DeleteAsync(long id)
             => Ok(await _postService.DeleteAsync(p => p.Id == id)); 

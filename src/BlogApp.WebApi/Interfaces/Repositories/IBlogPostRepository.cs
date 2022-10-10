@@ -15,6 +15,8 @@ namespace BlogApp.WebApi.Interfaces.Repositories
 
         Task<BlogPost> GetAsync(Expression<Func<BlogPost, bool>> expression);
 
+        Task<bool> DeleteAllAsync(IEnumerable<BlogPost> blogs);
+
         Task SaveAsync();
     }
 }
