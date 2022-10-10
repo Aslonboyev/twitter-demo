@@ -22,24 +22,28 @@ namespace BlogApp.WebApi.Controllers
         public async Task<IActionResult> GetAllAsync([FromQuery]PaginationParams @params)
             => Ok(await _postService.GetAllAsync(@params));
 
-        [HttpGet("{userid}/blogposts"), AllowAnonymous]
+        [HttpGet("{userid}/blogposts"), Authorize(Roles = "User")]
         public async Task<IActionResult> GetAllByBlogPostAsync(long userid, [FromQuery] PaginationParams @params)
             => Ok(await _postService.GetAllAsync(@params, p => p.UserId == userid));
 
-        [HttpGet("{id}"), AllowAnonymous]
+        [HttpGet("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> GetAsync(long id)
             => Ok(await _postService.GetAsync(p => p.Id == id));
 
-        [HttpDelete("{id}"), Authorize(Roles =("User"))]
-        public async Task<IActionResult> DeleteAsync(long id)
-            => Ok(await _postService.DeleteAsync(p => p.Id == id));
+        [HttpDelete("{userid}/blogposts"), Authorize(Roles = "User")]
+        public async Task<IActionResult> DeleteRange(long userid)
+            => Ok(await _postService.DeleteRangeAsync(userid));
 
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync([FromForm] BlogPostCreateViewModel blogPostCreateViewModel)
+        [HttpDelete("{id}"), Authorize(Roles ="User")]
+        public async Task<IActionResult> DeleteAsync(long id)
+            => Ok(await _postService.DeleteAsync(p => p.Id == id)); 
+
+        [HttpPost, Authorize(Roles = "User")]
+        public async Task<IActionResult> CreateAsync([FromBody] BlogPostCreateViewModel blogPostCreateViewModel)
             => Ok(await _postService.CreateAsync(blogPostCreateViewModel));
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync(long id, [FromForm]BlogPostCreateViewModel blogPostCreateViewModel)
+        [HttpPut("{id}") , Authorize(Roles = "User")]
+        public async Task<IActionResult> UpdateAsync(long id, [FromBody]BlogPostCreateViewModel blogPostCreateViewModel)
             => Ok(await _postService.UpdateAsync(id, blogPostCreateViewModel));
     }
 }

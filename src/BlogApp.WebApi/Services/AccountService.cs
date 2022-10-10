@@ -21,7 +21,7 @@ namespace BlogApp.WebApi.Services
             _authManager = authManager;
         }
 
-        public async Task<string?> LogInAsync(UserLogInViewModel viewModel)
+        public async Task<(string?, UserViewModel)> LogInAsync(UserLogInViewModel viewModel)
         {
             var user = await _repositroy.GetAsync(o => o.Email == viewModel.Email);
 
@@ -32,14 +32,14 @@ namespace BlogApp.WebApi.Services
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
 
             if (PasswordHasher.Verify(viewModel.Password, user.Salt, user.PasswordHash))
-                return _authManager.GenerateToken(user);
+                return (_authManager.GenerateToken(user), user);
 
             throw new StatusCodeException(HttpStatusCode.BadRequest, message: "password is wrong");
         }
 
         public async Task<bool> RegistrAsync(UserCreateViewModel viewModel)
         {
-            var userk = await _repositroy.GetAsync(o => o.Email == viewModel.Email);
+            var userk = await _repositroy.GetAsync(o => o.Email == viewModel.Email || o.UserName == viewModel.UserName);
 
             if (userk is null)
             {
@@ -53,7 +53,7 @@ namespace BlogApp.WebApi.Services
 
                 var result = await _repositroy.CreateAsync(user);
 
-                //await _repositroy.SaveAsync();
+                await _repositroy.SaveAsync();
 
                 throw new StatusCodeException(HttpStatusCode.OK, message: "true");
             }
@@ -68,7 +68,7 @@ namespace BlogApp.WebApi.Services
             if(user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found!");
 
-            if (user.IsEmailConfirmed is true)
+            if (user.IsEmailConfirmed is false)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
 
             var changedPassword = PasswordHasher.ChangePassword(password.Password, user.Salt);

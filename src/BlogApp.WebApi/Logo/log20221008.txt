@@ -1,0 +1,30 @@
+2022-10-08 05:43:14.433 +05:00 [INF] User profile is available. Using 'C:\Users\MisterX\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-08 05:43:17.506 +05:00 [INF] Now listening on: https://localhost:7112
+2022-10-08 05:43:18.073 +05:00 [INF] Now listening on: http://localhost:5112
+2022-10-08 05:43:18.473 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-08 05:43:18.881 +05:00 [INF] Hosting environment: Development
+2022-10-08 05:43:19.266 +05:00 [INF] Content root path: C:\Users\MisterX\Desktop\Blog\src\BlogApp.WebApi\
+2022-10-08 05:43:20.189 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/index.html - -
+2022-10-08 05:43:21.856 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - -
+2022-10-08 05:43:21.911 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/index.html - - - 200 - text/html;charset=utf-8 1727.3555ms
+2022-10-08 05:43:22.093 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/_vs/browserLink - -
+2022-10-08 05:43:22.279 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_framework/aspnetcore-browser-refresh.js - - - 200 11998 application/javascript;+charset=utf-8 423.7887ms
+2022-10-08 05:43:22.615 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 529.1254ms
+2022-10-08 05:43:22.768 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - -
+2022-10-08 05:43:23.492 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 724.2262ms
+2022-10-08 08:09:36.989 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7112/api/blogposts/1/blogposts - -
+2022-10-08 08:09:38.003 +05:00 [INF] Executing endpoint 'BlogApp.WebApi.Controllers.BlogPostsController.GetAllByBlogPostAsync (BlogApp.WebApi)'
+2022-10-08 08:09:39.718 +05:00 [INF] Route matched with {action = "GetAllByBlogPost", controller = "BlogPosts"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllByBlogPostAsync(Int64, BlogApp.WebApi.Utills.PaginationParams) on controller BlogApp.WebApi.Controllers.BlogPostsController (BlogApp.WebApi).
+2022-10-08 08:09:44.660 +05:00 [INF] Entity Framework Core 6.0.7 initialized 'AppDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:6.0.7+5b98e4b74de93b590b44aef8dd7967c03acc433c' with options: NoTracking 
+2022-10-08 08:09:51.136 +05:00 [INF] Executed DbCommand (727ms) [Parameters=[@__userid_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)::INT
+FROM "BlogPosts" AS b
+WHERE b."UserId" = @__userid_0
+2022-10-08 08:09:54.074 +05:00 [INF] Executed DbCommand (531ms) [Parameters=[@__userid_0='?' (DbType = Int64)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."CreatedAt", b."Description", b."SubTitle", b."Title", b."Type", b."UpdatedAt", b."UserId", b."ViewCount"
+FROM "BlogPosts" AS b
+WHERE b."UserId" = @__userid_0
+2022-10-08 08:09:55.006 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[BlogApp.WebApi.ViewModels.BlogPosts.BlogPostViewModel, BlogApp.WebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-08 08:09:57.677 +05:00 [INF] Executed action BlogApp.WebApi.Controllers.BlogPostsController.GetAllByBlogPostAsync (BlogApp.WebApi) in 15886.913ms
+2022-10-08 08:09:59.785 +05:00 [INF] Executed endpoint 'BlogApp.WebApi.Controllers.BlogPostsController.GetAllByBlogPostAsync (BlogApp.WebApi)'
+2022-10-08 08:10:00.850 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7112/api/blogposts/1/blogposts - - - 200 - application/json;+charset=utf-8 23860.1041ms

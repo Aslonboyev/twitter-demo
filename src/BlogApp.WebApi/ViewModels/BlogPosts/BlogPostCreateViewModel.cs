@@ -9,21 +9,18 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
     public class BlogPostCreateViewModel
     {
         [Required]
-        [MaxLength(150)]
+        [MaxLength(2)]
         [JsonPropertyName("title")]
         public string Title { get; set; } = String.Empty;
 
         [Required]
-        [MinLength(50)]
+        [MinLength(2)]
         [JsonPropertyName("description")]
         public string Description { get; set; } = String.Empty;
 
         [Required]
         [JsonPropertyName("type")]
         public string Type { get; set; } = String.Empty;
-
-        [JsonPropertyName("subtitle")]
-        public string Subtitle { get; set; } = String.Empty;
 
         [DataType(DataType.Upload)]
         [MaxFileSize(3)]
@@ -40,7 +37,6 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
             return new BlogPost
             {
                 Title = model.Title,
-                SubTitle = model.Subtitle,
                 Type = model.Type,
                 Description = model.Description,
                 UserId = model.UserId,

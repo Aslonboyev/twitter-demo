@@ -26,7 +26,7 @@ namespace BlogApp.WebApi.Services
         {
             int code = new Random().Next(1000, 9999);
 
-            _cache.Set(email.Email, code, TimeSpan.FromMinutes(20));
+            _cache.Set(email.Email, code, TimeSpan.FromMinutes(2));
 
             var message = new EmailMessageViewModel()
             {

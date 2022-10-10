@@ -33,9 +33,7 @@ builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 builder.Services.AddServices();
 builder.Services.AddSwaggerAuthorization();
 builder.Services.AddJwtService(builder.Configuration);
-builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-
+builder.Services.AddHttpContextAccessor();
 
 //Serilog
 builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
@@ -55,7 +53,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
     app.UseSwaggerUI();
 }
 
-HttpContextHelper.Accessor = app.Services.GetRequiredService<IHttpContextAccessor>();
+if (app.Services.GetService<IHttpContextAccessor>() != null)
+    HttpContextHelper.Accessor = app.Services.GetRequiredService<IHttpContextAccessor>();
 
 app.UseHttpsRedirection();
 app.UseMiddleware<ExceptionHadlerMiddleware>();

@@ -12,8 +12,6 @@ namespace BlogApp.WebApi.Models
 
         public uint ViewCount { get; set; }
 
-        public string SubTitle { get; set; } = String.Empty;
-
         public string Type { get; set; } = String.Empty;
 
         public DateTime CreatedAt { get; set; }

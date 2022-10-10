@@ -24,13 +24,13 @@ namespace BlogApp.WebApi.Controllers
         }
         
         [HttpPatch("{id}")]
-        public async Task<IActionResult> UpdateIamgeAsync(long id, [FromForm] UserImageUpdateViewModel userCreateViewModel)
+        public async Task<IActionResult> UpdateIamgeAsync(long id, [FromBody] UserImageUpdateViewModel userCreateViewModel)
         {
             return Ok(await _service.ImageUpdate(id, userCreateViewModel));
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync(long id, [FromForm]UserCreateViewModel userCreateViewModel)
+        public async Task<IActionResult> UpdateAsync(long id, [FromBody]UserCreateViewModel userCreateViewModel)
         {
             return Ok(await _service.UpdateAsync(id, userCreateViewModel));
         }

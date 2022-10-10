@@ -19,9 +19,6 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("type")]
         public string Type { get; set; } = String.Empty;
 
-        [JsonPropertyName("subtitle")]
-        public string Subtitle { get; set; } = String.Empty;
-
         [JsonPropertyName("image")]
         public string Image { get; set; } = String.Empty;
 

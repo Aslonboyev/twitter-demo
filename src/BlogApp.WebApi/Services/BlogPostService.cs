@@ -47,9 +47,31 @@ namespace BlogApp.WebApi.Services
             return false;
         }
 
+        public async Task<bool> DeleteRangeAsync(long userId)
+        {
+            var blogs = _blogPostRepository.GetAll(p => p.UserId == userId);
+
+            if(blogs is not null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "Blogs not found");
+
+            return await _blogPostRepository.DeleteAllAsync(blogs);
+        }
+
         public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<BlogPost, bool>>? expression = null)
         {
-            var posts = _blogPostRepository.GetAll(expression).ToPaged(@params);
+            if(@params.PageIndex == 0 && @params.PageSize == 0 || @params is null)
+            {
+                var blogs = _blogPostRepository.GetAll(expression).OrderBy(o => o.CreatedAt);
+
+                var blogPosts = new List<BlogPostViewModel>();
+
+                foreach (var blog in blogs)
+                    blogPosts.Add((BlogPostViewModel)blog);
+
+                return blogPosts;
+            }
+
+            var posts = _blogPostRepository.GetAll(expression).OrderBy(p => p.CreatedAt).ToPaged(@params);
 
             if(posts is null)
                 return Enumerable.Empty<BlogPostViewModel>();
