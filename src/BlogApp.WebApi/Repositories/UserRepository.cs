@@ -18,7 +18,6 @@ namespace BlogApp.WebApi.Repositories
         public async Task<User> CreateAsync(User user)
         {
             await _dbo.Users.AddAsync(user);
-            await _dbo.SaveChangesAsync();
             return user;
         }
 

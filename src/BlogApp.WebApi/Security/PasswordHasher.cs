@@ -12,8 +12,7 @@
 
         public static bool Verify(string password, string salt, string hash)
         {
-            string oldhash = BCrypt.Net.BCrypt.HashPassword(salt + password + _key);
-            return oldhash == hash;
+            return BCrypt.Net.BCrypt.Verify(salt + password + _key, hash);
         }
 
         public static string ChangePassword(string password, string salt)

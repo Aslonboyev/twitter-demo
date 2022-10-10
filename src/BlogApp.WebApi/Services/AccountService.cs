@@ -53,7 +53,7 @@ namespace BlogApp.WebApi.Services
 
                 var result = await _repositroy.CreateAsync(user);
 
-                //await _repositroy.SaveAsync();
+                await _repositroy.SaveAsync();
 
                 throw new StatusCodeException(HttpStatusCode.OK, message: "true");
             }
@@ -68,7 +68,7 @@ namespace BlogApp.WebApi.Services
             if(user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found!");
 
-            if (user.IsEmailConfirmed is true)
+            if (user.IsEmailConfirmed is false)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
 
             var changedPassword = PasswordHasher.ChangePassword(password.Password, user.Salt);
