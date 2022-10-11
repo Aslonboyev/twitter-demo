@@ -9,7 +9,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
     public class BlogPostCreateViewModel
     {
         [Required]
-        [MaxLength(2)]
+        [MinLength(2)]
         [JsonPropertyName("title")]
         public string Title { get; set; } = String.Empty;
 
@@ -26,7 +26,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [MaxFileSize(3)]
         [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
         [JsonPropertyName("image")]
-        public IFormFile Image { get; set; } = null!;
+        public IFormFile? Image { get; set; }
         
         [Required]
         [JsonPropertyName("user_id")]
