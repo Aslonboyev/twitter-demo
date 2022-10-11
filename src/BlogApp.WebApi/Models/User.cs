@@ -34,6 +34,7 @@ namespace BlogApp.WebApi.Models
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                UserName = user.UserName,
                 Id = user.Id,
                 ImagePath = user.ImagePath,
             };

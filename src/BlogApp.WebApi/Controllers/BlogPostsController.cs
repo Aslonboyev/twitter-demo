@@ -39,7 +39,7 @@ namespace BlogApp.WebApi.Controllers
             => Ok(await _postService.DeleteAsync(p => p.Id == id)); 
 
         [HttpPost, Authorize(Roles = "User")]
-        public async Task<IActionResult> CreateAsync([FromBody] BlogPostCreateViewModel blogPostCreateViewModel)
+        public async Task<IActionResult> CreateAsync([FromForm] BlogPostCreateViewModel blogPostCreateViewModel)
             => Ok(await _postService.CreateAsync(blogPostCreateViewModel));
 
         [HttpPut("{id}") , Authorize(Roles = "User")]
