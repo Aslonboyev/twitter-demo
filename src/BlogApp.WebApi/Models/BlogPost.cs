@@ -1,4 +1,5 @@
-﻿using BlogApp.WebApi.ViewModels.BlogPosts;
+﻿using BlogApp.WebApi.Enums;
+using BlogApp.WebApi.ViewModels.BlogPosts;
 
 namespace BlogApp.WebApi.Models
 {
@@ -13,6 +14,10 @@ namespace BlogApp.WebApi.Models
         public uint ViewCount { get; set; }
 
         public string Type { get; set; } = String.Empty;
+
+        //public string ImagePath { get; set; } = String.Empty;
+
+        public ItemState ItemState { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

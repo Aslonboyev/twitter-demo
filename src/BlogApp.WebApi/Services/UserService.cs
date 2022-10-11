@@ -1,4 +1,5 @@
 ﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Interfaces.Repositories;
@@ -63,7 +64,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> ImageUpdate(long id, UserImageUpdateViewModel model)
         {
-            var user = await _userRepositroy.GetAsync(o => o.Id == id);
+            var user = await _userRepositroy.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
@@ -76,7 +77,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> UpdateAsync(long id, UserCreateViewModel viewModel)
         {
-            var user = await _userRepositroy.GetAsync(o => o.Id == id);
+            var user = await _userRepositroy.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");

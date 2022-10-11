@@ -22,11 +22,11 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("type")]
         public string Type { get; set; } = String.Empty;
 
-        [DataType(DataType.Upload)]
-        [MaxFileSize(3)]
-        [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
-        [JsonPropertyName("image")]
-        public IFormFile? Image { get; set; }
+        //[DataType(DataType.Upload)]
+        //[MaxFileSize(3)]
+        //[AllowedFileExtensions(new string[] { ".jpg", ".png" })]
+        //[JsonPropertyName("image")]
+        //public IFormFile? Image { get; set; }
         
         [Required]
         [JsonPropertyName("user_id")]

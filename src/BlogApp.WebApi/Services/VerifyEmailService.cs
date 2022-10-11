@@ -1,4 +1,5 @@
 ﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
@@ -40,7 +41,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> VerifyEmail(EmailVerifyViewModel emailVerify)
         {
-            var entity = await _repository.GetAsync(user => user.Email == emailVerify.Email);
+            var entity = await _repository.GetAsync(user => user.Email == emailVerify.Email && user.ItemState == ItemState.Active);
 
             if (entity == null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found!");

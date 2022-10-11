@@ -24,6 +24,8 @@ namespace BlogApp.WebApi.Models
         public string ImagePath { get; set; } = String.Empty;
 
         public DateTime CreatedAt { get; set; }
+
+        public ItemState ItemState { get; set; }
         
         public UserRole UserRole { get; set; } = UserRole.User;
 

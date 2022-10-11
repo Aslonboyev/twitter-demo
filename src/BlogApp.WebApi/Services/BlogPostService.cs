@@ -1,4 +1,5 @@
-﻿using BlogApp.WebApi.Exceptions;
+﻿using BlogApp.WebApi.Enums;
+using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
@@ -13,10 +14,12 @@ namespace BlogApp.WebApi.Services
     public class BlogPostService : IBlogPostService
     {
         private readonly IBlogPostRepository _blogPostRepository;
+        private readonly IFileService _fileService;
 
-        public BlogPostService(IBlogPostRepository blogPostRepository)
+        public BlogPostService(IBlogPostRepository blogPostRepository, IFileService fileService)
         {
             _blogPostRepository = blogPostRepository;
+            _fileService = fileService;
         }
 
         public async Task<BlogPostViewModel> CreateAsync(BlogPostCreateViewModel viewModel)
@@ -24,6 +27,9 @@ namespace BlogApp.WebApi.Services
             var blogPost = (BlogPost)viewModel;
 
             blogPost.CreatedAt = DateTime.UtcNow;
+
+            //if (blogPost.Image is not null)
+            //    blogPost.ImagePath = await _fileService.SaveImageAsync(blogPost.Image);
 
             var result = await _blogPostRepository.CreateAsync(blogPost);
             await _blogPostRepository.SaveAsync();
@@ -49,9 +55,9 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> DeleteRangeAsync(long userId)
         {
-            var blogs = _blogPostRepository.GetAll(p => p.UserId == userId);
+            var blogs = _blogPostRepository.GetAll(p => p.UserId == userId && p.ItemState == ItemState.Active);
 
-            if(blogs is not null)
+            if(blogs is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Blogs not found");
 
             return await _blogPostRepository.DeleteAllAsync(blogs);
@@ -61,7 +67,7 @@ namespace BlogApp.WebApi.Services
         {
             if(@params.PageIndex == 0 && @params.PageSize == 0 || @params is null)
             {
-                var blogs = _blogPostRepository.GetAll(expression).OrderBy(o => o.CreatedAt);
+                var blogs = _blogPostRepository.GetAll(expression).OrderByDescending(o => o.CreatedAt);
 
                 var blogPosts = new List<BlogPostViewModel>();
 
@@ -71,7 +77,7 @@ namespace BlogApp.WebApi.Services
                 return blogPosts;
             }
 
-            var posts = _blogPostRepository.GetAll(expression).OrderBy(p => p.CreatedAt).ToPaged(@params);
+            var posts = _blogPostRepository.GetAll(expression).OrderByDescending(p => p.CreatedAt).ToPaged(@params);
 
             if(posts is null)
                 return Enumerable.Empty<BlogPostViewModel>();
@@ -100,7 +106,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostCreateViewModel viewModel)
         {
-            var post = await _blogPostRepository.GetAsync(o => o.Id == id);
+            var post = await _blogPostRepository.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
 
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
