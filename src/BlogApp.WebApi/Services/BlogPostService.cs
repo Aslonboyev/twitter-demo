@@ -1,6 +1,7 @@
 ﻿using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
+using BlogApp.WebApi.Helpers;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
@@ -25,9 +26,15 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> CreateAsync(BlogPostCreateViewModel viewModel)
         {
+            var id = HttpContextHelper.UserId;
+
+            if (id != viewModel.UserId)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+
             var blogPost = (BlogPost)viewModel;
 
             blogPost.CreatedAt = DateTime.UtcNow;
+            
             //if (blogPost.Image is not null)
             //    blogPost.ImagePath = await _fileService.SaveImageAsync(blogPost.Image);
 
@@ -41,8 +48,11 @@ namespace BlogApp.WebApi.Services
         {
             var blog = await _blogPostRepository.GetAsync(expression);
 
-            if (blog is not null)
+            if (blog is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
+
+            if (blog.Id != HttpContextHelper.UserId)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
             
             var result = await _blogPostRepository.DeleteAsync(blog);
 
