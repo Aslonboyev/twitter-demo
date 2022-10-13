@@ -26,9 +26,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> CreateAsync(BlogPostCreateViewModel viewModel)
         {
-            var id = HttpContextHelper.UserId;
-
-            if (id != viewModel.UserId)
+            if (HttpContextHelper.UserId != viewModel.UserId)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
 
             var blogPost = (BlogPost)viewModel;
@@ -67,6 +65,9 @@ namespace BlogApp.WebApi.Services
 
             if(blogs is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Blogs not found");
+            
+            if (HttpContextHelper.UserId != userId)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
 
             return await _blogPostRepository.DeleteAllAsync(blogs);
         }
@@ -94,6 +95,9 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostCreateViewModel viewModel)
         {
+            if (HttpContextHelper.UserId != viewModel.UserId)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+
             var post = await _blogPostRepository.GetAsync(o => o.Id == id);
 
             if (post is null)
@@ -111,6 +115,9 @@ namespace BlogApp.WebApi.Services
         
         public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostPatchViewModel viewModel)
         {
+            if (HttpContextHelper.UserId != viewModel.UserId)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+
             var post = await _blogPostRepository.GetAsync(o => o.Id == id);
 
             if (post is null)
