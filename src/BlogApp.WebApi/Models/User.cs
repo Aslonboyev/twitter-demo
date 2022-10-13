@@ -29,17 +29,5 @@ namespace BlogApp.WebApi.Models
         
         public UserRole UserRole { get; set; } = UserRole.User;
 
-        public static implicit operator UserViewModel(User user)
-        {
-            return new UserViewModel
-            {
-                Email = user.Email,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                UserName = user.UserName,
-                Id = user.Id,
-                ImagePath = user.ImagePath,
-            };
-        }
     }
 }

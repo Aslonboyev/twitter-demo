@@ -27,7 +27,7 @@ namespace BlogApp.WebApi.Controllers
         
         [HttpPatch("{id}")]
         [Authorize(Roles = "User")]
-        public async Task<IActionResult> UpdateIamgeAsync(long id, [FromBody] UserImageUpdateViewModel userCreateViewModel)
+        public async Task<IActionResult> UpdateIamgeAsync(long id, [FromForm] UserImageUpdateViewModel userCreateViewModel)
         {
             return Ok(await _service.ImageUpdate(id, userCreateViewModel));
         }

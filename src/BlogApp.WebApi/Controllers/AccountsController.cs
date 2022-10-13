@@ -30,7 +30,7 @@ namespace BlogApp.WebApi.Controllers
             => Ok(new {Token = (await _acountService.LogInAsync(logInViewModel)).Item1, Id = (await _acountService.LogInAsync(logInViewModel)).Item2 });
 
         [HttpPost("verify-email"), AllowAnonymous]
-        public async Task<IActionResult> VerifyEmail([FromBody] EmailVerifyViewModel email)
+        public async Task<IActionResult> VerifyEmail([FromForm] EmailVerifyViewModel email)
             => Ok(await _emailService.VerifyEmail(email));
 
         [HttpPost("send-code-to-email"), AllowAnonymous]

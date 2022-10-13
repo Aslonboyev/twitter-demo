@@ -9,6 +9,7 @@ namespace BlogApp.WebApi.Interfaces.Repositories
 
         Task<User> UpdateAsync(User user);
 
+
         Task<bool> DeleteAsync(User user);
 
         IQueryable<User> GetAllAsync(Expression<Func<User, bool>> expression = null!);

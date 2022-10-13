@@ -59,7 +59,7 @@ namespace BlogApp.WebApi.Services
                 throw new StatusCodeException(HttpStatusCode.OK, message: "true");
             }
 
-            throw new StatusCodeException(HttpStatusCode.BadRequest, message: "false");
+            throw new StatusCodeException(HttpStatusCode.OK, message: "false");
         }
 
         public async Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel password)

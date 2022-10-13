@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BlogApp.WebApi.Models;
+using System.Text.Json.Serialization;
 
 namespace BlogApp.WebApi.ViewModels.Users
 {
@@ -21,5 +22,18 @@ namespace BlogApp.WebApi.ViewModels.Users
 
         [JsonPropertyName("image_path")]
         public string ImagePath { get; set; } = String.Empty;
+
+        public static implicit operator UserViewModel(User user)
+        {
+            return new UserViewModel
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                Id = user.Id,
+                ImagePath = user.ImagePath,
+            };
+        }
     }
 }

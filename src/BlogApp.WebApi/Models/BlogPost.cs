@@ -26,17 +26,5 @@ namespace BlogApp.WebApi.Models
         public long UserId { get; set; }
         public virtual User User { get; set; } = null!;
 
-        public static implicit operator BlogPostViewModel(BlogPost blogPost)
-        {
-            return new BlogPostViewModel
-            {
-                Id = blogPost.Id,
-                Title = blogPost.Title,
-                Description = blogPost.Description,
-                UserId = blogPost.UserId,
-                ViewCount = blogPost.ViewCount,
-                CreatedAt = blogPost.CreatedAt,
-            };
-        }
     }
 }

@@ -33,6 +33,8 @@ namespace BlogApp.WebApi.DbContexts
 
         public virtual DbSet<User> Users { get; set; } = null!;
 
+        public virtual DbSet<SaveMessage> SaveMessages { get; set; } = null!;
+
         public virtual DbSet<BlogPost> BlogPosts { get; set; } = null!;
 
     }

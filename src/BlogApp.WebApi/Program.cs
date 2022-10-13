@@ -39,8 +39,6 @@ builder.Services.AddHttpContextAccessor();
 builder.Host.UseSerilog((hostingContext, loggerConfiguration) =>
     loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
 
-
-
 //->Middleware 
 builder.Host.UseSerilog((hostingContext, loggerConfiduration) =>
                          loggerConfiduration.ReadFrom.Configuration(hostingContext.Configuration));

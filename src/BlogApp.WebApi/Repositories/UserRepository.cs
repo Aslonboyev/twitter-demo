@@ -40,7 +40,7 @@ namespace BlogApp.WebApi.Repositories
         public IQueryable<User> GetAllAsync(Expression<Func<User, bool>> expression = null)
             => expression is null ? _dbo.Users : _dbo.Users.Where(expression);
 
-        public async Task<User> GetAsync(Expression<Func<User, bool>> expression)
+        public async Task<User?> GetAsync(Expression<Func<User, bool>> expression)
             => await _dbo.Users.FirstOrDefaultAsync(expression);
 
         public async Task SaveAsync()

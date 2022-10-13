@@ -42,15 +42,13 @@ namespace BlogApp.WebApi.Services
             var blog = await _blogPostRepository.GetAsync(expression);
 
             if (blog is not null)
-            {
-                var result = await _blogPostRepository.DeleteAsync(blog);
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
+            
+            var result = await _blogPostRepository.DeleteAsync(blog);
 
-                await _blogPostRepository.SaveAsync();
+            await _blogPostRepository.SaveAsync();
 
-                return result;
-            }
-
-            return false;
+            return result;
         }
 
         public async Task<bool> DeleteRangeAsync(long userId)
