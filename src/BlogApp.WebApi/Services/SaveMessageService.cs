@@ -1,5 +1,6 @@
 ﻿using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
+using BlogApp.WebApi.Helpers;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
@@ -59,6 +60,9 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> DeleteRangeAsync(long userId)
         {
+            if (HttpContextHelper.UserId != userId)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+
             var messages = _repository.GetAll(p => p.Id == userId);
 
             if (messages is null)
@@ -71,6 +75,10 @@ namespace BlogApp.WebApi.Services
 
         public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(long id, PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null)
         {
+            if (HttpContextHelper.UserId != id)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+
+
             return (from blog in _post.GetAll(p => p.UserId == id)
                          orderby blog.CreatedAt descending
                          select (BlogPostViewModel)blog).ToPaged(@params);

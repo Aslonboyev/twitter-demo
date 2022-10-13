@@ -13,7 +13,7 @@
 
         private static long? GetUserId()
         {
-            long id;
+            long id;    
             bool canParse = long.TryParse(HttpContext?.User?.Claims.FirstOrDefault(p => p.Type == "Id")?.Value, out id);
             return canParse ? id : null;
         }
