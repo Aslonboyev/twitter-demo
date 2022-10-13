@@ -43,9 +43,9 @@ namespace BlogApp.WebApi.Repositories
             return expression is null ? _dbSet : _dbSet.Where(expression);
         }
 
-        public Task<BlogPost?> GetAsync(Expression<Func<BlogPost, bool>> expression)
+        public async Task<BlogPost?> GetAsync(Expression<Func<BlogPost, bool>> expression)
         {
-            return _dbSet.FirstOrDefaultAsync(expression);
+            return await _dbSet.FirstOrDefaultAsync(expression);
         }
 
         public async Task SaveAsync()

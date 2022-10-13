@@ -1,4 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace BlogApp.WebApi.ViewModels.Users
 {
@@ -7,7 +10,7 @@ namespace BlogApp.WebApi.ViewModels.Users
         [JsonPropertyName("to")]
         public string To { get; set; } = string.Empty;
 
-        [JsonPropertyName("body")]
+        [JsonProperty(PropertyName = "body")]
         public int Body { get; set; }
 
         [JsonPropertyName("subject")]

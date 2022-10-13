@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using BlogApp.WebApi.Models;
+using System.Text.Json.Serialization;
 
 namespace BlogApp.WebApi.ViewModels.BlogPosts
 {
@@ -27,5 +28,18 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
 
         [JsonPropertyName("user_id")]
         public long UserId { get; set; }
+
+        public static implicit operator BlogPostViewModel(BlogPost blogPost)
+        {
+            return new BlogPostViewModel
+            {
+                Id = blogPost.Id,
+                Title = blogPost.Title,
+                Description = blogPost.Description,
+                UserId = blogPost.UserId,
+                ViewCount = blogPost.ViewCount,
+                CreatedAt = blogPost.CreatedAt,
+            };
+        }
     }
 }

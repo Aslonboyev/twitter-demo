@@ -3,6 +3,7 @@ using System;
 using BlogApp.WebApi.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlogApp.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221011053709_A02")]
+    partial class A02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,9 +39,6 @@ namespace BlogApp.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("ItemState")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
@@ -62,32 +61,6 @@ namespace BlogApp.WebApi.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("BlogPosts");
-                });
-
-            modelBuilder.Entity("BlogApp.WebApi.Models.SaveMessage", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("BlogPostId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PostId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogPostId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("SaveMessages");
                 });
 
             modelBuilder.Entity("BlogApp.WebApi.Models.User", b =>
@@ -116,9 +89,6 @@ namespace BlogApp.WebApi.Migrations
                     b.Property<bool>("IsEmailConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ItemState")
-                        .HasColumnType("integer");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -140,6 +110,12 @@ namespace BlogApp.WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
                     b.ToTable("Users");
                 });
 
@@ -150,25 +126,6 @@ namespace BlogApp.WebApi.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BlogApp.WebApi.Models.SaveMessage", b =>
-                {
-                    b.HasOne("BlogApp.WebApi.Models.BlogPost", "BlogPost")
-                        .WithMany()
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlogApp.WebApi.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BlogPost");
 
                     b.Navigation("User");
                 });

@@ -13,8 +13,6 @@ namespace BlogApp.WebApi.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasIndex(x => x.Email).IsUnique();
-            modelBuilder.Entity<User>().HasIndex(x => x.UserName).IsUnique();
 
             //modelBuilder.Entity<User>().HasData(new User
             //{
@@ -32,6 +30,8 @@ namespace BlogApp.WebApi.DbContexts
         }
 
         public virtual DbSet<User> Users { get; set; } = null!;
+
+        public virtual DbSet<SaveMessage> SaveMessages { get; set; } = null!;
 
         public virtual DbSet<BlogPost> BlogPosts { get; set; } = null!;
 

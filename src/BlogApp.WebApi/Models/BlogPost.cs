@@ -1,4 +1,5 @@
-﻿using BlogApp.WebApi.ViewModels.BlogPosts;
+﻿using BlogApp.WebApi.Enums;
+using BlogApp.WebApi.ViewModels.BlogPosts;
 
 namespace BlogApp.WebApi.Models
 {
@@ -14,24 +15,12 @@ namespace BlogApp.WebApi.Models
 
         public string Type { get; set; } = String.Empty;
 
-        public DateTime CreatedAt { get; set; }
+        //public string ImagePath { get; set; } = String.Empty;
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public long UserId { get; set; }
         public virtual User User { get; set; } = null!;
 
-        public static implicit operator BlogPostViewModel(BlogPost blogPost)
-        {
-            return new BlogPostViewModel
-            {
-                Id = blogPost.Id,
-                Title = blogPost.Title,
-                Description = blogPost.Description,
-                UserId = blogPost.UserId,
-                ViewCount = blogPost.ViewCount,
-                CreatedAt = blogPost.CreatedAt,
-            };
-        }
     }
 }
