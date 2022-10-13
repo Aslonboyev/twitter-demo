@@ -6,6 +6,7 @@ using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
 using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.BlogPosts;
+using Microsoft.Extensions.Hosting;
 using System.Linq.Expressions;
 using System.Net;
 
@@ -27,7 +28,6 @@ namespace BlogApp.WebApi.Services
             var blogPost = (BlogPost)viewModel;
 
             blogPost.CreatedAt = DateTime.UtcNow;
-
             //if (blogPost.Image is not null)
             //    blogPost.ImagePath = await _fileService.SaveImageAsync(blogPost.Image);
 
@@ -53,7 +53,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> DeleteRangeAsync(long userId)
         {
-            var blogs = _blogPostRepository.GetAll(p => p.UserId == userId && p.ItemState == ItemState.Active);
+            var blogs = _blogPostRepository.GetAll(p => p.UserId == userId);
 
             if(blogs is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Blogs not found");
@@ -63,29 +63,9 @@ namespace BlogApp.WebApi.Services
 
         public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<BlogPost, bool>>? expression = null)
         {
-            if(@params.PageIndex == 0 && @params.PageSize == 0 || @params is null)
-            {
-                var blogs = _blogPostRepository.GetAll(expression).OrderByDescending(o => o.CreatedAt);
-
-                var blogPosts = new List<BlogPostViewModel>();
-
-                foreach (var blog in blogs)
-                    blogPosts.Add((BlogPostViewModel)blog);
-
-                return blogPosts;
-            }
-
-            var posts = _blogPostRepository.GetAll(expression).OrderByDescending(p => p.CreatedAt).ToPaged(@params);
-
-            if(posts is null)
-                return Enumerable.Empty<BlogPostViewModel>();
-
-            var blogViews = new List<BlogPostViewModel>();
-
-            foreach (var post in posts)
-                blogViews.Add((BlogPostViewModel)post);
-
-            return blogViews;
+            return (from blog in _blogPostRepository.GetAll(expression)
+                    orderby blog.CreatedAt descending
+                    select (BlogPostViewModel)blog).ToPaged(@params);
         }
 
         public async Task<BlogPostViewModel> GetAsync(Expression<Func<BlogPost, bool>> expression)
@@ -104,7 +84,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostCreateViewModel viewModel)
         {
-            var post = await _blogPostRepository.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
+            var post = await _blogPostRepository.GetAsync(o => o.Id == id);
 
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
@@ -112,7 +92,33 @@ namespace BlogApp.WebApi.Services
             post.Title = viewModel.Title;
             post.Description = viewModel.Description;
             post.UserId = viewModel.UserId;
-            post.UpdatedAt = DateTime.UtcNow;
+
+            post = await _blogPostRepository.UpdateAsync(post);
+            await _blogPostRepository.SaveAsync();
+
+            return (BlogPostViewModel)post;
+        }
+        
+        public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostPatchViewModel viewModel)
+        {
+            var post = await _blogPostRepository.GetAsync(o => o.Id == id);
+
+            if (post is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+
+            //if(viewModel.Image is not null)
+            //    post.ImagePath = await _fileService.SaveImageAsync(blogPost.Image);
+
+            if (viewModel.Title is not null)
+                post.Title = viewModel.Title;
+
+            if (viewModel.Type is not null)
+                post.Type = viewModel.Type;
+
+            if (viewModel.Description is not null)
+                post.Description = viewModel.Description;
+            
+            post.UserId = viewModel.UserId;
 
             post = await _blogPostRepository.UpdateAsync(post);
             await _blogPostRepository.SaveAsync();

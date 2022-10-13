@@ -13,8 +13,6 @@ namespace BlogApp.WebApi.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasIndex(x => x.Email).IsUnique();
-            modelBuilder.Entity<User>().HasIndex(x => x.UserName).IsUnique();
 
             //modelBuilder.Entity<User>().HasData(new User
             //{

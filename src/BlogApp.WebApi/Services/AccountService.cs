@@ -40,7 +40,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> RegistrAsync(UserCreateViewModel viewModel)
         {
-            var userk = await _repositroy.GetAsync(o => o.Email == viewModel.Email || o.UserName == viewModel.UserName && o.ItemState == ItemState.Active);
+            var userk = await _repositroy.GetAsync(o => o.ItemState == ItemState.Active && (o.Email == viewModel.Email || o.UserName == viewModel.UserName));
 
             if (userk is null)
             {
@@ -49,6 +49,8 @@ namespace BlogApp.WebApi.Services
                 var hashResult = PasswordHasher.Hash(viewModel.Password);
 
                 user.Salt = hashResult.Salt;
+
+                user.ItemState = ItemState.Active;
 
                 user.PasswordHash = hashResult.Hash;
 

@@ -27,7 +27,7 @@ namespace BlogApp.WebApi.Services
         {
             int code = new Random().Next(1000, 9999);
 
-            _cache.Set(email.Email, code, TimeSpan.FromMinutes(2));
+            _cache.Set(email.Email, code, TimeSpan.FromMinutes(3));
 
             var message = new EmailMessageViewModel()
             {
@@ -63,9 +63,22 @@ namespace BlogApp.WebApi.Services
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Code is expired");
         }
 
-        public Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel model)
+        public async Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel model)
         {
-            throw new NotImplementedException();
+            var user = await _repository.GetAsync(p => p.Email == model.Email);
+
+            if (user is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found");
+
+            if (_cache.TryGetValue(model.Email, out int code))
+            {
+                if (code != model.Code)
+                    throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Code is wrong");
+
+                return true;
+            }
+            else
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Code is expired");
         }
     }
 }

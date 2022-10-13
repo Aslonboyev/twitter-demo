@@ -1,8 +1,10 @@
 ﻿using BlogApp.WebApi.Exceptions;
+using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
 using BlogApp.WebApi.Utills;
+using BlogApp.WebApi.ViewModels.BlogPosts;
 using BlogApp.WebApi.ViewModels.SaveMessages;
 using System.Linq.Expressions;
 using System.Net;
@@ -30,7 +32,7 @@ namespace BlogApp.WebApi.Services
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
 
-            var user = await _user.GetAsync(p => p.Id == model.UserId);
+            var user = await _user.GetAsync(p => p.Id == model.UserId && p.ItemState == Enums.ItemState.Active);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
@@ -67,9 +69,11 @@ namespace BlogApp.WebApi.Services
             return true;
         }
 
-        public Task<IEnumerable<SaveMessage>> GetAllAsync(PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null)
+        public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(long id, PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null)
         {
-            throw new Exception();
+            return (from blog in _post.GetAll(p => p.UserId == id)
+                         orderby blog.CreatedAt descending
+                         select (BlogPostViewModel)blog).ToPaged(@params);
         }
     }
 }

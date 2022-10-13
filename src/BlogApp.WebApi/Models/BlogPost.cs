@@ -17,11 +17,7 @@ namespace BlogApp.WebApi.Models
 
         //public string ImagePath { get; set; } = String.Empty;
 
-        public ItemState ItemState { get; set; }
-
         public DateTime CreatedAt { get; set; }
-
-        public DateTime UpdatedAt { get; set; }
 
         public long UserId { get; set; }
         public virtual User User { get; set; } = null!;

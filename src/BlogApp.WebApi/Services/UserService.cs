@@ -24,7 +24,6 @@ namespace BlogApp.WebApi.Services
             _fileService = fileService;
         }
 
-
         public async Task<bool> DeleteAsync(Expression<Func<User, bool>> expression)
         {
             var result = await _userRepositroy.GetAsync(expression);
@@ -42,14 +41,9 @@ namespace BlogApp.WebApi.Services
 
         public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams? pagination = null, Expression<Func<User, bool>>? expression = null)
         {
-            var users = _userRepositroy.GetAllAsync(expression).ToPaged(pagination);
-
-            var userviewModel = new List<UserViewModel>();
-
-            foreach (var user in users)
-                userviewModel.Add((UserViewModel)user);
-
-            return userviewModel;
+            return (from blog in _userRepositroy.GetAllAsync(expression)
+                    orderby blog.CreatedAt descending
+                    select (UserViewModel)blog).ToPaged(pagination);
         }
 
         public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression)
