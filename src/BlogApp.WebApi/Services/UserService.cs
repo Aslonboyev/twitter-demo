@@ -70,7 +70,7 @@ namespace BlogApp.WebApi.Services
             return (UserViewModel)user;
         }
 
-        public async Task<bool> ImageUpdate(long id, UserImageUpdateViewModel model)
+        public async Task<bool> UpdateAsync(long id, UserPatchViewModel model)
         {
             var user = await _userRepositroy.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
 
@@ -82,6 +82,30 @@ namespace BlogApp.WebApi.Services
 
             if (model.Image is not null)
                 user.ImagePath = await _fileService.SaveImageAsync(model.Image);
+            
+            if(model.FirstName is not null)
+                user.FirstName = model.FirstName;
+
+            if(model.LastName is not null)
+                user.LastName = model.LastName;
+
+            if (model.Email is not null)
+            { 
+                var email = await _userRepositroy.GetAsync(o => o.Email == model.Email); 
+                
+                if (user.Id != email.Id)
+                    throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Email have already taken");
+            }
+
+            if (model.UserName is not null)
+            {
+                var username = await _userRepositroy.GetAsync(o => o.UserName == model.UserName);
+
+                if (user.Id != username.Id)
+                    throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Username have already taken");
+
+                user.UserName = model.UserName;
+            }
 
             await _userRepositroy.UpdateAsync(user);
 
@@ -90,26 +114,38 @@ namespace BlogApp.WebApi.Services
             return true;
         }
 
-        public async Task<bool> UpdateAsync(long id, UserCreateViewModel viewModel)
-        {
-            var user = await _userRepositroy.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
+        //public async Task<bool> UpdateAsync(long id, UserCreateViewModel viewModel)
+        //{
+        //    var user = await _userRepositroy.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
 
-            if (user is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+        //    if (user is null)
+        //        throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
-            if (HttpContextHelper.UserId != id)
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+        //    if (HttpContextHelper.UserId != id)
+        //        throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
 
-            user.FirstName = viewModel.FirstName;
-            user.LastName = viewModel.LastName;
-            user.Email = viewModel.Email;
-            user.PasswordHash = PasswordHasher.ChangePassword(viewModel.Password, user.Salt);
+        //    user.FirstName = viewModel.FirstName;
+        //    user.LastName = viewModel.LastName;
+            
+        //    var username = await _userRepositroy.GetAsync(o => o.UserName == viewModel.UserName);
+        //    if (user.Id != username.Id)
+        //        throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Username have already taken");
+            
+        //    user.UserName = viewModel.UserName;
+            
+        //    var email = await _userRepositroy.GetAsync(o => o.Email == viewModel.Email);
+        //    if (user.Id != email.Id)
+        //        throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Email have already taken");
+            
+        //    user.Email = viewModel.Email;
 
-            await _userRepositroy.UpdateAsync(user);
+        //    user.PasswordHash = PasswordHasher.ChangePassword(viewModel.Password, user.Salt);
 
-            await _userRepositroy.SaveAsync();
+        //    await _userRepositroy.UpdateAsync(user);
 
-            return true;
-        }
+        //    await _userRepositroy.SaveAsync();
+
+        //    return true;
+        //}
     }
 }
