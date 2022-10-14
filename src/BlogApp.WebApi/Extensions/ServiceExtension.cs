@@ -19,6 +19,7 @@ namespace BlogApp.WebApi.Extensions
             services.AddScoped<IBlogPostService, BlogPostService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IVerifyEmailService, VerifyEmailService>();
+            services.AddScoped<ISaveMessageService, SaveMessageService>();
         }
 
         //public static string GetDbConnectionString(this IConfiguration configuration, string defaultConnection)
