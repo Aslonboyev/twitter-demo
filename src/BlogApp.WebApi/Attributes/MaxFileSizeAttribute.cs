@@ -23,7 +23,7 @@ namespace BlogApp.WebApi.Attributes
                     return new ValidationResult($"Image must be less than {_maxFileSize} MB");
                 else return ValidationResult.Success;
             }
-            else return new ValidationResult("The file can not be null");
+            else return ValidationResult.Success;
         }
     }
 }

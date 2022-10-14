@@ -8,7 +8,7 @@ namespace BlogApp.WebApi.Attributes
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            if (value is null) return new ValidationResult("Email can not be null");
+            if (value is null) return ValidationResult.Success;
             else
             {
                 string email = value.ToString()!;
