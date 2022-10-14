@@ -54,6 +54,8 @@ namespace BlogApp.WebApi.Services
 
                 user.PasswordHash = hashResult.Hash;
 
+                user.CreatedAt = DateTime.UtcNow;
+
                 var result = await _repositroy.CreateAsync(user);
 
                 await _repositroy.SaveAsync();
