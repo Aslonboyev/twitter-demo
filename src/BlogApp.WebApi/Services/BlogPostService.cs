@@ -49,7 +49,7 @@ namespace BlogApp.WebApi.Services
             if (blog is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
 
-            if (blog.Id != HttpContextHelper.UserId)
+            if (blog.Id != HttpContextHelper.UserId && HttpContextHelper.UserRole == UserRole.User.ToString())
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
             
             var result = await _blogPostRepository.DeleteAsync(blog);
@@ -66,7 +66,7 @@ namespace BlogApp.WebApi.Services
             if(blogs is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Blogs not found");
             
-            if (HttpContextHelper.UserId != userId)
+            if (HttpContextHelper.UserId != userId && HttpContextHelper.UserRole == UserRole.User.ToString())
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
 
             return await _blogPostRepository.DeleteAllAsync(blogs);

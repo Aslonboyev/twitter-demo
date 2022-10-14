@@ -2,6 +2,7 @@
 using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
+using BlogApp.WebApi.Helpers;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
@@ -17,33 +18,46 @@ namespace BlogApp.WebApi.Services
     {
         private readonly IUserRepository _userRepositroy;
         private readonly IFileService _fileService;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public UserService(IUserRepository userRepositroy, IFileService fileService)
+        public UserService(IUserRepository userRepositroy, IFileService fileService, IWebHostEnvironment hostingEnvironment)
         {
             _userRepositroy = userRepositroy;
             _fileService = fileService;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         public async Task<bool> DeleteAsync(Expression<Func<User, bool>> expression)
         {
             var result = await _userRepositroy.GetAsync(expression);
 
-            if (result is not null)
-            {
-                var user = await _userRepositroy.UpdateAsync(result);
+            if (result is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
-                await _userRepositroy.SaveAsync();
-                return true;
-            }
+            if (HttpContextHelper.UserId != result.Id && HttpContextHelper.UserRole == UserRole.User.ToString())
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+            
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            
+            var fullPath = webRootPath + "\\" + result.ImagePath;
 
-            throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+            if (System.IO.File.Exists(fullPath))
+                System.IO.File.Delete(fullPath);
+
+            result.ItemState = ItemState.Inactive;
+
+            await _userRepositroy.UpdateAsync(result);
+
+            await _userRepositroy.SaveAsync();
+
+            return true;
         }
 
         public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams? pagination = null, Expression<Func<User, bool>>? expression = null)
         {
-            return (from blog in _userRepositroy.GetAllAsync(expression)
-                    orderby blog.CreatedAt descending
-                    select (UserViewModel)blog).ToPaged(pagination);
+            return (from user in _userRepositroy.GetAllAsync(expression)
+                    orderby user.CreatedAt descending
+                    select (UserViewModel)user).ToPaged(pagination);
         }
 
         public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression)
@@ -63,8 +77,15 @@ namespace BlogApp.WebApi.Services
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
+            if (HttpContextHelper.UserId != id)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+
             if (model.Image is not null)
                 user.ImagePath = await _fileService.SaveImageAsync(model.Image);
+
+            await _userRepositroy.UpdateAsync(user);
+
+            await _userRepositroy.SaveAsync();
 
             return true;
         }
@@ -76,12 +97,15 @@ namespace BlogApp.WebApi.Services
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
+            if (HttpContextHelper.UserId != id)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+
             user.FirstName = viewModel.FirstName;
             user.LastName = viewModel.LastName;
             user.Email = viewModel.Email;
             user.PasswordHash = PasswordHasher.ChangePassword(viewModel.Password, user.Salt);
 
-            var updateUser = await _userRepositroy.UpdateAsync(user);
+            await _userRepositroy.UpdateAsync(user);
 
             await _userRepositroy.SaveAsync();
 
