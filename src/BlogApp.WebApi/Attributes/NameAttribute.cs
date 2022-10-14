@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace BlogApp.WebApi.Attributes
@@ -13,7 +13,7 @@ namespace BlogApp.WebApi.Attributes
             {
                 string name = value.ToString()!;
 
-                Regex regex = new Regex(@"^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$");
+                Regex regex = new(@"^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$");
 
                 if (regex.Match(name).Success)
                     return ValidationResult.Success;
