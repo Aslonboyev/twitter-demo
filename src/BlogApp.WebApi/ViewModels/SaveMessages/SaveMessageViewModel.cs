@@ -19,7 +19,7 @@ namespace BlogApp.WebApi.ViewModels.SaveMessages
             return new SaveMessageViewModel
             {
                 Id = message.Id,
-                PostId = message.PostId,
+                PostId = message.BlogPostId,
                 UserId = message.UserId,
             };
         }

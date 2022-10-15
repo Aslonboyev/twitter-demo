@@ -20,9 +20,9 @@ namespace BlogApp.WebApi.Repositories
 
         public async Task<SaveMessage> CreateAsync(SaveMessage saveMessage)
         {
-            var post = await _dbSet.AddAsync(saveMessage);
+            var post = (await _dbSet.AddAsync(saveMessage)).Entity;
 
-            return post.Entity;
+            return post;
         }
 
         public async Task<bool> DeleteAsync(SaveMessage saveMessage)

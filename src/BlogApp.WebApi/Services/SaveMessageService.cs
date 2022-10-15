@@ -39,6 +39,9 @@ namespace BlogApp.WebApi.Services
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
+            model.UserId = user.Id;
+            model.PostId = post.Id;
+
             var result = await _repository.CreateAsync(model);
             await _repository.SaveAsync();
 

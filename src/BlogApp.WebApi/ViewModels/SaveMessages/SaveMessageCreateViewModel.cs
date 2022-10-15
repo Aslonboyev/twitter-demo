@@ -15,7 +15,7 @@ namespace BlogApp.WebApi.ViewModels.SaveMessages
         {
             return new SaveMessage
             {
-                PostId = model.PostId,
+                BlogPostId = model.PostId,
                 UserId = model.UserId,
             };
         }

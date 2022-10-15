@@ -69,9 +69,6 @@ namespace BlogApp.WebApi.Migrations
                     b.Property<long>("BlogPostId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PostId")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
