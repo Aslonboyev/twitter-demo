@@ -4,10 +4,11 @@ using BlogApp.WebApi.ViewModels.SaveMessages;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace BlogApp.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/save-message")]
     [ApiController]
     public class SaveMessageController : ControllerBase
     {
@@ -24,10 +25,10 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.CreateAsync(model));
         }
 
-        [HttpGet("user_id"), Authorize(Roles = "User")]
-        public async Task<IActionResult> GetAllAsync(long user_id, [FromQuery] PaginationParams @params)
+        [HttpGet("{user-id}"), Authorize(Roles = "User")]
+        public async Task<IActionResult> GetAllAsync([FromRoute(Name = "user-id")]long userId, [FromQuery] PaginationParams @params)
         {
-            return Ok(await _service.GetAllAsync(user_id, @params));
+            return Ok(await _service.GetAllAsync(userId, @params));
         }
 
         [HttpDelete("{id}"), Authorize(Roles = "User")]
@@ -36,10 +37,10 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.DeleteAsync(p => p.Id == id));
         }
 
-        [HttpDelete("{user_id}"), Authorize(Roles = "User")]
-        public async Task<IActionResult> DeleteRangeAsync(long user_id)
+        [HttpDelete("{id}/user"), Authorize(Roles = "User")]
+        public async Task<IActionResult> DeleteRangeAsync([FromRoute(Name = "id")] long userId)
         {
-            return Ok(await _service.DeleteRangeAsync(user_id));
+            return Ok(await _service.DeleteRangeAsync(userId));
         }
     }
 }

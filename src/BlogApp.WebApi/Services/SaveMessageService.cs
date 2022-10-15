@@ -55,7 +55,7 @@ namespace BlogApp.WebApi.Services
             if (saveMessage is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Saved message not found");
             
-            if (HttpContextHelper.UserId != saveMessage.UserId && HttpContextHelper.UserRole == UserRole.User.ToString())
+            if (HttpContextHelper.UserId != saveMessage.UserId)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
 
             var result = await _repository.DeleteAsync(saveMessage);
@@ -67,7 +67,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<bool> DeleteRangeAsync(long userId)
         {
-            if (HttpContextHelper.UserId != userId && HttpContextHelper.UserRole == UserRole.User.ToString())
+            if (HttpContextHelper.UserId != userId )
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
 
             var messages = _repository.GetAll(p => p.Id == userId);
@@ -82,7 +82,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(long id, PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null)
         {
-            if (HttpContextHelper.UserId != id && HttpContextHelper.UserRole == UserRole.User.ToString())
+            if (HttpContextHelper.UserId != id)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
 
 
