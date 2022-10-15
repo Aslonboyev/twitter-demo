@@ -8,14 +8,14 @@
         public static IHeaderDictionary ResponseHeaders => Response.Headers;
         
         public static HttpContext HttpContext => Accessor?.HttpContext;
-        public static long? UserId => GetUserId();
+        public static long UserId => GetUserId();
         public static string UserRole => HttpContext?.User.FindFirst("UserRole")?.Value;
 
-        private static long? GetUserId()
+        private static long GetUserId()
         {
             long id;    
             bool canParse = long.TryParse(HttpContext?.User?.Claims.FirstOrDefault(p => p.Type == "Id")?.Value, out id);
-            return canParse ? id : null;
+            return canParse ? id : 0;
         }
     }
 }

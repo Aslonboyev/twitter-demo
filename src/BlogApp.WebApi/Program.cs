@@ -28,6 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //-> Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+builder.Services.AddScoped<ISaveMessageRepository, SaveMessageRepository>();
 
 //-> Services
 builder.Services.AddServices();

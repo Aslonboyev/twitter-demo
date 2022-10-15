@@ -17,8 +17,9 @@ namespace BlogApp.WebApi.Controllers
         {
             _service = messageService;
         }
-        [HttpPost, AllowAnonymous]
-        public async Task<IActionResult> CreateAsync(SaveMessageCreateViewModel model)
+
+        [HttpPost, Authorize(Roles = "User")]
+        public async Task<IActionResult> CreateAsync([FromBody]SaveMessageCreateViewModel model)
         {
             return Ok(await _service.CreateAsync(model));
         }

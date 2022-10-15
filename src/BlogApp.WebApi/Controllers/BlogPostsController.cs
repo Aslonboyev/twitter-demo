@@ -42,11 +42,11 @@ namespace BlogApp.WebApi.Controllers
         public async Task<IActionResult> CreateAsync([FromForm] BlogPostCreateViewModel blogPostCreateViewModel)
             => Ok(await _postService.CreateAsync(blogPostCreateViewModel));
 
-        [HttpPatch("{id}"), Authorize(Roles = "User")]
+        [HttpPut("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> UpdateAsync(long id, [FromForm] BlogPostCreateViewModel blogPostCreateViewModel)
             => Ok(await _postService.UpdateAsync(id, blogPostCreateViewModel));
 
-        [HttpPut("{id}"), Authorize(Roles = "User")]
+        [HttpPatch("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> UpdateAsync(long id, [FromForm] BlogPostPatchViewModel blogPostCreateViewModel)
             => Ok(await _postService.UpdateAsync(id, blogPostCreateViewModel));
     }

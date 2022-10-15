@@ -37,9 +37,6 @@ namespace BlogApp.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("ItemState")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
@@ -47,9 +44,6 @@ namespace BlogApp.WebApi.Migrations
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -73,9 +67,6 @@ namespace BlogApp.WebApi.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("BlogPostId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("PostId")
                         .HasColumnType("bigint");
 
                     b.Property<long>("UserId")

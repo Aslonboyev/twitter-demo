@@ -35,6 +35,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
             {
                 Id = blogPost.Id,
                 Title = blogPost.Title,
+                Type = blogPost.Type,
                 Description = blogPost.Description,
                 UserId = blogPost.UserId,
                 ViewCount = blogPost.ViewCount,

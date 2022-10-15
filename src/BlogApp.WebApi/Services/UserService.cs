@@ -16,12 +16,15 @@ namespace BlogApp.WebApi.Services
 {
     public class UserService : IUserService
     {
+        private readonly IBlogPostRepository _postRepository;
         private readonly IUserRepository _userRepositroy;
         private readonly IFileService _fileService;
         private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public UserService(IUserRepository userRepositroy, IFileService fileService, IWebHostEnvironment hostingEnvironment)
+        public UserService(IUserRepository userRepositroy, IFileService fileService, 
+            IWebHostEnvironment hostingEnvironment, IBlogPostRepository postRepository)
         {
+            _postRepository = postRepository;
             _userRepositroy = userRepositroy;
             _fileService = fileService;
             _hostingEnvironment = hostingEnvironment;
@@ -47,6 +50,8 @@ namespace BlogApp.WebApi.Services
             result.ItemState = ItemState.Inactive;
 
             await _userRepositroy.UpdateAsync(result);
+
+            await _postRepository.DeleteAllAsync(_postRepository.GetAll(p => p.UserId == result.Id));
 
             await _userRepositroy.SaveAsync();
 

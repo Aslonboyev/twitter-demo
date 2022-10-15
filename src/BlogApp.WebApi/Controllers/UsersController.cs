@@ -25,7 +25,7 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.GetAllAsync(@params, p => p.ItemState == Enums.ItemState.Active));
         }
         
-        [HttpPut("{id}"), Authorize(Roles = "User")]
+        [HttpPatch("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> UpdateAsync(long id, [FromForm]UserPatchViewModel userCreateViewModel)
         {
             return Ok(await _service.UpdateAsync(id, userCreateViewModel));
