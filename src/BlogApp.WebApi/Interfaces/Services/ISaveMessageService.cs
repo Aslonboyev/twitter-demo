@@ -8,7 +8,7 @@ namespace BlogApp.WebApi.Interfaces.Services
 {
     public interface ISaveMessageService
     {
-        Task<SaveMessage> CreateAsync(SaveMessageCreateViewModel model);
+        Task<SaveMessageViewModel> CreateAsync(SaveMessageCreateViewModel model);
 
         Task<bool> DeleteAsync(Expression<Func<SaveMessage, bool>> expression);
 

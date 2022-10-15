@@ -27,7 +27,7 @@ namespace BlogApp.WebApi.Services
             _repository = repository;
         }
 
-        public async Task<SaveMessage> CreateAsync(SaveMessageCreateViewModel model)
+        public async Task<SaveMessageViewModel> CreateAsync(SaveMessageCreateViewModel model)
         {
             var post = await _post.GetAsync(p => p.Id == model.PostId);
 
