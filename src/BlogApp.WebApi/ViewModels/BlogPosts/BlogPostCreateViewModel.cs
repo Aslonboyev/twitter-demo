@@ -21,16 +21,12 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [Required]
         [JsonPropertyName("type")]
         public string Type { get; set; } = String.Empty;
-
-        //[DataType(DataType.Upload)]
-        //[MaxFileSize(3)]
-        //[AllowedFileExtensions(new string[] { ".jpg", ".png" })]
-        //[JsonPropertyName("image")]
-        //public IFormFile? Image { get; set; }
-        
-        [Required]
-        [JsonPropertyName("user_id")]
-        public long UserId { get; set; }
+            
+        [DataType(DataType.Upload)]
+        [MaxFileSize(3)]
+        [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
+        [JsonPropertyName("image")]
+        public IFormFile? Image { get; set; }
 
         public static implicit operator BlogPost(BlogPostCreateViewModel model)
         {
@@ -39,7 +35,6 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
                 Title = model.Title,
                 Type = model.Type,
                 Description = model.Description,
-                UserId = model.UserId,
             };
         }
     }

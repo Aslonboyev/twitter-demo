@@ -37,9 +37,6 @@ namespace BlogApp.WebApi.Services
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
-            if (HttpContextHelper.UserId != result.Id && HttpContextHelper.UserRole == UserRole.User.ToString())
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-            
             string webRootPath = _hostingEnvironment.WebRootPath;
             
             var fullPath = webRootPath + "\\" + result.ImagePath;
@@ -51,11 +48,42 @@ namespace BlogApp.WebApi.Services
 
             await _userRepositroy.UpdateAsync(result);
 
+            await _userRepositroy.SaveAsync();
+
             await _postRepository.DeleteAllAsync(_postRepository.GetAll(p => p.UserId == result.Id));
+
+            await _postRepository.SaveAsync();
+
+            return true;
+        }
+
+        public async Task<bool> DeleteAsync()
+        {
+            var user = await _userRepositroy.GetAsync(p => p.Id == HttpContextHelper.UserId);
+
+            if (user is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message:"User not found");
+
+            string webRootPath = _hostingEnvironment.WebRootPath;
+
+            var fullPath = webRootPath + "\\" + user.ImagePath;
+
+            if (System.IO.File.Exists(fullPath))
+                System.IO.File.Delete(fullPath);
+
+            user.ItemState = ItemState.Inactive;
+
+            await _userRepositroy.UpdateAsync(user);
 
             await _userRepositroy.SaveAsync();
 
+            await _postRepository.DeleteAllAsync(_postRepository.GetAll(p => p.UserId == user.Id));
+
+            await _postRepository.SaveAsync();
+
             return true;
+
+
         }
 
         public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams? pagination = null, Expression<Func<User, bool>>? expression = null)
@@ -75,18 +103,24 @@ namespace BlogApp.WebApi.Services
             return (UserViewModel)user;
         }
 
-        public async Task<bool> UpdateAsync(long id, UserPatchViewModel model)
+        public async Task<bool> UpdateAsync(UserPatchViewModel model)
         {
-            var user = await _userRepositroy.GetAsync(o => o.Id == id && o.ItemState == ItemState.Active);
+            var user = await _userRepositroy.GetAsync(o => o.Id == HttpContextHelper.UserId && o.ItemState == ItemState.Active);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
-            if (HttpContextHelper.UserId != id)
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-
             if (model.Image is not null)
+            {
+                string webRootPath = _hostingEnvironment.WebRootPath;
+
+                var fullPath = webRootPath + "\\" + user.ImagePath;
+
+                if (System.IO.File.Exists(fullPath))
+                    System.IO.File.Delete(fullPath);
+
                 user.ImagePath = await _fileService.SaveImageAsync(model.Image);
+            }
             
             if(model.FirstName is not null)
                 user.FirstName = model.FirstName;
@@ -131,7 +165,7 @@ namespace BlogApp.WebApi.Services
 
         //    user.FirstName = viewModel.FirstName;
         //    user.LastName = viewModel.LastName;
-            
+              
         //    var username = await _userRepositroy.GetAsync(o => o.UserName == viewModel.UserName);
         //    if (user.Id != username.Id)
         //        throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Username have already taken");

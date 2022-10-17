@@ -28,7 +28,7 @@ namespace BlogApp.WebApi.ViewModels.Users
         public string Email { get; set; } = String.Empty;
 
         [Required(ErrorMessage = "Password is required"), MaxLength(50), MinLength(8)]
-        //StrongPassword]
+        //[StrongPassword]
         [JsonPropertyName("password")]
         public string Password { get; set; } = String.Empty;
 

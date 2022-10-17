@@ -38,6 +38,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
                 Type = blogPost.Type,
                 Description = blogPost.Description,
                 UserId = blogPost.UserId,
+                Image = blogPost.ImagePath,
                 ViewCount = blogPost.ViewCount,
                 CreatedAt = blogPost.CreatedAt,
             };

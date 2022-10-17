@@ -8,15 +8,11 @@ namespace BlogApp.WebApi.ViewModels.SaveMessages
         [JsonPropertyName("post_id")]
         public long PostId { get; set; }
 
-        [JsonPropertyName("user_id")]
-        public long UserId { get; set; }
-
         public static implicit operator SaveMessage(SaveMessageCreateViewModel model)
         {
             return new SaveMessage
             {
                 BlogPostId = model.PostId,
-                UserId = model.UserId,
             };
         }
     }

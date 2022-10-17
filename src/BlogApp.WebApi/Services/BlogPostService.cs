@@ -26,15 +26,14 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> CreateAsync(BlogPostCreateViewModel viewModel)
         {
-            if (HttpContextHelper.UserId != viewModel.UserId)
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-
             var blogPost = (BlogPost)viewModel;
+            
+            blogPost.UserId = HttpContextHelper.UserId;
 
             blogPost.CreatedAt = DateTime.UtcNow;
-            
-            //if (blogPost.Image is not null)
-            //    blogPost.ImagePath = await _fileService.SaveImageAsync(blogPost.Image);
+
+            if (viewModel.Image is not null)
+                blogPost.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
             var result = await _blogPostRepository.CreateAsync(blogPost);
             await _blogPostRepository.SaveAsync();
@@ -49,9 +48,6 @@ namespace BlogApp.WebApi.Services
             if (blog is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
 
-            if (blog.Id != HttpContextHelper.UserId && HttpContextHelper.UserRole == UserRole.User.ToString())
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-            
             var result = await _blogPostRepository.DeleteAsync(blog);
 
             await _blogPostRepository.SaveAsync();
@@ -59,16 +55,13 @@ namespace BlogApp.WebApi.Services
             return result;
         }
 
-        public async Task<bool> DeleteRangeAsync(long userId)
+        public async Task<bool> DeleteRangeAsync()
         {
-            var blogs = _blogPostRepository.GetAll(p => p.UserId == userId);
+            var blogs = _blogPostRepository.GetAll(p => p.UserId == HttpContextHelper.UserId);
 
             if(blogs is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "Blogs not found");
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "Posts not found");
             
-            if (HttpContextHelper.UserId != userId && HttpContextHelper.UserRole == UserRole.User.ToString())
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-
             return await _blogPostRepository.DeleteAllAsync(blogs);
         }
 
@@ -95,17 +88,17 @@ namespace BlogApp.WebApi.Services
 
         public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostCreateViewModel viewModel)
         {
-            if (HttpContextHelper.UserId != viewModel.UserId)
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-
             var post = await _blogPostRepository.GetAsync(o => o.Id == id);
 
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+            
+            if (viewModel.Image is not null)
+                post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
             post.Title = viewModel.Title;
             post.Description = viewModel.Description;
-            post.UserId = viewModel.UserId;
+            post.UserId = HttpContextHelper.UserId;
 
             post = await _blogPostRepository.UpdateAsync(post);
             await _blogPostRepository.SaveAsync();
@@ -115,16 +108,13 @@ namespace BlogApp.WebApi.Services
         
         public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostPatchViewModel viewModel)
         {
-            if (HttpContextHelper.UserId != viewModel.UserId)
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-
             var post = await _blogPostRepository.GetAsync(o => o.Id == id);
 
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
-            //if(viewModel.Image is not null)
-            //    post.ImagePath = await _fileService.SaveImageAsync(blogPost.Image);
+            if (viewModel.Image is not null)
+                post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
             if (viewModel.Title is not null)
                 post.Title = viewModel.Title;
@@ -134,8 +124,8 @@ namespace BlogApp.WebApi.Services
 
             if (viewModel.Description is not null)
                 post.Description = viewModel.Description;
-            
-            post.UserId = viewModel.UserId;
+
+            post.UserId = HttpContextHelper.UserId;
 
             post = await _blogPostRepository.UpdateAsync(post);
             await _blogPostRepository.SaveAsync();
