@@ -1,4 +1,6 @@
-﻿using BlogApp.WebApi.Models;
+﻿using BlogApp.WebApi.Attributes;
+using BlogApp.WebApi.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace BlogApp.WebApi.ViewModels.BlogPosts
@@ -14,11 +16,11 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("type")]
         public string? Type { get; set; }
 
+        [DataType(DataType.Upload)]
+        [MaxFileSize(3)]
+        [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
         [JsonPropertyName("image")]
         public IFormFile? Image { get; set; }
-
-        [JsonPropertyName("user_id")]
-        public long UserId { get; set; }
 
         public static implicit operator BlogPostPatchViewModel(BlogPost blogPost)
         {
@@ -26,7 +28,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
             {
                 Title = blogPost.Title,
                 Description = blogPost.Description,
-                UserId = blogPost.UserId,
+                Type = blogPost.Type,
             };
         }
     }

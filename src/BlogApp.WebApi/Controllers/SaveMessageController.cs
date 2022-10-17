@@ -25,10 +25,10 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.CreateAsync(model));
         }
 
-        [HttpGet("{user-id}"), Authorize(Roles = "User")]
-        public async Task<IActionResult> GetAllAsync([FromRoute(Name = "user-id")]long userId, [FromQuery] PaginationParams @params)
+        [HttpGet(), Authorize(Roles = "User")]
+        public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
         {
-            return Ok(await _service.GetAllAsync(userId, @params));
+            return Ok(await _service.GetAllAsync(@params));
         }
 
         [HttpDelete("{id}"), Authorize(Roles = "User")]
@@ -37,10 +37,10 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.DeleteAsync(p => p.Id == id));
         }
 
-        [HttpDelete("{id}/user"), Authorize(Roles = "User")]
-        public async Task<IActionResult> DeleteRangeAsync([FromRoute(Name = "id")] long userId)
+        [HttpDelete("user"), Authorize(Roles = "User")]
+        public async Task<IActionResult> DeleteRangeAsync()
         {
-            return Ok(await _service.DeleteRangeAsync(userId));
+            return Ok(await _service.DeleteRangeAsync());
         }
     }
 }

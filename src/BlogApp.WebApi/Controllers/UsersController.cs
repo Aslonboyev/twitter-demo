@@ -25,10 +25,10 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.GetAllAsync(@params, p => p.ItemState == Enums.ItemState.Active));
         }
         
-        [HttpPatch("{id}"), Authorize(Roles = "User")]
-        public async Task<IActionResult> UpdateAsync(long id, [FromForm]UserPatchViewModel userCreateViewModel)
+        [HttpPatch(), Authorize(Roles = "User")]
+        public async Task<IActionResult> UpdateAsync([FromForm]UserPatchViewModel userCreateViewModel)
         {
-            return Ok(await _service.UpdateAsync(id, userCreateViewModel));
+            return Ok(await _service.UpdateAsync(userCreateViewModel));
         }
 
         [HttpGet("{id}"), Authorize(Roles = "User, Admin")]
@@ -37,7 +37,13 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.GetAsync(p => p.Id == id && p.ItemState == Enums.ItemState.Active));
         }
 
-        [HttpDelete("{id}"), Authorize(Roles = "User, Admin")]
+        [HttpDelete(), Authorize(Roles = "User")]
+        public async Task<IActionResult> DeleteAsync()
+        {
+            return Ok(await _service.DeleteAsync());
+        }
+
+        [HttpDelete("{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAsync(long id)
         {
             return Ok(await _service.DeleteAsync(p => p.Id == id && p.ItemState == Enums.ItemState.Active));

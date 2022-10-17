@@ -15,7 +15,7 @@ namespace BlogApp.WebApi.Models
 
         public string Type { get; set; } = String.Empty;
 
-        //public string ImagePath { get; set; } = String.Empty;
+        public string ImagePath { get; set; } = String.Empty;
 
         public DateTime CreatedAt { get; set; }
 

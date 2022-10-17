@@ -8,6 +8,8 @@ using BlogApp.WebApi.Models;
 using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.BlogPosts;
 using BlogApp.WebApi.ViewModels.SaveMessages;
+using Microsoft.IdentityModel.Tokens;
+using Org.BouncyCastle.Utilities.Collections;
 using System.Linq.Expressions;
 using System.Net;
 
@@ -34,15 +36,16 @@ namespace BlogApp.WebApi.Services
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
 
-            var user = await _user.GetAsync(p => p.Id == model.UserId && p.ItemState == Enums.ItemState.Active);
+            var user = await _user.GetAsync(p => p.Id == HttpContextHelper.UserId && p.ItemState == Enums.ItemState.Active);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
-            model.UserId = user.Id;
-            model.PostId = post.Id;
+            var message = (SaveMessage)model;
 
-            var result = await _repository.CreateAsync(model);
+            message.UserId = HttpContextHelper.UserId;
+
+            var result = await _repository.CreateAsync(message);
             await _repository.SaveAsync();
 
             return result;
@@ -55,9 +58,6 @@ namespace BlogApp.WebApi.Services
             if (saveMessage is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Saved message not found");
             
-            if (HttpContextHelper.UserId != saveMessage.UserId)
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-
             var result = await _repository.DeleteAsync(saveMessage);
 
             await _repository.SaveAsync();
@@ -65,28 +65,23 @@ namespace BlogApp.WebApi.Services
             return result;
         }
 
-        public async Task<bool> DeleteRangeAsync(long userId)
+        public async Task<bool> DeleteRangeAsync()
         {
-            if (HttpContextHelper.UserId != userId )
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
+            var messages = _repository.GetAll(p => p.UserId == HttpContextHelper.UserId).ToList();
 
-            var messages = _repository.GetAll(p => p.Id == userId);
-
-            if (messages is null)
+            if (messages.IsNullOrEmpty())
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Users not found");
 
             await _repository.DeleteRangeAsync(messages);
 
+            await _repository.SaveAsync();
+
             return true;
         }
 
-        public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(long id, PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null)
+        public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null)
         {
-            if (HttpContextHelper.UserId != id)
-                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "must enter correct id");
-
-
-            return (from blog in _post.GetAll(p => p.UserId == id)
+            return (from blog in _post.GetAll(p => p.UserId == HttpContextHelper.UserId)
                          orderby blog.CreatedAt descending
                          select (BlogPostViewModel)blog).ToPaged(@params);
         }

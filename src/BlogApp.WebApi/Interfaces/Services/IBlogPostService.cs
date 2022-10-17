@@ -17,7 +17,7 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<BlogPostViewModel> UpdateAsync(long id, BlogPostPatchViewModel model);
 
-        Task<bool> DeleteRangeAsync(long userId);
+        Task<bool> DeleteRangeAsync();
 
         Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<BlogPost, bool>> expression = null!);
     }

@@ -12,9 +12,11 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<bool> DeleteAsync(Expression<Func<User, bool>> expression);
 
+        Task<bool> DeleteAsync();
+
         //Task<bool> UpdateAsync(long id, UserCreateViewModel model);
 
-        Task<bool> UpdateAsync(long id, UserPatchViewModel model);
+        Task<bool> UpdateAsync(UserPatchViewModel model);
 
         Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null!);
     }
