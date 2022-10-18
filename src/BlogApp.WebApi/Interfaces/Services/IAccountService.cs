@@ -8,7 +8,8 @@ namespace BlogApp.WebApi.Interfaces.Services
     {
         Task<bool> RegistrAsync(UserCreateViewModel model);
 
-        Task<(string?, long?)> LogInAsync(UserLogInViewModel model);
+        Task<string?> LogInAsync(UserLogInViewModel model);
+
 
         Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel password);
     }
