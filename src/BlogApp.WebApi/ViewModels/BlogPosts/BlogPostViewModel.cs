@@ -20,8 +20,8 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("type-id")]
         public long TypeId { get; set; }
 
-        //[JsonPropertyName("image")]
-        //public string Image { get; set; } = String.Empty;
+        [JsonPropertyName("image")]
+        public string Image { get; set; } = String.Empty;
 
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
@@ -38,7 +38,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
                 TypeId = blogPost.PostTypeId,
                 Description = blogPost.Description,
                 UserId = blogPost.UserId,
-                //Image = blogPost.ImagePath,
+                Image = blogPost.ImagePath,
                 ViewCount = blogPost.ViewCount,
                 CreatedAt = blogPost.CreatedAt,
             };

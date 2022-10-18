@@ -35,5 +35,17 @@ namespace BlogApp.WebApi.Controllers
         {
             return Ok(await _service.CreateAsync(model));
         }
+
+        [HttpDelete("id"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteAsync(long id)
+        {
+            return Ok(await _service.DeleteAsync(p => p.Id == id));
+        }
+
+        [HttpPut("id"), Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateAsync(long id, PostTypeCreateViewModel model)
+        {
+            return Ok(await _service.UpdateAsync(id, model));
+        }
     }
 }

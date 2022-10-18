@@ -25,8 +25,12 @@ namespace BlogApp.WebApi.Services
         {
             if ((await _context.PostTypes.FirstOrDefaultAsync(p => p.Name == model.Name)) is not null)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Type already exist");
+            
+            var reslut = (await _context.AddAsync((PostType)model)).Entity;
 
-            return (PostTypeViewModel)(await _context.AddAsync((PostType)model)).Entity;
+            await _context.SaveChangesAsync();
+
+            return (PostTypeViewModel)reslut;
         }
 
         public async Task<bool> DeleteAsync(Expression<Func<PostType, bool>> expression)
@@ -81,3 +85,4 @@ namespace BlogApp.WebApi.Services
         }
     }
 }
+

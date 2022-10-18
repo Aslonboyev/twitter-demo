@@ -16,11 +16,11 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("post-type-id")]
         public long PostTypeId { get; set; }
 
-        //[DataType(DataType.Upload)]
-        //[MaxFileSize(3)]
-        //[AllowedFileExtensions(new string[] { ".jpg", ".png" })]
-        //[JsonPropertyName("image")]
-        //public IFormFile? Image { get; set; }
+        [DataType(DataType.Upload)]
+        [MaxFileSize(3)]
+        [AllowedFileExtensions(new string[] { ".jpg", ".png" })]
+        [JsonPropertyName("image")]
+        public IFormFile? Image { get; set; }
 
         public static implicit operator BlogPostPatchViewModel(BlogPost blogPost)
         {
