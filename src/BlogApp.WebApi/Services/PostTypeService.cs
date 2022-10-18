@@ -42,6 +42,8 @@ namespace BlogApp.WebApi.Services
 
             _context.PostTypes.Remove(result);
 
+            await _context.SaveChangesAsync();
+
             return true;
         }
 
@@ -72,6 +74,8 @@ namespace BlogApp.WebApi.Services
             type.Name = model.Name;
 
             _context.PostTypes.Update(type);
+
+            await _context.SaveChangesAsync();
 
             return (PostTypeViewModel)type;
         }
