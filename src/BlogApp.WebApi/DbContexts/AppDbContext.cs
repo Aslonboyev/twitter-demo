@@ -35,5 +35,6 @@ namespace BlogApp.WebApi.DbContexts
 
         public virtual DbSet<BlogPost> BlogPosts { get; set; } = null!;
 
+        public virtual DbSet<PostType> PostTypes { get; set; } = null!;     
     }
 }

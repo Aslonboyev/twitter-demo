@@ -32,11 +32,11 @@ namespace BlogApp.WebApi.Services
 
             blogPost.CreatedAt = DateTime.UtcNow;
 
-            if (viewModel.Image is not null)
-                blogPost.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
+            //if (viewModel.Image is not null)
+            //    blogPost.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
             var result = await _blogPostRepository.CreateAsync(blogPost);
-            await _blogPostRepository.SaveAsync();
+                    await _blogPostRepository.SaveAsync();
 
             return result;
         }
@@ -93,8 +93,8 @@ namespace BlogApp.WebApi.Services
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
             
-            if (viewModel.Image is not null)
-                post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
+            //if (viewModel.Image is not null)
+            //    post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
             post.Title = viewModel.Title;
             post.Description = viewModel.Description;
@@ -113,14 +113,14 @@ namespace BlogApp.WebApi.Services
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
-            if (viewModel.Image is not null)
-                post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
+            //if (viewModel.Image is not null)
+            //    post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
             if (viewModel.Title is not null)
                 post.Title = viewModel.Title;
 
-            if (viewModel.Type is not null)
-                post.Type = viewModel.Type;
+            if (viewModel.PostTypeId != 0)
+                post.PostTypeId = viewModel.PostTypeId;
 
             if (viewModel.Description is not null)
                 post.Description = viewModel.Description;

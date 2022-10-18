@@ -17,11 +17,11 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("view_count")]
         public uint ViewCount { get; set; }
 
-        [JsonPropertyName("type")]
-        public string Type { get; set; } = String.Empty;
+        [JsonPropertyName("type-id")]
+        public long TypeId { get; set; }
 
-        [JsonPropertyName("image")]
-        public string Image { get; set; } = String.Empty;
+        //[JsonPropertyName("image")]
+        //public string Image { get; set; } = String.Empty;
 
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
@@ -35,10 +35,10 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
             {
                 Id = blogPost.Id,
                 Title = blogPost.Title,
-                Type = blogPost.Type,
+                TypeId = blogPost.PostTypeId,
                 Description = blogPost.Description,
                 UserId = blogPost.UserId,
-                Image = blogPost.ImagePath,
+                //Image = blogPost.ImagePath,
                 ViewCount = blogPost.ViewCount,
                 CreatedAt = blogPost.CreatedAt,
             };
