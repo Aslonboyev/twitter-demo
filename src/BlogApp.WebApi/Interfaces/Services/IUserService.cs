@@ -8,9 +8,11 @@ namespace BlogApp.WebApi.Interfaces.Services
 {
     public interface IUserService
     {
-        Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression);
+        Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression = null);
 
         Task<bool> DeleteAsync(Expression<Func<User, bool>> expression);
+        
+        Task<UserViewModel> GetInfoAsync();
 
         Task<bool> DeleteAsync();
 
