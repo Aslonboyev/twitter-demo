@@ -1,6 +1,7 @@
 ﻿using BlogApp.Service.ViewModels.Users;
 using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
+using BlogApp.WebApi.Helpers;
 using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
@@ -22,7 +23,8 @@ namespace BlogApp.WebApi.Services
             _authManager = authManager;
         }
 
-        public async Task<(string?, long?)> LogInAsync(UserLogInViewModel viewModel)
+
+        public async Task<string?> LogInAsync(UserLogInViewModel viewModel)
         {
             var user = await _repositroy.GetAsync(o => o.Email == viewModel.Email && o.ItemState == ItemState.Active);
 
@@ -33,7 +35,7 @@ namespace BlogApp.WebApi.Services
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
 
             if (PasswordHasher.Verify(viewModel.Password, user.Salt, user.PasswordHash))
-                return (_authManager.GenerateToken(user), user.Id);
+                return _authManager.GenerateToken(user);
 
             throw new StatusCodeException(HttpStatusCode.BadRequest, message: "password is wrong");
         }

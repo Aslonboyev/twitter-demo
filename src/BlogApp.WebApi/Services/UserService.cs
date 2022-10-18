@@ -86,6 +86,15 @@ namespace BlogApp.WebApi.Services
 
         }
 
+        public async Task<UserViewModel> GetInfoAsync()
+        {
+            var user = await _userRepositroy.GetAsync(p => p.Id == HttpContextHelper.UserId);
+
+            if (user is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+
+            return (UserViewModel)user;
+        }
         public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams? pagination = null, Expression<Func<User, bool>>? expression = null)
         {
             return (from user in _userRepositroy.GetAllAsync(expression)
@@ -93,8 +102,13 @@ namespace BlogApp.WebApi.Services
                     select (UserViewModel)user).ToPaged(pagination);
         }
 
-        public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression)
+        public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression = null)
         {
+            if(expression is null)
+            {
+                expression = p => p.Id == HttpContextHelper.UserId && p.ItemState == ItemState.Active;
+            }
+
             var user = await _userRepositroy.GetAsync(expression);
 
             if (user == null)

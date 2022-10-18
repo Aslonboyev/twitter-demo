@@ -31,6 +31,12 @@ namespace BlogApp.WebApi.Controllers
             return Ok(await _service.UpdateAsync(userCreateViewModel));
         }
 
+        [HttpGet(), Authorize(Roles = "User")]
+        public async Task<IActionResult> GetInfoAsync()
+        {
+            return Ok(await _service.GetInfoAsync());
+        }
+
         [HttpGet("{id}"), Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetAsync(long id)
         {
