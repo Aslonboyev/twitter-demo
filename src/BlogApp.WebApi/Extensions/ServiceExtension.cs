@@ -50,7 +50,7 @@ namespace BlogApp.WebApi.Extensions
                 };
             });
         }
-        
+
         public static void AddSwaggerAuthorization(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>

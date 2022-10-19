@@ -1,6 +1,4 @@
-﻿using BlogApp.WebApi.ViewModels.SaveMessages;
-
-namespace BlogApp.WebApi.Models
+﻿namespace BlogApp.WebApi.Models
 {
     public class SaveMessage
     {

@@ -1,13 +1,8 @@
 //-> Services
-using BlogApp.WebApi.AuthManagement;
 using BlogApp.WebApi.DbContexts;
 using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Helpers;
-using BlogApp.WebApi.Interfaces.Repositories;
-using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Middlewares;
-using BlogApp.WebApi.Repositories;
-using BlogApp.WebApi.Services;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -22,13 +17,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgressDb"));
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
-
-//-> Repositories
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
-builder.Services.AddScoped<ISaveMessageRepository, SaveMessageRepository>();
 
 //-> Services
 builder.Services.AddServices();

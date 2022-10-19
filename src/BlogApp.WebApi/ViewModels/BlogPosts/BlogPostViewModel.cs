@@ -13,7 +13,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
 
         [JsonPropertyName("description")]
         public string Description { get; set; } = String.Empty;
-        
+
         [JsonPropertyName("view_count")]
         public uint ViewCount { get; set; }
 

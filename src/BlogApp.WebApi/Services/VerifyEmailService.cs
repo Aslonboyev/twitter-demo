@@ -1,9 +1,11 @@
 ﻿using BlogApp.Service.ViewModels.Users;
+using BlogApp.WebApi.DbContexts;
 using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
-using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
+using BlogApp.WebApi.Models;
 using BlogApp.WebApi.ViewModels.Users;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System.Net;
 
@@ -13,14 +15,13 @@ namespace BlogApp.WebApi.Services
     {
         private readonly IMemoryCache _cache;
         private readonly IEmailService _emailService;
-        private readonly IUserRepository _repository;
+        private readonly AppDbContext _context;
 
-        public VerifyEmailService(IMemoryCache cache, IEmailService email,
-                                  IUserRepository repository)
+        public VerifyEmailService(IMemoryCache cache, IEmailService email, AppDbContext appDbContext)
         {
             _cache = cache;
             _emailService = email;
-            _repository = repository;
+            _context = appDbContext;
         }
 
         public async Task SendCodeAsync(SendCodeToEmailViewModel email)
@@ -39,9 +40,9 @@ namespace BlogApp.WebApi.Services
             await _emailService.SendAsync(message);
         }
 
-        public async Task<bool> VerifyEmail(EmailVerifyViewModel emailVerify)
+        public async Task VerifyEmail(EmailVerifyViewModel emailVerify)
         {
-            var entity = await _repository.GetAsync(user => user.Email == emailVerify.Email && user.ItemState == ItemState.Active);
+            var entity = await _context.Users.FirstOrDefaultAsync(user => user.Email == emailVerify.Email && user.ItemState == ItemState.Active);
 
             if (entity == null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found!");
@@ -53,19 +54,17 @@ namespace BlogApp.WebApi.Services
 
                 entity.IsEmailConfirmed = true;
 
-                await _repository.UpdateAsync(entity);
+                _context.Update(entity);
 
-                await _repository.SaveAsync();
-
-                return true;
+                await _context.SaveChangesAsync();
             }
             else
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Code is expired");
         }
 
-        public async Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel model)
+        public async Task VerifyPasswordAsync(UserResetPasswordViewModel model)
         {
-            var user = await _repository.GetAsync(p => p.Email == model.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Email == model.Email);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found");
@@ -74,8 +73,6 @@ namespace BlogApp.WebApi.Services
             {
                 if (code != model.Code)
                     throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Code is wrong");
-
-                return true;
             }
             else
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Code is expired");

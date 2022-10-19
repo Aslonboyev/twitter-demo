@@ -2,7 +2,6 @@
 using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.PostTypes;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApp.WebApi.Controllers
@@ -19,7 +18,7 @@ namespace BlogApp.WebApi.Controllers
         }
 
         [HttpGet, Authorize(Roles = "User, Admin")]
-        public async Task<IActionResult> GetAllAsync([FromQuery]PaginationParams @params)
+        public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
         {
             return Ok(await _service.GetAllAsync(@params));
         }
@@ -39,7 +38,8 @@ namespace BlogApp.WebApi.Controllers
         [HttpDelete("id"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            return Ok(await _service.DeleteAsync(p => p.Id == id));
+            await _service.DeleteAsync(p => p.Id == id);
+            return Ok();
         }
 
         [HttpPut("id"), Authorize(Roles = "Admin")]

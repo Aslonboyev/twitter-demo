@@ -1,7 +1,4 @@
-﻿using BlogApp.WebApi.Enums;
-using BlogApp.WebApi.ViewModels.BlogPosts;
-
-namespace BlogApp.WebApi.Models
+﻿namespace BlogApp.WebApi.Models
 {
     public class BlogPost
     {

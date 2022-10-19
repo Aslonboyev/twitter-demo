@@ -23,7 +23,7 @@ namespace BlogApp.WebApi.Services
             email.From.Add(MailboxAddress.Parse(_config["Email"]));
             email.To.Add(MailboxAddress.Parse(emailMessage.To));
             email.Subject = emailMessage.Subject;
-            email.Body = new TextPart(TextFormat.Html) { Text =emailMessage.Body.ToString()};
+            email.Body = new TextPart(TextFormat.Html) { Text = emailMessage.Body.ToString() };
 
             var smtp = new SmtpClient();
             await smtp.ConnectAsync(_config["Host"], 587, SecureSocketOptions.StartTls);

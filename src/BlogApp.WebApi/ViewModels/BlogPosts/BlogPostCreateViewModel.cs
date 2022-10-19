@@ -1,7 +1,5 @@
 ﻿using BlogApp.WebApi.Attributes;
 using BlogApp.WebApi.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 

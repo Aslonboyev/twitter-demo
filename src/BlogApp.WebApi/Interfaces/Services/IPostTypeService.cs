@@ -11,7 +11,7 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<PostTypeViewModel> GetAsync(Expression<Func<PostType, bool>> expression);
 
-        Task<bool> DeleteAsync(Expression<Func<PostType, bool>> expression);
+        Task DeleteAsync(Expression<Func<PostType, bool>> expression);
 
         Task<PostTypeViewModel> UpdateAsync(long id, PostTypeCreateViewModel model);
 

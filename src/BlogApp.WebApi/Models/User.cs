@@ -1,5 +1,4 @@
 ﻿using BlogApp.WebApi.Enums;
-using BlogApp.WebApi.ViewModels.Users;
 
 namespace BlogApp.WebApi.Models
 {
@@ -26,7 +25,7 @@ namespace BlogApp.WebApi.Models
         public DateTime CreatedAt { get; set; }
 
         public ItemState ItemState { get; set; }
-        
+
         public UserRole UserRole { get; set; } = UserRole.User;
 
     }

@@ -4,7 +4,6 @@ using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
 using BlogApp.WebApi.Utills;
-using BlogApp.WebApi.ViewModels.BlogPosts;
 using BlogApp.WebApi.ViewModels.PostTypes;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -25,7 +24,7 @@ namespace BlogApp.WebApi.Services
         {
             if ((await _context.PostTypes.FirstOrDefaultAsync(p => p.Name == model.Name)) is not null)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Type already exist");
-            
+
             var reslut = (await _context.AddAsync((PostType)model)).Entity;
 
             await _context.SaveChangesAsync();
@@ -33,7 +32,7 @@ namespace BlogApp.WebApi.Services
             return (PostTypeViewModel)reslut;
         }
 
-        public async Task<bool> DeleteAsync(Expression<Func<PostType, bool>> expression)
+        public async Task DeleteAsync(Expression<Func<PostType, bool>> expression)
         {
             var result = await _context.PostTypes.FirstOrDefaultAsync(expression);
 
@@ -47,15 +46,13 @@ namespace BlogApp.WebApi.Services
             _context.PostTypes.Remove(result);
 
             await _context.SaveChangesAsync();
-
-            return true;
         }
 
         public async Task<IEnumerable<PostTypeViewModel>> GetAllAsync(PaginationParams @params)
         {
             return (from type in _context.PostTypes
-                    orderby type.CreatedAt descending
-                    select (PostTypeViewModel)type).ToPaged(@params);
+                        orderby type.CreatedAt descending
+                            select (PostTypeViewModel)type).ToPaged(@params);
         }
 
         public async Task<PostTypeViewModel> GetAsync(Expression<Func<PostType, bool>> expression)
@@ -72,7 +69,7 @@ namespace BlogApp.WebApi.Services
         {
             var type = await _context.PostTypes.FirstOrDefaultAsync(p => p.Id == id);
 
-            if(type is null)
+            if (type is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Type not found");
 
             type.Name = model.Name;
