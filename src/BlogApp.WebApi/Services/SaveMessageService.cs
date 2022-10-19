@@ -81,17 +81,14 @@ namespace BlogApp.WebApi.Services
 
         public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null)
         {
-            var saves =  _repository.GetAll(p => p.UserId == HttpContextHelper.UserId);
+            var saves =  _repository.GetAll(p => p.UserId == HttpContextHelper.UserId).ToList();
 
             var posts = new List<BlogPostViewModel>();
 
             foreach (var post in saves)
-            {
-                posts.Add(await _post.GetAsync(p => p.Id == post.BlogPostId));
-            }
+                posts.Add((BlogPostViewModel)(await _post.GetAsync(p => p.Id == post.BlogPostId)));
 
             return posts;
         }
     }
 }
-    
