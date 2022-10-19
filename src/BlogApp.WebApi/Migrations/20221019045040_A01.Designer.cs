@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlogApp.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221015125608_A01")]
+    [Migration("20221019045040_A01")]
     partial class A01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,11 +39,14 @@ namespace BlogApp.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Type")
+                    b.Property<long>("PostTypeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -55,9 +58,31 @@ namespace BlogApp.WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PostTypeId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("BlogPosts");
+                });
+
+            modelBuilder.Entity("BlogApp.WebApi.Models.PostType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PostTypes");
                 });
 
             modelBuilder.Entity("BlogApp.WebApi.Models.SaveMessage", b =>
@@ -138,11 +163,19 @@ namespace BlogApp.WebApi.Migrations
 
             modelBuilder.Entity("BlogApp.WebApi.Models.BlogPost", b =>
                 {
+                    b.HasOne("BlogApp.WebApi.Models.PostType", "PostType")
+                        .WithMany()
+                        .HasForeignKey("PostTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BlogApp.WebApi.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PostType");
 
                     b.Navigation("User");
                 });

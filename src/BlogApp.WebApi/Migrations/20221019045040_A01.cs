@@ -11,6 +11,20 @@ namespace BlogApp.WebApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "PostTypes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -42,13 +56,20 @@ namespace BlogApp.WebApi.Migrations
                     Title = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     ViewCount = table.Column<long>(type: "bigint", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: false),
+                    PostTypeId = table.Column<long>(type: "bigint", nullable: false),
+                    ImagePath = table.Column<string>(type: "text", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BlogPosts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BlogPosts_PostTypes_PostTypeId",
+                        column: x => x.PostTypeId,
+                        principalTable: "PostTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BlogPosts_Users_UserId",
                         column: x => x.UserId,
@@ -84,6 +105,11 @@ namespace BlogApp.WebApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_BlogPosts_PostTypeId",
+                table: "BlogPosts",
+                column: "PostTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BlogPosts_UserId",
                 table: "BlogPosts",
                 column: "UserId");
@@ -106,6 +132,9 @@ namespace BlogApp.WebApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "BlogPosts");
+
+            migrationBuilder.DropTable(
+                name: "PostTypes");
 
             migrationBuilder.DropTable(
                 name: "Users");
