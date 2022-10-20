@@ -1,2 +1,2 @@
 # Blog 
-this application is used for writing post
+This application is a free social networking site where users broadcast short posts known as tweets. These tweets can contain text, photos.
