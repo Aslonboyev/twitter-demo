@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlogApp.WebApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221017074857_A02")]
-    partial class A02
+    [Migration("20221020053704_A03")]
+    partial class A03
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,11 +43,13 @@ namespace BlogApp.WebApi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<long>("PostTypeId")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("Type")
+                    b.Property<long?>("SaveMessageId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -59,9 +61,33 @@ namespace BlogApp.WebApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PostTypeId");
+
+                    b.HasIndex("SaveMessageId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("BlogPosts");
+                });
+
+            modelBuilder.Entity("BlogApp.WebApi.Models.PostType", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PostTypes");
                 });
 
             modelBuilder.Entity("BlogApp.WebApi.Models.SaveMessage", b =>
@@ -113,9 +139,6 @@ namespace BlogApp.WebApi.Migrations
                     b.Property<bool>("IsEmailConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ItemState")
-                        .HasColumnType("integer");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("text");
@@ -142,11 +165,23 @@ namespace BlogApp.WebApi.Migrations
 
             modelBuilder.Entity("BlogApp.WebApi.Models.BlogPost", b =>
                 {
+                    b.HasOne("BlogApp.WebApi.Models.PostType", "PostType")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("PostTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlogApp.WebApi.Models.SaveMessage", null)
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("SaveMessageId");
+
                     b.HasOne("BlogApp.WebApi.Models.User", "User")
-                        .WithMany()
+                        .WithMany("BlogPosts")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("PostType");
 
                     b.Navigation("User");
                 });
@@ -168,6 +203,21 @@ namespace BlogApp.WebApi.Migrations
                     b.Navigation("BlogPost");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BlogApp.WebApi.Models.PostType", b =>
+                {
+                    b.Navigation("BlogPosts");
+                });
+
+            modelBuilder.Entity("BlogApp.WebApi.Models.SaveMessage", b =>
+                {
+                    b.Navigation("BlogPosts");
+                });
+
+            modelBuilder.Entity("BlogApp.WebApi.Models.User", b =>
+                {
+                    b.Navigation("BlogPosts");
                 });
 #pragma warning restore 612, 618
         }

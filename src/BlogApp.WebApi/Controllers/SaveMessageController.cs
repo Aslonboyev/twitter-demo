@@ -2,9 +2,7 @@
 using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.SaveMessages;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
 
 namespace BlogApp.WebApi.Controllers
 {
@@ -20,7 +18,7 @@ namespace BlogApp.WebApi.Controllers
         }
 
         [HttpPost, Authorize(Roles = "User")]
-        public async Task<IActionResult> CreateAsync([FromBody]SaveMessageCreateViewModel model)
+        public async Task<IActionResult> CreateAsync([FromBody] SaveMessageCreateViewModel model)
         {
             return Ok(await _service.CreateAsync(model));
         }
@@ -34,13 +32,15 @@ namespace BlogApp.WebApi.Controllers
         [HttpDelete("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            return Ok(await _service.DeleteAsync(p => p.Id == id));
+            await _service.DeleteAsync(p => p.Id == id);
+            return Ok();
         }
 
         [HttpDelete("user"), Authorize(Roles = "User")]
         public async Task<IActionResult> DeleteRangeAsync()
         {
-            return Ok(await _service.DeleteRangeAsync());
+            await _service.DeleteRangeAsync();
+            return Ok();
         }
     }
 }

@@ -1,32 +1,29 @@
 ﻿using BlogApp.Service.ViewModels.Users;
-using BlogApp.WebApi.Enums;
+using BlogApp.WebApi.DbContexts;
 using BlogApp.WebApi.Exceptions;
-using BlogApp.WebApi.Helpers;
-using BlogApp.WebApi.Interfaces.Repositories;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
 using BlogApp.WebApi.Security;
-using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.Users;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace BlogApp.WebApi.Services
 {
     public class AccountService : IAccountService
     {
-        private readonly IUserRepository _repositroy;
+        private readonly AppDbContext _context;
         private readonly IAuthManager _authManager;
 
-        public AccountService(IUserRepository userRepository, IAuthManager authManager)
+        public AccountService(AppDbContext appDbContext, IAuthManager authManager)
         {
-            _repositroy = userRepository;
+            _context = appDbContext;
             _authManager = authManager;
         }
 
-
         public async Task<string?> LogInAsync(UserLogInViewModel viewModel)
         {
-            var user = await _repositroy.GetAsync(o => o.Email == viewModel.Email && o.ItemState == ItemState.Active);
+            var user = await _context.Users.FirstOrDefaultAsync(o => o.Email == viewModel.Email);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "email is wrong");
@@ -40,39 +37,38 @@ namespace BlogApp.WebApi.Services
             throw new StatusCodeException(HttpStatusCode.BadRequest, message: "password is wrong");
         }
 
-        public async Task<bool> RegistrAsync(UserCreateViewModel viewModel)
+        public async Task RegistrAsync(UserCreateViewModel viewModel)
         {
-            var userk = await _repositroy.GetAsync(o => o.ItemState == ItemState.Active && (o.Email == viewModel.Email || o.UserName == viewModel.UserName));
+            var email = await _context.Users.FirstOrDefaultAsync(o => o.Email == viewModel.Email);
 
-            if (userk is null)
-            {
-                var user = (User)viewModel;
-                
-                var hashResult = PasswordHasher.Hash(viewModel.Password);
+            if (email is not null)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Email already exist");
 
-                user.Salt = hashResult.Salt;
+            var username = await _context.Users.FirstOrDefaultAsync(p => p.UserName == viewModel.UserName);
 
-                user.ItemState = ItemState.Active;
+            if (username is not null)
+                throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Username already exist");
 
-                user.PasswordHash = hashResult.Hash;
+            var user = (User)viewModel;
 
-                user.CreatedAt = DateTime.UtcNow;
+            var hashResult = PasswordHasher.Hash(viewModel.Password);
 
-                var result = await _repositroy.CreateAsync(user);
+            user.Salt = hashResult.Salt;
 
-                await _repositroy.SaveAsync();
+            user.PasswordHash = hashResult.Hash;
 
-                throw new StatusCodeException(HttpStatusCode.OK, message: "true");
-            }
+            user.CreatedAt = DateTime.UtcNow;
 
-            throw new StatusCodeException(HttpStatusCode.OK, message: "false");
+            var result = _context.Users.Add(user);
+
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel password)
+        public async Task VerifyPasswordAsync(UserResetPasswordViewModel password)
         {
-            var user = await _repositroy.GetAsync(p => p.Email == password.Email && p.ItemState == ItemState.Active);
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Email == password.Email);
 
-            if(user is null)
+            if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found!");
 
             if (user.IsEmailConfirmed is false)
@@ -82,10 +78,9 @@ namespace BlogApp.WebApi.Services
 
             user.PasswordHash = changedPassword;
 
-            await _repositroy.UpdateAsync(user);
-            await _repositroy.SaveAsync();
+            _context.Users.Update(user);
 
-            throw new StatusCodeException(HttpStatusCode.OK, message: "true");
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -11,13 +11,13 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<BlogPostViewModel> GetAsync(Expression<Func<BlogPost, bool>> expression);
 
-        Task<bool> DeleteAsync(Expression<Func<BlogPost, bool>> expression);
+        Task DeleteAsync(Expression<Func<BlogPost, bool>> expression);
 
         Task<BlogPostViewModel> UpdateAsync(long id, BlogPostCreateViewModel model);
 
         Task<BlogPostViewModel> UpdateAsync(long id, BlogPostPatchViewModel model);
 
-        Task<bool> DeleteRangeAsync();
+        Task DeleteRangeAsync();
 
         Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<BlogPost, bool>> expression = null!);
     }

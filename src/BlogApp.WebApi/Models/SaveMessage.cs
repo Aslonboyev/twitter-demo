@@ -1,6 +1,4 @@
-﻿using BlogApp.WebApi.ViewModels.SaveMessages;
-
-namespace BlogApp.WebApi.Models
+﻿namespace BlogApp.WebApi.Models
 {
     public class SaveMessage
     {
@@ -11,5 +9,7 @@ namespace BlogApp.WebApi.Models
 
         public long UserId { get; set; }
         public virtual User User { get; set; } = null!;
+
+        public ICollection<BlogPost> BlogPosts { get; } = new List<BlogPost>();
     }
 }

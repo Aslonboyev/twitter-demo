@@ -1,9 +1,7 @@
 ﻿using BlogApp.Service.ViewModels.Users;
 using BlogApp.WebApi.Interfaces.Services;
-using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.Users;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApp.WebApi.Controllers
@@ -22,16 +20,22 @@ namespace BlogApp.WebApi.Controllers
         }
 
         [HttpPost("registr"), AllowAnonymous]
-        public async Task<IActionResult> Registr([FromBody]UserCreateViewModel userCreateViewModel)
-            => Ok(await _acountService.RegistrAsync(userCreateViewModel));
+        public async Task<IActionResult> Registr([FromBody] UserCreateViewModel userCreateViewModel)
+        {
+            await _acountService.RegistrAsync(userCreateViewModel);
+            return Ok();
+        }
 
         [HttpPost("login"), AllowAnonymous]
-        public async Task<IActionResult> LogIn([FromBody]UserLogInViewModel logInViewModel)
-            => Ok((new { Token = (await _acountService.LogInAsync(logInViewModel))}));
+        public async Task<IActionResult> LogIn([FromBody] UserLogInViewModel logInViewModel)
+            => Ok((new { Token = (await _acountService.LogInAsync(logInViewModel)) }));
 
         [HttpPost("verify-email"), AllowAnonymous]
         public async Task<IActionResult> VerifyEmail([FromBody] EmailVerifyViewModel email)
-            => Ok(await _emailService.VerifyEmail(email));
+        {
+            await _emailService.VerifyEmail(email);
+            return Ok();
+        }
 
         [HttpPost("send-code-to-email"), AllowAnonymous]
         public async Task<IActionResult> SendToEmail([FromBody] SendCodeToEmailViewModel email)
@@ -41,9 +45,10 @@ namespace BlogApp.WebApi.Controllers
         }
 
         [HttpPost("reset-password"), AllowAnonymous]
-        public async Task<IActionResult> ForgotPassword([FromBody]UserResetPasswordViewModel forgotPassword)
+        public async Task<IActionResult> ForgotPassword([FromBody] UserResetPasswordViewModel forgotPassword)
         {
-            return Ok(await _acountService.VerifyPasswordAsync(forgotPassword));
+            await _acountService.VerifyPasswordAsync(forgotPassword);
+            return Ok();
         }
     }
 }

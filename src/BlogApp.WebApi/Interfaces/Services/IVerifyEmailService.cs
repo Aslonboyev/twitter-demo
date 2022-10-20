@@ -7,8 +7,8 @@ namespace BlogApp.WebApi.Interfaces.Services
     {
         Task SendCodeAsync(SendCodeToEmailViewModel email);
 
-        Task<bool> VerifyEmail(EmailVerifyViewModel emailVerify);
+        Task VerifyEmail(EmailVerifyViewModel emailVerify);
 
-        Task<bool> VerifyPasswordAsync(UserResetPasswordViewModel model);
+        Task VerifyPasswordAsync(UserResetPasswordViewModel model);
     }
 }

@@ -1,6 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
 namespace BlogApp.WebApi.ViewModels.Users

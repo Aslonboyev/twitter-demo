@@ -13,12 +13,12 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
 
         [JsonPropertyName("description")]
         public string Description { get; set; } = String.Empty;
-        
+
         [JsonPropertyName("view_count")]
         public uint ViewCount { get; set; }
 
-        [JsonPropertyName("type")]
-        public string Type { get; set; } = String.Empty;
+        [JsonPropertyName("type-id")]
+        public long TypeId { get; set; }
 
         [JsonPropertyName("image")]
         public string Image { get; set; } = String.Empty;
@@ -35,7 +35,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
             {
                 Id = blogPost.Id,
                 Title = blogPost.Title,
-                Type = blogPost.Type,
+                TypeId = blogPost.PostTypeId,
                 Description = blogPost.Description,
                 UserId = blogPost.UserId,
                 Image = blogPost.ImagePath,

@@ -10,9 +10,9 @@ namespace BlogApp.WebApi.Interfaces.Services
     {
         Task<SaveMessageViewModel> CreateAsync(SaveMessageCreateViewModel model);
 
-        Task<bool> DeleteAsync(Expression<Func<SaveMessage, bool>> expression);
+        Task DeleteAsync(Expression<Func<SaveMessage, bool>> expression);
 
-        Task<bool> DeleteRangeAsync();
+        Task DeleteRangeAsync();
 
         Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null!);
     }

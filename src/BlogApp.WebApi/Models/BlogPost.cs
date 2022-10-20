@@ -1,7 +1,4 @@
-﻿using BlogApp.WebApi.Enums;
-using BlogApp.WebApi.ViewModels.BlogPosts;
-
-namespace BlogApp.WebApi.Models
+﻿namespace BlogApp.WebApi.Models
 {
     public class BlogPost
     {
@@ -13,7 +10,8 @@ namespace BlogApp.WebApi.Models
 
         public uint ViewCount { get; set; }
 
-        public string Type { get; set; } = String.Empty;
+        public long PostTypeId { get; set; }
+        public virtual PostType PostType { get; set; } = null!;
 
         public string ImagePath { get; set; } = String.Empty;
 
@@ -21,6 +19,5 @@ namespace BlogApp.WebApi.Models
 
         public long UserId { get; set; }
         public virtual User User { get; set; } = null!;
-
     }
 }

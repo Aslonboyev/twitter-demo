@@ -13,8 +13,8 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonPropertyName("type")]
-        public string? Type { get; set; }
+        [JsonPropertyName("post-type-id")]
+        public long PostTypeId { get; set; }
 
         [DataType(DataType.Upload)]
         [MaxFileSize(3)]
@@ -28,7 +28,7 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
             {
                 Title = blogPost.Title,
                 Description = blogPost.Description,
-                Type = blogPost.Type,
+                PostTypeId = blogPost.PostTypeId,
             };
         }
     }

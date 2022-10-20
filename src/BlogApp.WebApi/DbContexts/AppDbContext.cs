@@ -1,7 +1,5 @@
-﻿using BlogApp.WebApi.Enums;
-using BlogApp.WebApi.Models;
+﻿using BlogApp.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
 
 namespace BlogApp.WebApi.DbContexts
 {
@@ -35,5 +33,6 @@ namespace BlogApp.WebApi.DbContexts
 
         public virtual DbSet<BlogPost> BlogPosts { get; set; } = null!;
 
+        public virtual DbSet<PostType> PostTypes { get; set; } = null!;
     }
 }
