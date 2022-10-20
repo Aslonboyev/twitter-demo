@@ -1,6 +1,5 @@
 ﻿using BlogApp.Service.ViewModels.Users;
 using BlogApp.WebApi.DbContexts;
-using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Helpers;
@@ -33,13 +32,9 @@ namespace BlogApp.WebApi.Services
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
 
             await _fileService.DeleteImageAsync(result.ImagePath);
-            
-            result.ItemState = ItemState.Inactive;
 
-            _context.Users.Update(result);
+            _context.Users.Remove(_context.Users.Where(p => p.Id == result.Id).Include(p => p.BlogPosts).First());
 
-            _context.BlogPosts.RemoveRange(_context.BlogPosts.Where(p => p.UserId == HttpContextHelper.UserId));
-            
             await _context.SaveChangesAsync();
         }
 
@@ -52,11 +47,7 @@ namespace BlogApp.WebApi.Services
 
             await _fileService.DeleteImageAsync(user.ImagePath);
 
-            user.ItemState = ItemState.Inactive;
-
-            _context.Users.Update(user);
-
-            _context.BlogPosts.RemoveRange(_context.BlogPosts.Where(p => p.UserId == HttpContextHelper.UserId));
+            _context.Users.Remove(_context.Users.Where(p => p.Id == user.Id).Include(p => p.BlogPosts).First());
 
             await _context.SaveChangesAsync();
         }
@@ -70,7 +61,7 @@ namespace BlogApp.WebApi.Services
 
             return (UserViewModel)user;
         }
-        
+
         public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams? pagination = null, Expression<Func<User, bool>>? expression = null)
         {
             if (expression is null)
@@ -91,9 +82,9 @@ namespace BlogApp.WebApi.Services
             return (UserViewModel)user;
         }
 
-        public async Task UpdateAsync(UserPatchViewModel model)
+        public async Task<UserViewModel> UpdateAsync(UserPatchViewModel model)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(o => o.Id == HttpContextHelper.UserId && o.ItemState == ItemState.Active);
+            var user = await _context.Users.FirstOrDefaultAsync(o => o.Id == HttpContextHelper.UserId);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
@@ -129,9 +120,11 @@ namespace BlogApp.WebApi.Services
             if (model.LastName is not null)
                 user.LastName = model.LastName;
 
-            _context.Users.Update(user);
+            var result = _context.Users.Update(user).Entity;
 
             await _context.SaveChangesAsync();
+
+            return result;
         }
     }
 }

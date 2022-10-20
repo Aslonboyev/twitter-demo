@@ -1,9 +1,7 @@
 ﻿using BlogApp.Service.ViewModels.Users;
 using BlogApp.WebApi.DbContexts;
-using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Interfaces.Services;
-using BlogApp.WebApi.Models;
 using BlogApp.WebApi.ViewModels.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -42,7 +40,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task VerifyEmail(EmailVerifyViewModel emailVerify)
         {
-            var entity = await _context.Users.FirstOrDefaultAsync(user => user.Email == emailVerify.Email && user.ItemState == ItemState.Active);
+            var entity = await _context.Users.FirstOrDefaultAsync(user => user.Email == emailVerify.Email);
 
             if (entity == null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found!");

@@ -9,7 +9,6 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<string?> LogInAsync(UserLogInViewModel model);
 
-
         Task VerifyPasswordAsync(UserResetPasswordViewModel password);
     }
 }

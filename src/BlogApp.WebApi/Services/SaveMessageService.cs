@@ -30,7 +30,7 @@ namespace BlogApp.WebApi.Services
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
 
-            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == HttpContextHelper.UserId && p.ItemState == Enums.ItemState.Active);
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == HttpContextHelper.UserId);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
@@ -75,10 +75,10 @@ namespace BlogApp.WebApi.Services
                 expression = p => true;
 
             return (from save in _context.SaveMessages.Where(expression)
-                        where save.UserId == HttpContextHelper.UserId
-                            join blog in _context.BlogPosts
-                                on save.BlogPostId equals blog.Id
-                                    select (BlogPostViewModel)blog).ToPaged(@params);
+                    where save.UserId == HttpContextHelper.UserId
+                    join blog in _context.BlogPosts
+                        on save.BlogPostId equals blog.Id
+                    select (BlogPostViewModel)blog).ToPaged(@params);
         }
     }
 }

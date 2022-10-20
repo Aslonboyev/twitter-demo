@@ -39,11 +39,7 @@ namespace BlogApp.WebApi.Services
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Type not found");
 
-            var blogs = _context.BlogPosts.Where(p => p.PostTypeId == result.Id);
-
-            _context.BlogPosts.RemoveRange(blogs);
-
-            _context.PostTypes.Remove(result);
+            _context.Remove(_context.PostTypes.Where(expression).Include(p => p.BlogPosts));
 
             await _context.SaveChangesAsync();
         }
@@ -51,8 +47,8 @@ namespace BlogApp.WebApi.Services
         public async Task<IEnumerable<PostTypeViewModel>> GetAllAsync(PaginationParams @params)
         {
             return (from type in _context.PostTypes
-                        orderby type.CreatedAt descending
-                            select (PostTypeViewModel)type).ToPaged(@params);
+                    orderby type.CreatedAt descending
+                    select (PostTypeViewModel)type).ToPaged(@params);
         }
 
         public async Task<PostTypeViewModel> GetAsync(Expression<Func<PostType, bool>> expression)

@@ -16,7 +16,7 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task DeleteAsync();
 
-        Task UpdateAsync(UserPatchViewModel model);
+        Task<UserViewModel> UpdateAsync(UserPatchViewModel model);
 
         Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null!);
     }

@@ -19,28 +19,26 @@ namespace BlogApp.WebApi.Controllers
         [HttpGet, AllowAnonymous]
         public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
         {
-            return Ok(await _service.GetAllAsync(@params, p => p.ItemState == Enums.ItemState.Active));
+            return Ok(await _service.GetAllAsync(@params));
         }
 
         [HttpPatch(), Authorize(Roles = "User")]
         public async Task<IActionResult> UpdateAsync([FromForm] UserPatchViewModel userCreateViewModel)
         {
-            await _service.UpdateAsync(userCreateViewModel);
-            return Ok();
+            return Ok(await _service.UpdateAsync(userCreateViewModel));
         }
 
-        [HttpGet("user-info"), Authorize(Roles = "User")]
+        [HttpGet("user-info"), Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetInfoAsync()
         {
-            await _service.GetInfoAsync();
-            return Ok();
+            return Ok(await _service.GetInfoAsync());
         }
 
         [HttpGet("{id}"), Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetAsync(long id)
         {
-            await _service.GetAsync(p => p.Id == id && p.ItemState == Enums.ItemState.Active);
-            return Ok();
+            
+            return Ok(await _service.GetAsync(p => p.Id == id));
         }
 
         [HttpDelete(), Authorize(Roles = "User")]
@@ -53,7 +51,7 @@ namespace BlogApp.WebApi.Controllers
         [HttpDelete("{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            await _service.DeleteAsync(p => p.Id == id && p.ItemState == Enums.ItemState.Active);
+            await _service.DeleteAsync(p => p.Id == id);
             return Ok();
         }
     }

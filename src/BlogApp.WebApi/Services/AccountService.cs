@@ -1,6 +1,5 @@
 ﻿using BlogApp.Service.ViewModels.Users;
 using BlogApp.WebApi.DbContexts;
-using BlogApp.WebApi.Enums;
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
@@ -24,7 +23,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<string?> LogInAsync(UserLogInViewModel viewModel)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(o => o.Email == viewModel.Email && o.ItemState == ItemState.Active);
+            var user = await _context.Users.FirstOrDefaultAsync(o => o.Email == viewModel.Email);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "email is wrong");
@@ -40,12 +39,12 @@ namespace BlogApp.WebApi.Services
 
         public async Task RegistrAsync(UserCreateViewModel viewModel)
         {
-            var email = await _context.Users.FirstOrDefaultAsync(o => o.ItemState == ItemState.Active && o.Email == viewModel.Email);
+            var email = await _context.Users.FirstOrDefaultAsync(o => o.Email == viewModel.Email);
 
             if (email is not null)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Email already exist");
 
-            var username = await _context.Users.FirstOrDefaultAsync(p => p.UserName == viewModel.UserName && p.ItemState == ItemState.Active);
+            var username = await _context.Users.FirstOrDefaultAsync(p => p.UserName == viewModel.UserName);
 
             if (username is not null)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "Username already exist");
@@ -55,8 +54,6 @@ namespace BlogApp.WebApi.Services
             var hashResult = PasswordHasher.Hash(viewModel.Password);
 
             user.Salt = hashResult.Salt;
-
-            user.ItemState = ItemState.Active;
 
             user.PasswordHash = hashResult.Hash;
 
@@ -69,7 +66,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task VerifyPasswordAsync(UserResetPasswordViewModel password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(p => p.Email == password.Email && p.ItemState == ItemState.Active);
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Email == password.Email);
 
             if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found!");
