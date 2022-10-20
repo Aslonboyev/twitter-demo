@@ -25,7 +25,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task<SaveMessageViewModel> CreateAsync(SaveMessageCreateViewModel model)
         {
-            var post = await _context.SaveMessages.FirstOrDefaultAsync(p => p.Id == model.PostId);
+            var post = await _context.BlogPosts.FirstOrDefaultAsync(p => p.Id == model.PostId);
 
             if (post is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");

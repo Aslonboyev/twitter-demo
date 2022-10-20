@@ -53,9 +53,11 @@ namespace BlogApp.WebApi.Services
 
         public async Task DeleteRangeAsync()
         {
-            _context.BlogPosts.RemoveRange(from blog in _context.BlogPosts
+            _context.BlogPosts.RemoveRange((from blog in _context.BlogPosts
                                            where blog.UserId == HttpContextHelper.UserId
-                                           select blog);
+                                           select blog));
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<BlogPost, bool>>? expression = null)

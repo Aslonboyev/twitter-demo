@@ -26,6 +26,6 @@ namespace BlogApp.WebApi.Models
 
         public UserRole UserRole { get; set; } = UserRole.User;
 
-        public ICollection<BlogPost> BlogPosts { get; } = new List<BlogPost>();
+        public ICollection<BlogPost> BlogPosts { get; } = null!;
     }
 }

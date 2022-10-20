@@ -10,6 +10,6 @@
         public long UserId { get; set; }
         public virtual User User { get; set; } = null!;
 
-        public ICollection<BlogPost> BlogPosts { get; } = new List<BlogPost>();
+        public ICollection<BlogPost> BlogPosts { get; } = null!;
     }
 }

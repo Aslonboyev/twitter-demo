@@ -39,7 +39,7 @@ namespace BlogApp.WebApi.Services
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, message: "Type not found");
 
-            _context.Remove(_context.PostTypes.Where(expression).Include(p => p.BlogPosts));
+            _context.Remove(_context.PostTypes.Where(expression).Include(p => p.BlogPosts).FirstAsync());
 
             await _context.SaveChangesAsync();
         }
