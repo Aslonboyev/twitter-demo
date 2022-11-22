@@ -65,9 +65,9 @@ namespace BlogApp.WebApi.Services
             if (expression is null)
                 expression = p => true;
 
-            return (from blog in _context.BlogPosts.Where(expression)
+            return (from blog in _context.BlogPosts.Where(expression).Include(p => p.User)
                     orderby blog.CreatedAt descending
-                    select (BlogPostViewModel)blog).ToPaged(@params);
+                    select ((BlogPostViewModel)blog)).ToPaged(@params);
         }
 
         public async Task<BlogPostViewModel> GetAsync(Expression<Func<BlogPost, bool>> expression)
