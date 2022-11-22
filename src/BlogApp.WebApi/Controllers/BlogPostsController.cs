@@ -54,5 +54,10 @@ namespace BlogApp.WebApi.Controllers
         [HttpPatch("{id}"), Authorize(Roles = "User")]
         public async Task<IActionResult> UpdateAsync(long id, [FromForm] BlogPostPatchViewModel blogPostCreateViewModel)
             => Ok(await _postService.UpdateAsync(id, blogPostCreateViewModel));
+
+        [HttpGet("{type_id}/type"), Authorize(Roles = "User")]
+        public async Task<IActionResult> GetAllByTypeIdAsync([FromQuery] PaginationParams @params, long type_id)
+            => Ok(await _postService.GetAllByTypeIdAsync(@params, type_id));
+
     }
 }
