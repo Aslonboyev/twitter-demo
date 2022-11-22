@@ -13,6 +13,8 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task DeleteAsync(Expression<Func<BlogPost, bool>> expression);
 
+        Task<IEnumerable<BlogPostViewModel>> GetAllByTypeIdAsync(PaginationParams @params, long id);
+
         Task<BlogPostViewModel> UpdateAsync(long id, BlogPostCreateViewModel model);
 
         Task<BlogPostViewModel> UpdateAsync(long id, BlogPostPatchViewModel model);

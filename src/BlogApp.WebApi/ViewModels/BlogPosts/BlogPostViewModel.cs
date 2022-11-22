@@ -1,4 +1,5 @@
 ﻿using BlogApp.WebApi.Models;
+using BlogApp.WebApi.ViewModels.PostTypes;
 using BlogApp.WebApi.ViewModels.Users;
 using System.Text.Json.Serialization;
 
@@ -18,17 +19,14 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
         [JsonPropertyName("view_count")]
         public uint ViewCount { get; set; }
 
-        [JsonPropertyName("type-id")]
-        public long TypeId { get; set; }
-
         [JsonPropertyName("image")]
         public string Image { get; set; } = String.Empty;
 
         [JsonPropertyName("created_at")]
         public DateTime CreatedAt { get; set; }
 
-        [JsonPropertyName("user_id")]
-        public long UserId { get; set; }
+        [JsonPropertyName("type")]
+        public PostTypeViewModel PostType { get; set; } = null!;
 
         [JsonPropertyName("user")]
         public UserViewModel User { get; set; } = null!;
@@ -39,13 +37,12 @@ namespace BlogApp.WebApi.ViewModels.BlogPosts
             {
                 Id = blogPost.Id,
                 Title = blogPost.Title,
-                TypeId = blogPost.PostTypeId,
                 Description = blogPost.Description,
-                UserId = blogPost.UserId,
                 Image = blogPost.ImagePath,
                 ViewCount = blogPost.ViewCount,
                 CreatedAt = blogPost.CreatedAt,
                 User = (UserViewModel)blogPost.User,
+                PostType = (PostTypeViewModel)blogPost.PostType,
             };
         }
     }
