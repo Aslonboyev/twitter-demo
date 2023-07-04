@@ -15,6 +15,6 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<PostTypeViewModel> UpdateAsync(long id, PostTypeCreateViewModel model);
 
-        Task<IEnumerable<PostTypeViewModel>> GetAllAsync(PaginationParams @params);
+        Task<PagedList<PostTypeViewModel>> GetAllAsync(PaginationParams @params);
     }
 }

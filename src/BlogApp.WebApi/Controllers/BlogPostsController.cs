@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApp.WebApi.Controllers
 {
-    [Route("api/blogposts")]
+    [Route("api/blogPosts")]
     [ApiController]
     public class BlogPostsController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace BlogApp.WebApi.Controllers
         public async Task<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
             => Ok(await _postService.GetAllAsync(@params));
 
-        [HttpGet("{userid}/blogposts"), Authorize(Roles = "User, Admin")]
+        [HttpGet("{userid}/blogPosts"), Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> GetAllByBlogPostAsync(long userid, [FromQuery] PaginationParams @params)
             => Ok(await _postService.GetAllAsync(@params, p => p.UserId == userid));
 
@@ -29,7 +29,7 @@ namespace BlogApp.WebApi.Controllers
         public async Task<IActionResult> GetAsync(long id)
             => Ok(await _postService.GetAsync(p => p.Id == id));
 
-        [HttpDelete("user/blogposts"), Authorize(Roles = "User, Admin")]
+        [HttpDelete("user/blogPosts"), Authorize(Roles = "User, Admin")]
         public async Task<IActionResult> DeleteRange()
         {
             await _postService.DeleteRangeAsync();
@@ -55,9 +55,9 @@ namespace BlogApp.WebApi.Controllers
         public async Task<IActionResult> UpdateAsync(long id, [FromForm] BlogPostPatchViewModel blogPostCreateViewModel)
             => Ok(await _postService.UpdateAsync(id, blogPostCreateViewModel));
 
-        [HttpGet("{type_id}/type"), Authorize(Roles = "User")]
-        public async Task<IActionResult> GetAllByTypeIdAsync([FromQuery] PaginationParams @params, long type_id)
-            => Ok(await _postService.GetAllByTypeIdAsync(@params, type_id));
+        [HttpGet("{typeid}/type"), Authorize(Roles = "User")]
+        public async Task<IActionResult> GetAllByTypeIdAsync([FromQuery] PaginationParams @params, long typeid)
+            => Ok(await _postService.GetAllByTypeIdAsync(@params, typeid));
 
     }
 }

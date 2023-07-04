@@ -44,30 +44,27 @@ namespace BlogApp.WebApi.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<PostTypeViewModel>> GetAllAsync(PaginationParams @params)
+        public async Task<PagedList<PostTypeViewModel>> GetAllAsync(PaginationParams @params)
         {
-            return (from type in _context.PostTypes
+            var results = from type in _context.PostTypes
                     orderby type.CreatedAt descending
-                    select (PostTypeViewModel)type).ToPaged(@params);
+                    select (PostTypeViewModel)type;
+
+            return PagedList<PostTypeViewModel>.ToPagedList(results, @params);
         }
 
         public async Task<PostTypeViewModel> GetAsync(Expression<Func<PostType, bool>> expression)
         {
             var type = await _context.PostTypes.FirstOrDefaultAsync(expression);
 
-            if (type is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "Type not found");
-
-            return (PostTypeViewModel)type;
+            return type is null ? throw new StatusCodeException(HttpStatusCode.NotFound, message: "Type not found") : (PostTypeViewModel)type;
         }
 
         public async Task<PostTypeViewModel> UpdateAsync(long id, PostTypeCreateViewModel model)
         {
-            var type = await _context.PostTypes.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (type is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "Type not found");
-
+            var type = await _context.PostTypes.FirstOrDefaultAsync(p => p.Id == id)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "Type not found");
+            
             type.Name = model.Name;
 
             _context.PostTypes.Update(type);

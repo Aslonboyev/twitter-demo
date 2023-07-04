@@ -18,6 +18,6 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task<UserViewModel> UpdateAsync(UserPatchViewModel model);
 
-        Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null!);
+        Task<PagedList<UserViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<User, bool>> expression = null!);
     }
 }

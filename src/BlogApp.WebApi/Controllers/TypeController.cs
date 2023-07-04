@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApp.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/types")]
     [ApiController]
     public class TypeController : ControllerBase
     {
-        private IPostTypeService _service;
+        private readonly IPostTypeService _service;
 
         public TypeController(IPostTypeService service)
         {

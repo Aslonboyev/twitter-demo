@@ -14,6 +14,6 @@ namespace BlogApp.WebApi.Interfaces.Services
 
         Task DeleteRangeAsync();
 
-        Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null!);
+        Task<PagedList<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<SaveMessage, bool>> expression = null!);
     }
 }

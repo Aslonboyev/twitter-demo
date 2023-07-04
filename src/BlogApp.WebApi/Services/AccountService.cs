@@ -23,10 +23,8 @@ namespace BlogApp.WebApi.Services
 
         public async Task<string?> LogInAsync(UserLogInViewModel viewModel)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(o => o.Email == viewModel.Email);
-
-            if (user is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "email is wrong");
+            var user = await _context.Users.FirstOrDefaultAsync(o => o.Email == viewModel.Email)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "email is wrong");
 
             if (user.IsEmailConfirmed is false)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");
@@ -51,11 +49,11 @@ namespace BlogApp.WebApi.Services
 
             var user = (User)viewModel;
 
-            var hashResult = PasswordHasher.Hash(viewModel.Password);
+            var (Hash, Salt) = PasswordHasher.Hash(viewModel.Password);
 
-            user.Salt = hashResult.Salt;
+            user.Salt = Salt;
 
-            user.PasswordHash = hashResult.Hash;
+            user.PasswordHash = Hash;
 
             user.CreatedAt = DateTime.UtcNow;
 
@@ -66,10 +64,8 @@ namespace BlogApp.WebApi.Services
 
         public async Task VerifyPasswordAsync(UserResetPasswordViewModel password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(p => p.Email == password.Email);
-
-            if (user is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found!");
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Email == password.Email)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "user not found!");
 
             if (user.IsEmailConfirmed is false)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, message: "email did not verified!");

@@ -1,11 +1,31 @@
-﻿namespace BlogApp.WebApi.Utills
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Xml.Linq;
+
+namespace BlogApp.WebApi.Utills
 {
     public class PaginationParams
     {
-        public int PageIndex { get; set; }
+        private const int maxPageSize = 50;
+        private int pageSize = 25;
 
-        public int PageSize { get; set; }
+        [FromQuery(Name = "page_number")]
+        public int PageNumber { get; set; } = 1;
 
-        public int GetSkipCount() => (PageIndex - 1) * PageSize;
+        [FromQuery(Name = "page_size")]
+        public int PageSize
+        {
+            get { return pageSize; }
+            set { pageSize = (value > maxPageSize) ? maxPageSize : value; }
+        }
+
+        public PaginationParams(int pageNumber, int pageSize)
+        {
+            PageNumber = pageNumber;
+            PageSize = pageSize;
+        }
+
+        public PaginationParams()
+        {
+        }
     }
 }

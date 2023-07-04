@@ -26,11 +26,7 @@ namespace BlogApp.WebApi.Services
 
         public async Task DeleteAsync(Expression<Func<User, bool>> expression)
         {
-            var result = await _context.Users.FirstOrDefaultAsync(expression);
-
-            if (result is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
+            var result = await _context.Users.FirstOrDefaultAsync(expression) ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
             await _fileService.DeleteImageAsync(result.ImagePath);
 
             _context.Users.Remove(_context.Users.Where(p => p.Id == result.Id).Include(p => p.BlogPosts).First());
@@ -40,11 +36,8 @@ namespace BlogApp.WebApi.Services
 
         public async Task DeleteAsync()
         {
-            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == HttpContextHelper.UserId);
-
-            if (user is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
+            var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == HttpContextHelper.UserId)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
             await _fileService.DeleteImageAsync(user.ImagePath);
 
             _context.Users.Remove(_context.Users.Where(p => p.Id == user.Id).Include(p => p.BlogPosts).First());
@@ -56,39 +49,31 @@ namespace BlogApp.WebApi.Services
         {
             var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == HttpContextHelper.UserId);
 
-            if (user is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
-            return (UserViewModel)user;
+            return user is null ? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found") : (UserViewModel)user;
         }
 
-        public async Task<IEnumerable<UserViewModel>> GetAllAsync(PaginationParams? pagination = null, Expression<Func<User, bool>>? expression = null)
+        public async Task<PagedList<UserViewModel>> GetAllAsync(PaginationParams pagination, Expression<Func<User, bool>>? expression = null)
         {
-            if (expression is null)
-                expression = p => true;
+            expression ??= p => true;
 
-            return (from user in _context.Users.Where(expression)
+            var results = from user in _context.Users.Where(expression)
                     orderby user.CreatedAt descending
-                    select (UserViewModel)user).ToPaged(pagination);
+                    select (UserViewModel)user;
+
+            return PagedList<UserViewModel>.ToPagedList(results, pagination);
         }
 
         public async Task<UserViewModel> GetAsync(Expression<Func<User, bool>> expression)
         {
             var user = await _context.Users.FirstOrDefaultAsync(expression);
 
-            if (user == null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
-            return (UserViewModel)user;
+            return user == null ? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found") : (UserViewModel)user;
         }
 
         public async Task<UserViewModel> UpdateAsync(UserPatchViewModel model)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(o => o.Id == HttpContextHelper.UserId);
-
-            if (user is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
+            var user = await _context.Users.FirstOrDefaultAsync(o => o.Id == HttpContextHelper.UserId) 
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
             if (model.Email is not null)
             {
                 var email = await _context.Users.FirstOrDefaultAsync(o => o.Email == model.Email);

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlogApp.WebApi.Controllers
 {
-    [Route("api/save-message")]
+    [Route("api/saveMessages")]
     [ApiController]
     public class SaveMessageController : ControllerBase
     {

@@ -2,10 +2,12 @@
 using BlogApp.WebApi.Exceptions;
 using BlogApp.WebApi.Extensions;
 using BlogApp.WebApi.Helpers;
+using BlogApp.WebApi.Hubs;
 using BlogApp.WebApi.Interfaces.Services;
 using BlogApp.WebApi.Models;
 using BlogApp.WebApi.Utills;
 using BlogApp.WebApi.ViewModels.BlogPosts;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Net;
@@ -16,14 +18,16 @@ namespace BlogApp.WebApi.Services
     {
         private readonly AppDbContext _context;
         private readonly IFileService _fileService;
+        private readonly IHubContext<ServerHub> _hubContext;
 
-        public BlogPostService(IFileService fileService, AppDbContext appDbContext)
+        public BlogPostService(IFileService fileService, AppDbContext appDbContext, IHubContext<ServerHub> hubContext)
         {
             _context = appDbContext;
             _fileService = fileService;
+            _hubContext = hubContext;
         }
 
-        public async Task<BlogPostViewModel> CreateAsync(BlogPostCreateViewModel viewModel)
+        public async Task<bool> CreateAsync(BlogPostCreateViewModel viewModel)
         {
             var blogPost = (BlogPost)viewModel;
 
@@ -35,18 +39,19 @@ namespace BlogApp.WebApi.Services
                 blogPost.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
             var result = await _context.BlogPosts.AddAsync(blogPost);
+
             await _context.SaveChangesAsync();
 
-            return (BlogPostViewModel)result.Entity;
+            await _hubContext.Clients.All.SendAsync("ReceivePost", (BlogPostViewModel)result.Entity);
+
+            return true;
         }
 
         public async Task DeleteAsync(Expression<Func<BlogPost, bool>> expression)
         {
-            var blog = await _context.BlogPosts.FirstOrDefaultAsync(expression);
-
-            if (blog is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
-
+            var blog = await _context.BlogPosts.FirstOrDefaultAsync(expression)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "Post not found");
+            
             _context.BlogPosts.Remove(blog);
             await _context.SaveChangesAsync();
         }
@@ -60,30 +65,29 @@ namespace BlogApp.WebApi.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<BlogPost, bool>>? expression = null)
+        public async Task<PagedList<BlogPostViewModel>> GetAllAsync(PaginationParams @params, Expression<Func<BlogPost, bool>>? expression = null)
         {
-            if (expression is null)
-                expression = p => true;
+            expression ??= p => true;
 
-            return (from blog in _context.BlogPosts.Where(expression).Include(p => p.PostType).Include(p => p.User)
-                    orderby blog.CreatedAt descending
-                    select ((BlogPostViewModel)blog)).ToPaged(@params);
+            var results = from blog in _context.BlogPosts.Where(expression).Include(p => p.PostType).Include(p => p.User)
+                    orderby blog.CreatedAt descending select ((BlogPostViewModel)blog);
+
+            return PagedList<BlogPostViewModel>.ToPagedList(results, @params);
         }
 
-        public async Task<IEnumerable<BlogPostViewModel>> GetAllByTypeIdAsync(PaginationParams @params, long id)
+        public async Task<PagedList<BlogPostViewModel>> GetAllByTypeIdAsync(PaginationParams @params, long id)
         {
-            return (from blog in _context.BlogPosts.Where(p => p.PostTypeId == id).Include(p => p.PostType).Include(p => p.User)
-                    orderby blog.CreatedAt descending
-                    select ((BlogPostViewModel)blog)).ToPaged(@params);
+            var results = from blog in _context.BlogPosts.Where(p => p.PostTypeId == id).Include(p => p.PostType).Include(p => p.User)
+                    orderby blog.CreatedAt descending select ((BlogPostViewModel)blog);
+
+            return PagedList<BlogPostViewModel>.ToPagedList(results, @params);
         }
 
         public async Task<BlogPostViewModel> GetAsync(Expression<Func<BlogPost, bool>> expression)
         {
-            var post = await _context.BlogPosts.FirstOrDefaultAsync(expression);
-
-            if (post is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
+            var post = await _context.BlogPosts.FirstOrDefaultAsync(expression)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+            
             post.ViewCount++;
 
             _context.BlogPosts.Update(post);
@@ -92,13 +96,11 @@ namespace BlogApp.WebApi.Services
             return (BlogPostViewModel)post;
         }
 
-        public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostCreateViewModel viewModel)
+        public async Task<bool> UpdateAsync(long id, BlogPostCreateViewModel viewModel)
         {
-            var post = await _context.BlogPosts.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (post is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
+            var post = await _context.BlogPosts.FirstOrDefaultAsync(p => p.Id == id)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+            
             if (viewModel.Image is not null)
                 post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
@@ -109,16 +111,14 @@ namespace BlogApp.WebApi.Services
             post = _context.BlogPosts.Update(post).Entity;
             await _context.SaveChangesAsync();
 
-            return (BlogPostViewModel)post;
+            return true;
         }
 
-        public async Task<BlogPostViewModel> UpdateAsync(long id, BlogPostPatchViewModel viewModel)
+        public async Task<bool> UpdateAsync(long id, BlogPostPatchViewModel viewModel)
         {
-            var post = await _context.BlogPosts.FirstOrDefaultAsync(p => p.Id == id);
-
-            if (post is null)
-                throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
-
+            var post = await _context.BlogPosts.FirstOrDefaultAsync(p => p.Id == id)
+                ?? throw new StatusCodeException(HttpStatusCode.NotFound, message: "User not found");
+            
             if (viewModel.Image is not null)
                 post.ImagePath = await _fileService.SaveImageAsync(viewModel.Image);
 
@@ -136,7 +136,7 @@ namespace BlogApp.WebApi.Services
             post = _context.BlogPosts.Update(post).Entity;
             await _context.SaveChangesAsync();
 
-            return (BlogPostViewModel)post;
+            return true;
         }
     }
 }
